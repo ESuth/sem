@@ -188,16 +188,16 @@ public class App
         a.connect();
 
         // Get Employee
-        //Employee emp = a.getEmployee(255530);
+        Employee emp = a.getEmployee(255530);
         // Display results
-        //a.displayEmployee(emp);
+        a.displayEmployee(emp);
 
         // Extract employee salary information
-        ArrayList<Employee> employees = a.getAllSalaries();
+        //ArrayList<Employee> employees = a.getAllSalaries();
         // Test the size of the returned data - should be 240124
-        System.out.println(employees.size());
+        //System.out.println(employees.size());
 
-        a.printSalaries(employees);
+        //a.printSalaries(employees);
 
         // Disconnect from database
         a.disconnect();
