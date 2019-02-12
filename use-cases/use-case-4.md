@@ -63,7 +63,7 @@ Extensions
  
 Channel To Primary Actor
 -------------------------
-Software, written in Java using IntelliJ
+Software, written in Java using IntelliJ.
    
    
 Open Issues
