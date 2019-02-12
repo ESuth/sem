@@ -46,18 +46,25 @@ Extensions
 ----------
 1(a). User submitted data is incorrect
     1(a)1. User is asked to reinsert data, is told that data previously entered is incorrect, remind them of appropriate syntax
+    
     1(a)2. Ask the user if they would like to go back to a previous section of the program
+    
     1(a)3. Allow the user to exit the software at any time
+    
     1(a)4. User enters text that is not properly processed by the program, inform the user of appropriate syntax
    
 2(a). Program does not function correctly
     2(a)1. User encounters a bug that causes an error/crash, careful evaluation of code, if unconclusive ask group for advice.
+    
     2(a)2. User enters text that is not properly processed by the program, inform the user of appropriate syntax
+    
     2(a)3. Data retrieved from the database is incorrect, search database to check if data searched is incorrect
    
 3(a). Program is difficult to use
     3(a)1. Program is cluttered, and provides unecessary information
+    
     3(a)2. Program has unecessary menus/confusing menus
+    
     3(a)3. Program is hard to navigate (unclear instructions/directions for the user to follow)
    
  
