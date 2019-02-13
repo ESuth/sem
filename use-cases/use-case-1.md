@@ -23,8 +23,8 @@ Trigger
 A request for finance information is sent to HR.
 
 MAIN SUCCESS SCENARIO
-    Finance request salary information for a given role.
-    HR advisor captures name of the role to get salary information for.
+	Finance request salary information for a given role.
+	HR advisor captures name of the role to get salary information for.
     HR advisor extracts current salary information of all employees of the given role.
     HR advisor provides report to finance.
 
@@ -33,7 +33,8 @@ EXTENSIONS
         HR advisor informs finance no role exists.
 
 SUB-VARIATIONS
-None.
 
+None.
 SCHEDULE
+
 DUE DATE: Release 1.0
