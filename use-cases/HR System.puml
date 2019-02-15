@@ -1,20 +1,195 @@
+******************
+Use-Case 1 Diagram
+******************
+
 @startuml
-:Main Admin: as Admin
-(Use the application) as (Use)
 
-User -> (Start)
-User --> (Use)
+actor HR as "Hr Advisor"
 
-Admin ---> (Use)
+rectangle Database
 
-note right of Admin : This is an example.
+rectangle "HR System" {
+    usecase UC4 as "Get all salaries
+    of employees"
 
-note right of (Use)
-A note can also
-be on several lines
-end note
+    usecase UCa as "Print salaries"
 
-note "This note is connected\nto several objects." as N2
-(Start) .. N2
-N2 .. (Use)
+    HR - UC4
+    UC4 ..> UCa : include
+    UC4 - Database
+}
+
+@enduml
+
+******************
+Use-Case 2 Diagram
+******************
+
+@startuml
+
+actor HR as "Hr Advisor"
+
+rectangle Database
+
+rectangle "HR System" {
+    usecase UC4 as "Get salaries
+    of employees in specific
+    department"
+
+    usecase UCa as "Print salaries"
+
+    HR - UC4
+    UC4 ..> UCa : include
+    UC4 - Database
+}
+
+@enduml
+
+******************
+Use-Case 5 Diagram
+******************
+
+
+@startuml
+
+actor DM as "Department Manager"
+
+rectangle Database
+
+rectangle "HR System" {
+    usecase UC4 as "Get salaries
+    of employees in specific
+    department"
+
+    usecase UCa as "Print salaries"
+
+    Department_Manager - UC4
+    UC4 ..> UCa : include
+    UC4 - Database
+}
+
+@enduml
+
+******************
+Use-Case 4 Diagram
+******************
+
+@startuml
+
+actor HR as "HR Advisor"
+
+rectangle Database
+
+rectangle "HR System" {
+    usecase UC4 as "Get salaries
+    by role"
+
+    usecase UCa as "Print salaries"
+
+    HR - UC4
+    UC4 ..> UCa : include
+    UC4 - Database
+}
+
+@enduml
+
+******************
+Use-Case 5 Diagram
+******************
+
+@startuml
+
+actor HR as "HR Advisor"
+
+rectangle Database
+
+Rectangle "HR System" {
+    usecase UC4 as "Gain access to
+    employee database"
+
+    usecase UCa as "Add employee to
+    database"
+
+    HR - UC4
+    UC4 ..> UCa : include
+    UC4 - Database
+    UCa - Database
+}
+
+@enduml
+
+******************
+Use-Case 6 Diagram
+******************
+
+@startuml
+
+actor HR as "HR Advisor"
+
+rectangle Database
+
+Rectangle "HR System" {
+    usecase UC4 as "Get employee
+    details"
+
+    usecase UCa as "use information
+    to support promotions"
+
+    HR - UC4
+    UC4 ..> UCa : include
+    UC4 - Database
+}
+
+@enduml
+
+******************
+Use-Case 7 Diagram
+******************
+
+@startuml
+
+actor HR as "HR Advisor"
+
+rectangle Database
+rectangle Database2
+
+Rectangle "HR System" {
+    usecase UC4 as "Get employee
+    details"
+
+    usecase UCa as "update employee
+    details"
+
+    HR - UC4
+    UC4 ..> UCa : include
+    UC4 - Database
+    UCa - Database2
+}
+
+@enduml
+
+******************
+Use-case 8 Diagram
+******************
+
+@startuml
+
+actor HR as "HR Advisor"
+
+rectangle Database
+rectangle Database2
+
+Rectangle "HR System" {
+    usecase UC4 as "Get employee
+    details"
+
+    usecase UCa as "delete employee
+    details"
+
+    HR - UC4
+    UC4 ..> UCa : include
+    UC4 - Database
+        UCa - Database2
+}
+
 @enduml
