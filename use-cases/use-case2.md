@@ -1,53 +1,60 @@
-Goal in Context
 
-As an HR advisor I want to produce a report on the salary of employees in a department so that I can support financial reporting of the organisation.
 
-Scope
+GOAL IN CONTEXT
+
+Find the number of people who speak the following languages: Chines, English, Hindi, Spanish, Arabic. From greatest number to smallest. Including the percentage of the world population.
+
+SCOPE
 
 Company.
 
-Level
+LEVEL
 
-Primary task.
+Primary Task
 
-Preconditions
+PRECONDITIONS
 
-We know the role. Database contains all current department's employee salary data.
+Database with language information
 
-Success End Condition
+SUCCESS END CONDITIONS
 
-A report is available for specific departments to HR to provide to finance
+User chooses what type of language they wish to generate a report of, generates the report.
 
-Failed End Condition
+FAILED END CONDITION
 
-No report is produced
+User can not generate a report
 
-Primary Actor
+PRIMARY ACTOR
 
-HR Advisor
+User
 
-Trigger
+TRIGGER
 
-A request for finance information from a specific department is sent to HR
+User is prompted to generate a report on languages (Chinese, English, Spanish, ect)
 
 MAIN SUCCESS SCENARIO
 
-	1. Finance requests salary information for a given department
-	2. HR advisor captures name of the department and role to get salary information for
-	3. HR advisor extracts salary information from all employees in the department
-	4. HR advisor provides report to finance.
-	
+1. Program prompts user
+
+2. User makes a selection
+
+3. Database retrieves language information
+
+4. Data is written on screen in a report for the user
+
 EXTENSIONS
 
-	1. Department does not exist
-		i. HR advisor informs finance no department exists
-	2. Salary information is incorrect
-		i. HR advisor informs finance that salary information is incorrect
-		
-Sub-Variations
+1. User enters incorrect input
+	1(a) inform user that the input is incorrect and to try again
 
-None
+2. Database retrieves wrong data
+	2(a) test to pinpoint where error is taken place
 
-SCHEDULE
+SUB-VARIATIONS
 
-DUE DATE: Release 1.0
+None.
+
+SCHEDULE DUE DATE:
+
+Release 1.0
+

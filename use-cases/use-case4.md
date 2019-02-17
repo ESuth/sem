@@ -1,52 +1,60 @@
+
+
 GOAL IN CONTEXT
 
-As an HR advisor I want to produce a report on the salary of employees of a given role so that I can support financial reporting of the organisation.
+Generate a report based on population of cities allowing user to sort by largest/smallest size
 
 SCOPE
 
 Company.
 
 LEVEL
-Primary task.
+
+Primary Task
 
 PRECONDITIONS
 
-We know the role. Database contains current employee salary data.
+Database with population information
 
-SUCCESS END CONDITION
+SUCCESS END CONDITIONS
 
-A report is available for HR to provide to finance.
+User chooses what area of the world they wish to generate a report of cities from, generates the report.
 
 FAILED END CONDITION
 
-No report is produced.
+User can not generate a report
 
 PRIMARY ACTOR
 
-HR Advisor.
+User
 
 TRIGGER
 
-A request for finance information is sent to HR.
+User is prompted to enter an area of the world
 
 MAIN SUCCESS SCENARIO
 
-    Finance request salary information for a given role.
-	
-    HR advisor captures name of the role to get salary information for.
-	
-    HR advisor extracts current salary information of all employees of the given role.
-	
-    HR advisor provides report to finance.
+1. Program prompts user
+
+2. User makes a selection
+
+3. Database retrieves population information
+
+4. Data is written on screen in a report for the user
 
 EXTENSIONS
 
-    Role does not exist:
-	
-        HR advisor informs finance no role exists.
+1. User enters incorrect input
+	1(a) inform user that the input is incorrect and to try again
+
+2. Database retrieves wrong data
+	2(a) test to pinpoint where error is taken place
 
 SUB-VARIATIONS
+
 None.
 
-SCHEDULE
-DUE DATE: Release 1.0
+SCHEDULE DUE DATE:
+
+Release 1.0
+

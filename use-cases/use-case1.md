@@ -1,51 +1,60 @@
-Goal in Context
 
-As an HR advisor I want to produce a report on the salary of employees of a given role so that I can support financial reporting of the organisation.
 
-Scope
+GOAL IN CONTEXT
 
-Company.
+Allow the user to get the population data of any geographical place (district/country/continent/ect)
 
-Level
+SCOPE
 
-Primary task.
+Company
 
-Preconditions
+LEVEL
 
-We know the role. Database contains current employee salary data.
+Primary Task
 
-Success End Condition
+PRECONDITIONS
 
-A report is available for HR to provide to finance.
+Database with population information
 
-Failed End Condition
+SUCCESS END CONDITIONS
 
-No report is produced.
+User chooses what type of geographical location they wish to generate a report of, generates the report.
 
-Primary Actor
+FAILED END CONDITION
 
-HR Advisor.
+User can not generate a report
 
-Trigger
+PRIMARY ACTOR
 
-A request for finance information is sent to HR.
+User
+
+TRIGGER
+
+User is prompted to select geographical location to generate report
 
 MAIN SUCCESS SCENARIO
 
-	Finance request salary information for a given role.
-	HR advisor captures name of the role to get salary information for.
-    HR advisor extracts current salary information of all employees of the given role.
-    HR advisor provides report to finance.
+1. Program prompts user
+
+2. User makes a selection
+
+3. Database retrieves population information
+
+4. Data is written on screen in a report for the user
 
 EXTENSIONS
 
-    Role does not exist:
-        HR advisor informs finance no role exists.
+1. User enters incorrect input
+	1(a) inform user that the input is incorrect and to try again
+
+2. Database retrieves wrong data
+	2(a) test to pinpoint where error is taken place
 
 SUB-VARIATIONS
 
 None.
 
-SCHEDULE
+SCHEDULE DUE DATE:
 
-DUE DATE: Release 1.0
+Release 1.0
+
