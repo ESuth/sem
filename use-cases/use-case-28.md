@@ -1,6 +1,6 @@
 GOAL IN CONTEXT
-
-	generate a report of the top N populated cities in a district where N is provided by the user
+	 
+	 generate a report of the top N populated cities in a continent where N is provided by the user
 
 SCOPE
 
@@ -16,7 +16,7 @@ PRECONDITIONS
 
 SUCCESS END CONDITIONS
 
-	Displays the top N populated cities in a district in the world, where N is chosen by the user
+	Displays the top N populated cities in a continent where N is provided by the user
 
 FAILED END CONDITION
 
@@ -24,7 +24,7 @@ FAILED END CONDITION
 
 PRIMARY ACTOR
 
-	User chooses a number of top populated cities in a district in the world to display
+	User chooses top populated cities in a continent to display
 
 TRIGGER
 
