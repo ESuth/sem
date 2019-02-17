@@ -1,6 +1,6 @@
 GOAL IN CONTEXT
 
-	Allow the user to get the population data of the population of a city.
+	Allow the user to get the population data of the population of the world.
 
 
 SCOPE
@@ -20,7 +20,7 @@ PRECONDITIONS
 	
 SUCCESS END CONDITIONS
 
-	User chooses the city they wish to generate a report of, generates the report.
+	User chooses the world to generate a report of, generates the report.
 	
 	
 FAILED END CONDITION

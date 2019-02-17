@@ -1,6 +1,6 @@
 GOAL IN CONTEXT
 
-	Generate a report based on population of capital cities in a continent to sort by largest/smallest size
+	Generate a report based on population of capital cities in the world to sort by largest/smallest size
 
 SCOPE
 
@@ -16,7 +16,7 @@ PRECONDITIONS
 
 SUCCESS END CONDITIONS
 
-	User chooses what continent they wish to generate a report of capital cities from, generates the report.
+	User chooses the world to generate a report of capital cities from, generates the report.
 
 FAILED END CONDITION
 
@@ -28,7 +28,7 @@ PRIMARY ACTOR
 
 TRIGGER
 
-	User is prompted to enter a continent
+	User is prompted to generate report on the cities of the world
 
 MAIN SUCCESS SCENARIO
 

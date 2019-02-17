@@ -1,6 +1,6 @@
 GOAL IN CONTEXT
 
-	Allow the user to get the population data of the population of a country.
+	Allow the user to get the population data of the population of a region.
 
 
 SCOPE
@@ -20,7 +20,7 @@ PRECONDITIONS
 	
 SUCCESS END CONDITIONS
 
-	User chooses the country they wish to generate a report of, generates the report.
+	User chooses the region they wish to generate a report of, generates the report.
 	
 	
 FAILED END CONDITION

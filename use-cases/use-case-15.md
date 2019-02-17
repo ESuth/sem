@@ -1,6 +1,6 @@
 GOAL IN CONTEXT
 
-	Generate a report based on population of cities in a continent to sort by largest/smallest size
+	Generate a report based on population of cities in the world to sort by largest/smallest size
 
 SCOPE
 
@@ -16,7 +16,7 @@ PRECONDITIONS
 
 SUCCESS END CONDITIONS
 
-	User chooses what continent they wish to generate a report of cities from, generates the report.
+	User chooses the world to generate a report of cities from, generates the report.
 
 FAILED END CONDITION
 
@@ -28,7 +28,7 @@ PRIMARY ACTOR
 
 TRIGGER
 
-	User is prompted to enter a continent
+	User is chooses the world to get a city population report from
 
 MAIN SUCCESS SCENARIO
 

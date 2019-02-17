@@ -92,7 +92,7 @@ actor Usr as "User"
 rectangle Database
 
 rectangle "Use case 1" {
-    usecase UC1 as "User chooses a continent
+    usecase UC1 as "User chooses a country
     to get population report from"
 
 
@@ -147,7 +147,7 @@ actor Usr as "User"
 rectangle Database
 
 rectangle "Use case 1" {
-    usecase UC1 as "User chooses city
+    usecase UC1 as "User chooses continent
     to get population report from"
 
 
