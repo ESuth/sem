@@ -1,54 +1,69 @@
-USE CASE:
+GOAL IN CONTEXT
 
-As an department manager I want to produce a report on the salary of employees in my department so that I can support financial reporting for my department.
+	Generate a report based on population of capital cities allowing user to sort by largest/smallest size
 
-Scope
+SCOPE
 
-Company
-
-Level
-
-Primary
-
-Preconditions
-
-We know the role. Database contains all current department's employee salary data.
+	Company.
 
 
-Success End Condition
+LEVEL
 
-The department manager is able to produce a salary report of all employees in his given department
+	Primary Task
 
 
-Failed End Condition
+PRECONDITIONS
 
-No report is produced
+	Database with population information
 
-Primary Actor
 
-Department Manager
+SUCCESS END CONDITIONS
 
-Trigger
+	User chooses what area of the world they wish to generate a report of capital cities from, generates the report.
 
-A request for finance information from the department manager is sent to HR
+
+FAILED END CONDITION
+
+	User can not generate a report
+
+
+PRIMARY ACTOR
+
+	User
+
+
+TRIGGER
+
+	User is prompted to enter an area of the world
+
 
 MAIN SUCCESS SCENARIO
 
-	1. Finance requests salary information for a given department
-	2. HR advisor captures name of the department to get salary information for
-	3. HR advisor extracts salary information from all employees in the department
-	4. HR advisor provides report to department manager.
+	1. Program prompts user
+
+	2. User makes a selection
+
+	3. Database retrieves population information
+
+	4. Data is written on screen in a report for the user
+
 
 EXTENSIONS
 
-	1. HR pulls wrong department's salary information
-		(a). Inform HR that salary information is incorrect
+	1. User enters incorrect input
+		1(a) inform user that the input is incorrect and to try again
+
+	2. Database retrieves wrong data
+		2(a) test to pinpoint where error is taken place
 
 
 SUB-VARIATIONS
 
-None
+	None.
 
-SCHEDULE
 
-DUE DATE: Release 1.0
+SCHEDULE DUE DATE:
+
+	Release 1.0
+
+
