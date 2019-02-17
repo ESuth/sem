@@ -92,7 +92,7 @@ actor Usr as "User"
 rectangle Database
 
 rectangle "Use case 1" {
-    usecase UC1 as "User chooses
+    usecase UC1 as "User chooses a continent
     to get population report from"
 
 
@@ -108,9 +108,59 @@ rectangle "Use case 1" {
 @enduml
 
 
+******************
+Use-Case 5 Diagram
+******************
+
+@startuml
+
+actor Usr as "User"
 
 
+rectangle Database
 
+rectangle "Use case 1" {
+    usecase UC1 as "User chooses region
+    to get population report from"
+
+
+    usecase UCa as "Print data"
+
+    Usr - UC1
+
+    UC1 ..> UCa : include
+
+    UCa - Database
+}
+
+@enduml
+
+******************
+Use-Case 6 Diagram
+******************
+
+@startuml
+
+actor Usr as "User"
+
+
+rectangle Database
+
+rectangle "Use case 1" {
+    usecase UC1 as "User chooses city
+    to get population report from"
+
+
+    usecase UCa as "Print data"
+
+    Usr - UC1
+
+    UC1 ..> UCa : include
+
+    UCa - Database
+}
+
+@enduml
 
 
 

@@ -1,60 +1,64 @@
 GOAL IN CONTEXT
 
-	As an HR advisor I want to view and employee's details so that the employee's promotion request can be supported.
+	Allow the user to get the population data of the population of a continent.
+
 
 SCOPE
 
-	Company.
-
-
+	Company
+	
+	
 LEVEL
 
 	Primary Task
-
-
+	
+	
 PRECONDITIONS
 
-	We know the roles, Employee is on database and has a position that allows promotion
+	Database with population information
+	
+	
+SUCCESS END CONDITIONS
 
-
-SUCCESS END CONDITION
-
-	HR Advisor has access to employee details and employee is promoted
-
-
+	User chooses the continent they wish to generate a report of, generates the report.
+	
+	
 FAILED END CONDITION
 
-	HR Advisor does not gain access and the promotion is never processed
-
-
+	User can not generate a report
+	
+	
 PRIMARY ACTOR
 
-	HR Advisor
-
+	User
+	
 
 TRIGGER
 
-	A request for employee information is requested by HR
+	User is prompted to select a cty to generate report
+	
+	
+MAIN SUCCESS SCENARIO
 
-
-MAIN SUCESS SCENARIO
-
-	1. HR Advisor requests access to employee details
-
-	2. HR Advisor gains access to employee details
-
-	3. HR Advisor extracts relevant employee information 
-
-	4. HR Advisor ensures employee's promotion is successful
-
+	1. Program prompts user
+	
+	2. User makes a selection
+	
+	3. Database retrieves population information
+	
+	4. Data is written on screen in a report for the user
+	
 
 EXTENSIONS
 
-	1. Employee's details are not on system
-		1(a). Inform Finance that employee's details are not on the system
-	2. HR Advisor can not gain access to employee details
-		1(a). Make request to revelevant bodies to allow HR to access said information
+	1. User enters incorrect input
+		1(a) inform user that the input is incorrect and to try again
+		
+	2. Database retrieves wrong data
+		2(a) test to pinpoint where error is taken place
 	
+
+
 SUB-VARIATIONS 
 
 	None.
@@ -64,3 +68,5 @@ SUB-VARIATIONS
 SCHEDULE DUE DATE: 
 
 	Release 1.0
+
+
