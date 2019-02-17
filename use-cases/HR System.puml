@@ -4,19 +4,24 @@ Use-Case 1 Diagram
 
 @startuml
 
-actor HR as "Hr Advisor"
+actor Usr as "User"
+actor Usr1 as "User"
 
 rectangle Database
 
-rectangle "HR System" {
-    usecase UC4 as "Get all salaries
-    of employees"
+rectangle "Use case 1" {
+    usecase UC1 as "Program prompts
+    user to make selection"
 
-    usecase UCa as "Print salaries"
+    usecase UC1a as "User makes selection"
 
-    HR - UC4
-    UC4 ..> UCa : include
-    UC4 - Database
+    usecase UCa as "Print data"
+
+    Usr - UC1
+    Usr1 - UC1a
+    UC1 ..> UC1a : include
+    UC1a ..> UCa
+    UCa - Database
 }
 
 @enduml
@@ -27,169 +32,67 @@ Use-Case 2 Diagram
 
 @startuml
 
-actor HR as "Hr Advisor"
+actor Usr as "User"
+actor Usr1 as "User"
 
 rectangle Database
 
-rectangle "HR System" {
-    usecase UC4 as "Get salaries
-    of employees in specific
-    department"
+rectangle "Use case 2" {
+    usecase UC1 as "Program prompts
+    user to make language
+    selection"
 
-    usecase UCa as "Print salaries"
+    usecase UC1a as "User makes selection"
 
-    HR - UC4
-    UC4 ..> UCa : include
-    UC4 - Database
+    usecase UCa as "Print data"
+
+        Usr - UC1
+        Usr1 - UC1a
+        UC1 ..> UC1a : include
+        UC1a ..> UCa
+        UCa - Database
+    }
+
+    @enduml
+
 }
 
-@enduml
-
 ******************
-Use-Case 5 Diagram
-******************
-
-
-@startuml
-
-actor DM as "Department Manager"
-
-rectangle Database
-
-rectangle "HR System" {
-    usecase UC4 as "Get salaries
-    of employees in specific
-    department"
-
-    usecase UCa as "Print salaries"
-
-    Department_Manager - UC4
-    UC4 ..> UCa : include
-    UC4 - Database
-}
-
-@enduml
-
-******************
-Use-Case 4 Diagram
+Use-Case 3 Diagram
 ******************
 
 @startuml
 
-actor HR as "HR Advisor"
+actor Usr as "User"
+actor Usr1 as "User"
+actor Usr2 as "User"
 
 rectangle Database
 
-rectangle "HR System" {
-    usecase UC4 as "Get salaries
-    by role"
+rectangle "Use Case 3" {
+    usecase UC1 as "Program prompts user to
+    enter geographical location"
 
-    usecase UCa as "Print salaries"
+    usecase UC1a as "User makes selection"
 
-    HR - UC4
-    UC4 ..> UCa : include
-    UC4 - Database
+    usecase UC1b as "Program prompts user to
+    select how they would like data
+    formatted (largest/smallest/ect)"
+
+    usecase UC1c as "User makes selection"
+
+    usecase UC1d as "Print Data"
+
+        Usr - UC1
+        Usr1 - UC1a
+        Usr2 - UC1c
+        UC1d - Database
+
+        UC1 ..> UC1a
+        UC1a ..> UC1b
+        UC1b ..> UC1c
+        UC1c ..> UC1d
+    }
+
+    @enduml
 }
-
-@enduml
-
-******************
-Use-Case 5 Diagram
-******************
-
-@startuml
-
-actor HR as "HR Advisor"
-
-rectangle Database
-
-Rectangle "HR System" {
-    usecase UC4 as "Gain access to
-    employee database"
-
-    usecase UCa as "Add employee to
-    database"
-
-    HR - UC4
-    UC4 ..> UCa : include
-    UC4 - Database
-    UCa - Database
-}
-
-@enduml
-
-******************
-Use-Case 6 Diagram
-******************
-
-@startuml
-
-actor HR as "HR Advisor"
-
-rectangle Database
-
-Rectangle "HR System" {
-    usecase UC4 as "Get employee
-    details"
-
-    usecase UCa as "use information
-    to support promotions"
-
-    HR - UC4
-    UC4 ..> UCa : include
-    UC4 - Database
-}
-
-@enduml
-
-******************
-Use-Case 7 Diagram
-******************
-
-@startuml
-
-actor HR as "HR Advisor"
-
-rectangle Database
-rectangle Database2
-
-Rectangle "HR System" {
-    usecase UC4 as "Get employee
-    details"
-
-    usecase UCa as "update employee
-    details"
-
-    HR - UC4
-    UC4 ..> UCa : include
-    UC4 - Database
-    UCa - Database2
-}
-
-@enduml
-
-******************
-Use-case 8 Diagram
-******************
-
-@startuml
-
-actor HR as "HR Advisor"
-
-rectangle Database
-rectangle Database2
-
-Rectangle "HR System" {
-    usecase UC4 as "Get employee
-    details"
-
-    usecase UCa as "delete employee
-    details"
-
-    HR - UC4
-    UC4 ..> UCa : include
-    UC4 - Database
-        UCa - Database2
-}
-
-@enduml
