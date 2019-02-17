@@ -5,26 +5,167 @@ Use-Case 1 Diagram
 @startuml
 
 actor Usr as "User"
-actor Usr1 as "User"
+
 
 rectangle Database
 
 rectangle "Use case 1" {
-    usecase UC1 as "Program prompts
-    user to make selection"
+    usecase UC1 as "User chooses city
+    to get population report from"
 
-    usecase UC1a as "User makes selection"
 
     usecase UCa as "Print data"
 
     Usr - UC1
-    Usr1 - UC1a
-    UC1 ..> UC1a : include
-    UC1a ..> UCa
+
+    UC1 ..> UCa : include
+
     UCa - Database
 }
 
 @enduml
+
+******************
+Use-Case 2 Diagram
+******************
+
+@startuml
+
+actor Usr as "User"
+
+
+rectangle Database
+
+rectangle "Use case 1" {
+    usecase UC1 as "User chooses district
+    to get population report from"
+
+
+    usecase UCa as "Print data"
+
+    Usr - UC1
+
+    UC1 ..> UCa : include
+
+    UCa - Database
+}
+
+@enduml
+
+
+******************
+Use-Case 3 Diagram
+******************
+
+@startuml
+
+actor Usr as "User"
+
+
+rectangle Database
+
+rectangle "Use case 1" {
+    usecase UC1 as "User chooses country
+    to get population report from"
+
+
+    usecase UCa as "Print data"
+
+    Usr - UC1
+
+    UC1 ..> UCa : include
+
+    UCa - Database
+}
+
+@enduml
+
+******************
+Use-Case 4 Diagram
+******************
+
+@startuml
+
+actor Usr as "User"
+
+
+rectangle Database
+
+rectangle "Use case 1" {
+    usecase UC1 as "User chooses
+    to get population report from"
+
+
+    usecase UCa as "Print data"
+
+    Usr - UC1
+
+    UC1 ..> UCa : include
+
+    UCa - Database
+}
+
+@enduml
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ******************
 Use-Case 2 Diagram
@@ -56,6 +197,63 @@ rectangle "Use case 2" {
     @enduml
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ******************
 Use-Case 3 Diagram

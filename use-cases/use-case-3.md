@@ -1,6 +1,6 @@
 GOAL IN CONTEXT
 
-	Allow the user to get the population data of the population of a country.
+	Allow the user to get the population data of the population of a continent.
 
 
 SCOPE
