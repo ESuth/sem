@@ -1,6 +1,6 @@
 GOAL IN CONTEXT
 
-	Generate a report of the population of people, people living in a city and people not living in a city in each country
+	Generate a report of the population of people, people living in a city and people not living in a city in each region
 
 SCOPE
 
@@ -16,7 +16,7 @@ PRECONDITIONS
 
 SUCCESS END CONDITIONS
 
-	Display people, people living in a city and people not living in a city from each country
+	Displays people, people living in a city and people not living in a city from each region
 
 FAILED END CONDITION
 
@@ -28,7 +28,7 @@ PRIMARY ACTOR
 
 TRIGGER
 
-	User selects option to display each countries people, people living in a city and people not living in a city
+	User chooses option to display people, people living in a city and people not living in a city from each region
 
 MAIN SUCCESS SCENARIO
 
