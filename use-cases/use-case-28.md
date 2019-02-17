@@ -28,7 +28,7 @@ PRIMARY ACTOR
 
 TRIGGER
 
-	User chooses a number of top populated cities in a district to display
+	User chooses a number of top populated cities in a continent to display
 
 MAIN SUCCESS SCENARIO
 

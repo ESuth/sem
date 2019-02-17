@@ -1,6 +1,6 @@
 GOAL IN CONTEXT
-
-	 generate a report of the top N populated cities in a country where N is provided by the user
+	 
+	 generate a report of the top N populated cities in the world where N is provided by the user
 
 SCOPE
 
@@ -16,7 +16,7 @@ PRECONDITIONS
 
 SUCCESS END CONDITIONS
 
-	Displays the top N populated cities in a country where N is provided by the user
+	Displays the top N populated cities in the world where N is provided by the user
 
 FAILED END CONDITION
 
@@ -24,11 +24,11 @@ FAILED END CONDITION
 
 PRIMARY ACTOR
 
-	User chooses top populated cities in a country to display
+	User chooses top populated cities in the world to display
 
 TRIGGER
 
-	User chooses a number of top populated cities in a country to display
+	User chooses a number of top populated cities in the world to display
 
 MAIN SUCCESS SCENARIO
 
