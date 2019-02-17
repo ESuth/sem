@@ -1,6 +1,6 @@
 GOAL IN CONTEXT
 
-	Generate a report based on all countries in a region, organised from largest population to smallest.
+	Generate a report based on countries of a continent, organised fomr largest population to smallest
 
 SCOPE
 
@@ -16,7 +16,7 @@ PRECONDITIONS
 
 SUCCESS END CONDITIONS
 
-	User chooses the region to generate a report of countries from, generates the report, is organised form largest to smallest population
+	User chooses the continent to generate a report of countries from, generates the report, is organised form largest to smallest population
 
 FAILED END CONDITION
 
@@ -28,7 +28,7 @@ PRIMARY ACTOR
 
 TRIGGER
 
-	User chooses a region
+	User chooses the continent
 
 MAIN SUCCESS SCENARIO
 
