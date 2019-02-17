@@ -1,6 +1,6 @@
 GOAL IN CONTEXT
 
-	Generate a report based on countries of a continent, organised fomr largest population to smallest
+	Generate a report based on countries of a continent, organised from largest population to smallest
 
 SCOPE
 

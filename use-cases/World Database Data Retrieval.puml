@@ -412,6 +412,248 @@ rectangle "Use case 1" {
 @enduml
 
 
+******************
+Use-Case 16 Diagram
+******************
+
+@startuml
+
+actor Usr as "User"
+
+
+rectangle Database
+
+rectangle "Use case 16" {
+    usecase UC1 as "User chooses the region to generate a report of countries from"
+
+
+    usecase UCa as "Print data, ordered largest population to smallest"
+
+    Usr - UC1
+
+    UC1 ..> UCa : include
+
+    UCa - Database
+}
+
+@enduml
+
+******************
+Use-Case 17 Diagram
+******************
+
+@startuml
+
+actor Usr as "User"
+
+
+rectangle Database
+
+rectangle "Use case 17" {
+    usecase UC1 as "User chooses the continent to generate a report of countries from"
+
+
+    usecase UCa as "Print data, ordered largest population to smallest"
+
+    Usr - UC1
+
+    UC1 ..> UCa : include
+
+    UCa - Database
+}
+
+@enduml
+
+******************
+Use-Case 18 Diagram
+******************
+
+@startuml
+
+actor Usr as "User"
+
+
+rectangle Database
+
+rectangle "Use case 18" {
+    usecase UC1 as "User selects to see all countries in the world sorted by population (largest to smallest)"
+
+
+    usecase UCa as "Print data, ordered largest population to smallest"
+
+    Usr - UC1
+
+    UC1 ..> UCa : include
+
+    UCa - Database
+}
+
+@enduml
+
+******************
+Use-Case 19 Diagram
+******************
+
+@startuml
+
+actor Usr as "User"
+
+
+rectangle Database
+
+rectangle "Use case 19" {
+    usecase UC1 as "User selects option to display each countries people,
+     people living in a city and people not living in a city"
+
+
+    usecase UCa as "Print data"
+
+    Usr - UC1
+
+    UC1 ..> UCa : include
+
+    UCa - Database
+}
+
+@enduml
+
+******************
+Use-Case 20 Diagram
+******************
+
+@startuml
+
+actor Usr as "User"
+
+
+rectangle Database
+
+rectangle "Use case 20" {
+    usecase UC1 as "User chooses option to display people,
+     people living in a city and people not living in
+      a city from each region"
+
+
+    usecase UCa as "Print data"
+
+    Usr - UC1
+
+    UC1 ..> UCa : include
+
+    UCa - Database
+}
+
+@enduml
+
+******************
+Use-Case 21 Diagram
+******************
+
+@startuml
+
+actor Usr as "User"
+
+
+rectangle Database
+
+rectangle "Use case 21" {
+    usecase UC1 as "User chooses option to display people,
+     people living in a city and people not living in a city
+      from each continent"
+
+
+    usecase UCa as "Print data"
+
+    Usr - UC1
+
+    UC1 ..> UCa : include
+
+    UCa - Database
+}
+
+@enduml
+
+******************
+Use-Case 22 Diagram
+******************
+
+@startuml
+
+actor Usr as "User"
+
+
+rectangle Database
+
+rectangle "Use case 22" {
+    usecase UC1 as "User chooses a number of top capital cities to display and the region"
+
+
+    usecase UCa as "Print data"
+
+    Usr - UC1
+
+    UC1 ..> UCa : include
+
+    UCa - Database
+}
+
+@enduml
+
+******************
+Use-Case 23 Diagram
+******************
+
+@startuml
+
+actor Usr as "User"
+
+
+rectangle Database
+
+rectangle "Use case 23" {
+    usecase UC1 as "User chooses a number of top capital cities and the region to display"
+
+
+    usecase UCa as "Print data"
+
+    Usr - UC1
+
+    UC1 ..> UCa : include
+
+    UCa - Database
+}
+
+@enduml
+
+
+******************
+Use-Case 24 Diagram
+******************
+
+@startuml
+
+actor Usr as "User"
+
+
+rectangle Database
+
+rectangle "Use case 24" {
+    usecase UC1 as "User chooses a number of top capital cities to display"
+
+
+    usecase UCa as "Print data"
+
+    Usr - UC1
+
+    UC1 ..> UCa : include
+
+    UCa - Database
+}
+
+@enduml
+
+
+
 
 
 
