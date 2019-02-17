@@ -1,6 +1,6 @@
 GOAL IN CONTEXT
 
-	Generate a report of the top N populated capital cities in a region, where N and the region are chosen by the user
+	Generate a report of the top N populated capital cities in a continent, where N and the continent are chosen by the user
 
 SCOPE
 
@@ -16,7 +16,7 @@ PRECONDITIONS
 
 SUCCESS END CONDITIONS
 
-	Displays the top N populated capital cities in a region, where N and the region are chosen by the user
+	Displays the top N populated capital cities in a continent, where N and the continent are chosen by the user
 
 FAILED END CONDITION
 
@@ -28,7 +28,7 @@ PRIMARY ACTOR
 
 TRIGGER
 
-	User chooses a number of top capital cities to display and the region
+	User chooses a number of top capital cities and the region to display
 
 MAIN SUCCESS SCENARIO
 
