@@ -653,8 +653,213 @@ rectangle "Use case 24" {
 @enduml
 
 
+******************
+Use-Case 25 Diagram
+******************
+
+@startuml
+
+actor Usr as "User"
 
 
+rectangle Database
+
+rectangle "Use case 25" {
+    usecase UC1 as "User chooses a number of top populated cities in a district to display"
+
+
+    usecase UCa as "Print data"
+
+    Usr - UC1
+
+    UC1 ..> UCa : include
+
+    UCa - Database
+}
+
+@enduml
+
+******************
+Use-Case 26 Diagram
+******************
+
+@startuml
+
+actor Usr as "User"
+
+
+rectangle Database
+
+rectangle "Use case 26" {
+    usecase UC1 as "User chooses a number of top populated cities in a country to display"
+
+
+    usecase UCa as "Print data"
+
+    Usr - UC1
+
+    UC1 ..> UCa : include
+
+    UCa - Database
+}
+
+@enduml
+
+******************
+Use-Case 27 Diagram
+******************
+
+@startuml
+
+actor Usr as "User"
+
+
+rectangle Database
+
+rectangle "Use case 27" {
+    usecase UC1 as "User chooses a number of top populated cities in a region to display"
+
+
+    usecase UCa as "Print data"
+
+    Usr - UC1
+
+    UC1 ..> UCa : include
+
+    UCa - Database
+}
+
+@enduml
+
+******************
+Use-Case 28 Diagram
+******************
+
+@startuml
+
+actor Usr as "User"
+
+
+rectangle Database
+
+rectangle "Use case 28" {
+    usecase UC1 as "User chooses a number of top populated cities in a continent to display"
+
+
+    usecase UCa as "Print data"
+
+    Usr - UC1
+
+    UC1 ..> UCa : include
+
+    UCa - Database
+}
+
+@enduml
+
+******************
+Use-Case 29 Diagram
+******************
+
+@startuml
+
+actor Usr as "User"
+
+
+rectangle Database
+
+rectangle "Use case 29" {
+    usecase UC1 as "User chooses a number of top populated cities in the world to display"
+
+
+    usecase UCa as "Print data"
+
+    Usr - UC1
+
+    UC1 ..> UCa : include
+
+    UCa - Database
+}
+
+@enduml
+
+******************
+Use-Case 30 Diagram
+******************
+
+@startuml
+
+actor Usr as "User"
+
+
+rectangle Database
+
+rectangle "Use case 30" {
+    usecase UC1 as "User chooses a number of top populated countries in a region to display"
+
+
+    usecase UCa as "Print data"
+
+    Usr - UC1
+
+    UC1 ..> UCa : include
+
+    UCa - Database
+}
+
+@enduml
+
+******************
+Use-Case 31 Diagram
+******************
+
+@startuml
+
+actor Usr as "User"
+
+
+rectangle Database
+
+rectangle "Use case 31" {
+    usecase UC1 as "User chooses a number of top populated countries in a continent to display"
+
+
+    usecase UCa as "Print data"
+
+    Usr - UC1
+
+    UC1 ..> UCa : include
+
+    UCa - Database
+}
+
+@enduml
+
+******************
+Use-Case 32 Diagram
+******************
+
+@startuml
+
+actor Usr as "User"
+
+
+rectangle Database
+
+rectangle "Use case 32" {
+    usecase UC1 as "User chooses a number of top populated countries in the world to display"
+
+
+    usecase UCa as "Print data"
+
+    Usr - UC1
+
+    UC1 ..> UCa : include
+
+    UCa - Database
+}
+
+@enduml
 
 
 
