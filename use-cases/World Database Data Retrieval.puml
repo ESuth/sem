@@ -7,6 +7,7 @@ Use-Case 1 Diagram
 actor Usr as "User"
 
 
+
 rectangle Database
 
 rectangle "Use case 1" {
@@ -849,64 +850,34 @@ rectangle Database
 rectangle "Use case 32" {
     usecase UC1 as "User chooses a number of top populated countries in the world to display"
 
+=======
+actor Usr1 as "User"
+
+rectangle Database
+
+rectangle "Use case 1" {
+    usecase UC1 as "Program prompts
+    user to make selection"
+
+    usecase UC1a as "User makes selection"
+
 
     usecase UCa as "Print data"
 
     Usr - UC1
 
+
     UC1 ..> UCa : include
+
+=======
+    Usr1 - UC1a
+    UC1 ..> UC1a : include
+    UC1a ..> UCa
 
     UCa - Database
 }
 
 @enduml
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ******************
@@ -939,62 +910,6 @@ rectangle "Use case 2" {
     @enduml
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ******************
@@ -1035,4 +950,8 @@ rectangle "Use Case 3" {
     }
 
     @enduml
+
 }
+
+}
+
