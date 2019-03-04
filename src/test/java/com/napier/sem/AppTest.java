@@ -90,4 +90,27 @@ public class AppTest
         uK.capital = 32;
         app.printPopulationUK(uK);
     }
+
+    @Test
+    void printBritIslesPopNull()
+    {
+        app.printPopulationBritIsles(null);
+    }
+
+    @Test
+    void printBritIslesPopTestEmpty()
+    {
+        Country region = new Country();
+        app.printPopulationBritIsles(region);
+    }
+
+    @Test
+    void printRegion()
+    {
+        Country uK = new Country();
+        uK.continent = "Europe";
+        uK.region = "British Islands";
+        uK.population = 1505000;
+        app.printPopulationBritIsles(uK);
+    }
 }
