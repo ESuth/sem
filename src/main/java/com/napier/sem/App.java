@@ -112,19 +112,67 @@ public class App
         }
     }
 
+    public City getDistrictScotland(String district, String code)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect = "SELECT country.Name, city.District, SUM(city.Population) " +
+                    "FROM world.city, world.country " +
+                    "WHERE city.CountryCode = country.Code " +
+                    "AND city.District = " + district + " " +
+                    "AND country.Code = " + code;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return new employee if valid.
+            // Check one is returned
+            if (rset.next())
+            {
+                City scotland = new City();
+                scotland.country = rset.getString("country.Name");
+                scotland.district = rset.getString("city.District");
+                scotland.population = rset.getInt("SUM(city.Population)");
+                return scotland;
+            }
+            else
+                return null;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Scotland's details");
+            return null;
+        }
+    }
 
 
-    public void cityPopulationEdinburgh(City edinburgh)
+
+    public void printPopulationEdinburgh(City edinburgh)
     {
         if (edinburgh != null)
         {
-            System.out.println("Details retrieved for Edinburgh as follows: \n\n"
-                + " City"
-                + "\n======\n"
+            System.out.println("\nDetails retrieved for city Edinburgh as follows: \n\n"
+                + " Population of a City"
+                + "\n======================\n"
                 + "Name: " + edinburgh.name + "\n"
                 + "Country: " + edinburgh.country + "\n"
                 + "District: " + edinburgh.district + "\n"
                 + "Population: " + edinburgh.population + "\n");
+        }
+    }
+
+    public void printPopulationScotland(City scotland)
+    {
+        if (scotland != null)
+        {
+            System.out.println("\nDetails retrieved for district Scotland as follows: \n\n"
+                    + " Population of a District"
+                    + "\n==========================\n"
+                    + "District: " + scotland.district + "\n"
+                    + "Country: " + scotland.country + "\n"
+                    + "Population: " + scotland.population + "\n");
         }
     }
 
@@ -196,12 +244,15 @@ public class App
         App a = new App();
 
         // Connect to database
-        a.connect("localhost:33060");
+        a.connect("db:3306");
 
         // Get City
-        City city = a.getCityEdinburgh("'Edinburgh'", "'GBR'");
+        City edinburgh = a.getCityEdinburgh("'Edinburgh'", "'GBR'");
+
+        City scotland = a.getDistrictScotland("'Scotland'", "'GBR'");
         // Display results
-        a.cityPopulationEdinburgh(city);
+        a.printPopulationEdinburgh(edinburgh);
+        a.printPopulationScotland(scotland);
 
         // Extract employee salary information
         //ArrayList<Employee> employees = a.getAllSalaries();

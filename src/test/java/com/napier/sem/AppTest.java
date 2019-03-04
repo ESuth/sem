@@ -21,14 +21,14 @@ public class AppTest
     @Test
     void printEdinburghPopNull()
     {
-        app.cityPopulationEdinburgh(null);
+        app.printPopulationEdinburgh(null);
     }
 
     @Test
     void printEdinburghPopTestEmpty()
     {
         City city = new City();
-        app.cityPopulationEdinburgh(city);
+        app.printPopulationEdinburgh(city);
     }
 
     @Test
@@ -39,6 +39,29 @@ public class AppTest
         city.country = "United Kingdom";
         city.district = "Scotland";
         city.population = 500500;
-        app.cityPopulationEdinburgh(city);
+        app.printPopulationEdinburgh(city);
+    }
+
+    @Test
+    void printScotlandPopNull()
+    {
+        app.printPopulationScotland(null);
+    }
+
+    @Test
+    void printScotlandPopTestEmpty()
+    {
+        City city = new City();
+        app.printPopulationScotland(city);
+    }
+
+    @Test
+    void printDistrict()
+    {
+        City city = new City();
+        city.country = "United Kingdom";
+        city.district = "Scotland";
+        city.population = 500500;
+        app.printPopulationScotland(city);
     }
 }
