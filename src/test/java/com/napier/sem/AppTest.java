@@ -64,4 +64,30 @@ public class AppTest
         city.population = 500500;
         app.printPopulationScotland(city);
     }
+
+    @Test
+    void printUKPopNull()
+    {
+        app.printPopulationUK(null);
+    }
+
+    @Test
+    void printUKPopTestEmpty()
+    {
+        Country country = new Country();
+        app.printPopulationUK(country);
+    }
+
+    @Test
+    void printCountry()
+    {
+        Country uK = new Country();
+        uK.code = "GBR";
+        uK.name = "United Kingdom";
+        uK.continent = "Europe";
+        uK.region = "British Islands";
+        uK.population = 1005000;
+        uK.capital = 32;
+        app.printPopulationUK(uK);
+    }
 }

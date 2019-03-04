@@ -147,6 +147,42 @@ public class App
         }
     }
 
+    public Country getCountryUK(String country)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect = "SELECT Code, Name, Continent, Region, Capital, Population " +
+                    "FROM world.country " +
+                    "WHERE Name = " + country;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return new employee if valid.
+            // Check one is returned
+            if (rset.next())
+            {
+                Country uK = new Country();
+                uK.code = rset.getString("Code");
+                uK.name = rset.getString("Name");
+                uK.continent = rset.getString("Continent");
+                uK.region = rset.getString("Region");
+                uK.population = rset.getInt("Population");
+                uK.capital = rset.getInt("Capital");
+                return uK;
+            }
+            else
+                return null;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get United Kingdom's details");
+            return null;
+        }
+    }
+
 
 
     public void printPopulationEdinburgh(City edinburgh)
@@ -173,6 +209,22 @@ public class App
                     + "District: " + scotland.district + "\n"
                     + "Country: " + scotland.country + "\n"
                     + "Population: " + scotland.population + "\n");
+        }
+    }
+
+    public void printPopulationUK(Country uK)
+    {
+        if (uK != null)
+        {
+            System.out.println("\nDetails retrieved for Country United Kingdom as follows: \n\n"
+                    + " Population of a Country"
+                    + "\n=========================\n"
+                    + "Code: " + uK.code + "\n"
+                    + "Name: " + uK.name + "\n"
+                    + "Continent: " + uK.continent + "\n"
+                    + "Region: " + uK.region + "\n"
+                    + "Capital: " + uK.capital + "\n"
+                    + "Population: " + uK.population + "\n");
         }
     }
 
@@ -248,11 +300,13 @@ public class App
 
         // Get City
         City edinburgh = a.getCityEdinburgh("'Edinburgh'", "'GBR'");
-
         City scotland = a.getDistrictScotland("'Scotland'", "'GBR'");
+        // Get Country
+        Country uK = a.getCountryUK("'United Kingdom'");
         // Display results
         a.printPopulationEdinburgh(edinburgh);
         a.printPopulationScotland(scotland);
+        a.printPopulationUK(uK);
 
         // Extract employee salary information
         //ArrayList<Employee> employees = a.getAllSalaries();
