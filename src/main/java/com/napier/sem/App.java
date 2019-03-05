@@ -201,9 +201,10 @@ public class App
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
-            String strSelect = "SELECT Continent, Region, SUM(Population) " +
+            String strSelect = "SELECT Region, Continent, SUM(Population) " +
                     "FROM world.country " +
-                    "WHERE Region = " + country;
+                    "WHERE Region = " + country + " " +
+                    "GROUP BY Region, Continent";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Return new employee if valid.
