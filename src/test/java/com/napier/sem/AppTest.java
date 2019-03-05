@@ -51,18 +51,18 @@ public class AppTest
     @Test
     void printScotlandPopTestEmpty()
     {
-        City city = new City();
-        app.printPopulationScotland(city);
+        City district = new City();
+        app.printPopulationScotland(district);
     }
 
     @Test
     void printDistrict()
     {
-        City city = new City();
-        city.country = "United Kingdom";
-        city.district = "Scotland";
-        city.population = 500500;
-        app.printPopulationScotland(city);
+        City district = new City();
+        district.country = "United Kingdom";
+        district.district = "Scotland";
+        district.population = 500500;
+        app.printPopulationScotland(district);
     }
 
     @Test
@@ -81,14 +81,14 @@ public class AppTest
     @Test
     void printCountry()
     {
-        Country uK = new Country();
-        uK.code = "GBR";
-        uK.name = "United Kingdom";
-        uK.continent = "Europe";
-        uK.region = "British Islands";
-        uK.population = 1005000;
-        uK.capital = 32;
-        app.printPopulationUK(uK);
+        Country country = new Country();
+        country.code = "GBR";
+        country.name = "United Kingdom";
+        country.continent = "Europe";
+        country.region = "British Islands";
+        country.population = 5005000;
+        country.capital = 32;
+        app.printPopulationUK(country);
     }
 
     @Test
@@ -107,10 +107,32 @@ public class AppTest
     @Test
     void printRegion()
     {
-        Country uK = new Country();
-        uK.continent = "Europe";
-        uK.region = "British Islands";
-        uK.population = 1505000;
-        app.printPopulationBritIsles(uK);
+        Country region = new Country();
+        region.continent = "Europe";
+        region.region = "British Islands";
+        region.population = 6505000;
+        app.printPopulationBritIsles(region);
+    }
+
+    @Test
+    void printEuropePopNull()
+    {
+        app.printPopulationEurope(null);
+    }
+
+    @Test
+    void printEuropePopTestEmpty()
+    {
+        Country continent = new Country();
+        app.printPopulationEurope(continent);
+    }
+
+    @Test
+    void printContinent()
+    {
+        Country continent = new Country();
+        continent.continent = "Europe";
+        continent.population = 7505000;
+        app.printPopulationEurope(continent);
     }
 }

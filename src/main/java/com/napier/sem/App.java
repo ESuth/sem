@@ -78,7 +78,7 @@ public class App
     /**
      * Task 1
      */
-    public City getCityEdinburgh(String name, String code)
+    public City getCityEdinburgh(String city, String code)
     {
         try
         {
@@ -88,7 +88,7 @@ public class App
             String strSelect = "SELECT city.Name, country.Name, city.District, city.Population " +
                                "FROM world.city, world.country " +
                                "WHERE city.CountryCode = country.Code " +
-                               "AND city.Name = " + name + " " +
+                               "AND city.Name = " + city + " " +
                                "AND country.Code = " + code;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -194,7 +194,7 @@ public class App
     /**
      * Task 4
      */
-    public Country getRegionBritIsles(String country)
+    public Country getRegionBritIsles(String region)
     {
         try
         {
@@ -203,7 +203,7 @@ public class App
             // Create string for SQL statement
             String strSelect = "SELECT Region, Continent, SUM(Population) " +
                     "FROM world.country " +
-                    "WHERE Region = " + country + " " +
+                    "WHERE Region = " + region + " " +
                     "GROUP BY Region, Continent";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -228,7 +228,40 @@ public class App
         }
     }
 
-
+    /**
+     * Task 5
+     */
+    public Country getContinentEurope(String continent)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect = "SELECT Continent, SUM(Population) " +
+                    "FROM world.country " +
+                    "WHERE Continent = " + continent;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return new employee if valid.
+            // Check one is returned
+            if (rset.next())
+            {
+                Country europe = new Country();
+                europe.continent = rset.getString("Continent");
+                europe.population = rset.getInt("SUM(Population)");
+                return europe;
+            }
+            else
+                return null;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Europe's details");
+            return null;
+        }
+    }
 
     /**
      * Task 1
@@ -237,7 +270,7 @@ public class App
     {
         if (edinburgh != null)
         {
-            System.out.println("\nDetails retrieved for city Edinburgh as follows: \n\n"
+            System.out.println("\nTask: 1, Details retrieved for city Edinburgh as follows: \n\n"
                 + " Population of a City"
                 + "\n======================\n"
                 + "Name: " + edinburgh.name + "\n"
@@ -254,7 +287,7 @@ public class App
     {
         if (scotland != null)
         {
-            System.out.println("\nDetails retrieved for district Scotland as follows: \n\n"
+            System.out.println("\nTask: 2, Details retrieved for district Scotland as follows: \n\n"
                     + " Population of a District"
                     + "\n==========================\n"
                     + "District: " + scotland.district + "\n"
@@ -270,7 +303,7 @@ public class App
     {
         if (uK != null)
         {
-            System.out.println("\nDetails retrieved for Country United Kingdom as follows: \n\n"
+            System.out.println("\nTask: 3, Details retrieved for Country United Kingdom as follows: \n\n"
                     + " Population of a Country"
                     + "\n=========================\n"
                     + "Code: " + uK.code + "\n"
@@ -289,12 +322,27 @@ public class App
     {
         if (BritIsles != null)
         {
-            System.out.println("\nDetails retrieved for Region British Islands as follows: \n\n"
+            System.out.println("\nTask: 4, Details retrieved for Region British Islands as follows: \n\n"
                     + " Population of a Region"
                     + "\n========================\n"
                     + "Region: " + BritIsles.region + "\n"
                     + "Continent: " + BritIsles.continent + "\n"
                     + "Population: " + BritIsles.population + "\n");
+        }
+    }
+
+    /**
+     * Task 5
+     */
+    public void printPopulationEurope(Country europe)
+    {
+        if (europe != null)
+        {
+            System.out.println("\nTask: 5, Details retrieved for Continent Europe as follows: \n\n"
+                    + " Population of a Continent"
+                    + "\n===========================\n"
+                    + "Continent: " + europe.continent + "\n"
+                    + "Population: " + europe.population + "\n");
         }
     }
 
@@ -368,17 +416,18 @@ public class App
         // Connect to database
         a.connect("db:3306");
 
-        // Get City
+        // Get details
         City edinburgh = a.getCityEdinburgh("'Edinburgh'", "'GBR'");
         City scotland = a.getDistrictScotland("'Scotland'", "'GBR'");
-        // Get Country/Region
         Country uK = a.getCountryUK("'United Kingdom'");
         Country britIsles = a.getRegionBritIsles("'British Islands'");
-        // Display results
+        Country europe = a.getContinentEurope("'Europe'");
+        // Print Details
         a.printPopulationEdinburgh(edinburgh);
         a.printPopulationScotland(scotland);
         a.printPopulationUK(uK);
         a.printPopulationBritIsles(britIsles);
+        a.printPopulationEurope(europe);
 
         // Extract employee salary information
         //ArrayList<Employee> employees = a.getAllSalaries();
