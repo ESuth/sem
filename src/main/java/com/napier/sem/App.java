@@ -75,7 +75,9 @@ public class App
     }
 
 
-
+    /**
+     * Task 1
+     */
     public City getCityEdinburgh(String name, String code)
     {
         try
@@ -112,6 +114,9 @@ public class App
         }
     }
 
+    /**
+     * Task 2
+     */
     public City getDistrictScotland(String district, String code)
     {
         try
@@ -147,6 +152,9 @@ public class App
         }
     }
 
+    /**
+     * Task 3
+     */
     public Country getCountryUK(String country)
     {
         try
@@ -183,7 +191,10 @@ public class App
         }
     }
 
-    public Country getPopulationBritIsles(String country)
+    /**
+     * Task 4
+     */
+    public Country getRegionBritIsles(String country)
     {
         try
         {
@@ -218,6 +229,9 @@ public class App
 
 
 
+    /**
+     * Task 1
+     */
     public void printPopulationEdinburgh(City edinburgh)
     {
         if (edinburgh != null)
@@ -232,6 +246,9 @@ public class App
         }
     }
 
+    /**
+     * Task 2
+     */
     public void printPopulationScotland(City scotland)
     {
         if (scotland != null)
@@ -245,6 +262,9 @@ public class App
         }
     }
 
+    /**
+     * Task 3
+     */
     public void printPopulationUK(Country uK)
     {
         if (uK != null)
@@ -261,6 +281,9 @@ public class App
         }
     }
 
+    /**
+     * Task 4
+     */
     public void printPopulationBritIsles(Country BritIsles)
     {
         if (BritIsles != null)
@@ -349,7 +372,7 @@ public class App
         City scotland = a.getDistrictScotland("'Scotland'", "'GBR'");
         // Get Country/Region
         Country uK = a.getCountryUK("'United Kingdom'");
-        Country britIsles = a.getPopulationBritIsles("'British Islands'");
+        Country britIsles = a.getRegionBritIsles("'British Islands'");
         // Display results
         a.printPopulationEdinburgh(edinburgh);
         a.printPopulationScotland(scotland);
