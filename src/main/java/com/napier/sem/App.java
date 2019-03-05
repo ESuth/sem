@@ -78,7 +78,7 @@ public class App
     /**
      * Task 1
      */
-    public City getCityEdinburgh(String city, String code)
+    public City getCityEdinburghPop(String city, String code)
     {
         try
         {
@@ -117,7 +117,7 @@ public class App
     /**
      * Task 2
      */
-    public City getDistrictScotland(String district, String code)
+    public City getDistrictScotlandPop(String district, String code)
     {
         try
         {
@@ -155,7 +155,7 @@ public class App
     /**
      * Task 3
      */
-    public Country getCountryUK(String country)
+    public Country getCountryUKPop(String country)
     {
         try
         {
@@ -194,7 +194,7 @@ public class App
     /**
      * Task 4
      */
-    public Country getRegionBritIsles(String region)
+    public Country getRegionBritIslesPop(String region)
     {
         try
         {
@@ -231,7 +231,7 @@ public class App
     /**
      * Task 5
      */
-    public Country getContinentEurope(String continent)
+    public Country getContinentEuropePop(String continent)
     {
         try
         {
@@ -259,6 +259,39 @@ public class App
         {
             System.out.println(e.getMessage());
             System.out.println("Failed to get Europe's details");
+            return null;
+        }
+    }
+
+    /**
+     * Task 7
+     */
+    public Country getWorldPop()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect = "SELECT SUM(Population) " +
+                    "FROM world.country ";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return new employee if valid.
+            // Check one is returned
+            if (rset.next())
+            {
+                Country world = new Country();
+                world.population = rset.getLong("SUM(Population)");
+                return world;
+            }
+            else
+                return null;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get World's details");
             return null;
         }
     }
@@ -346,6 +379,20 @@ public class App
         }
     }
 
+    /**
+     * Task 7
+     */
+    public void printPopulationWorld(Country world)
+    {
+        if (world != null)
+        {
+            System.out.println("\nTask: 7, Details retrieved for World as follows: \n\n"
+                    + " Population of the World"
+                    + "\n=========================\n"
+                    + "World Population: " + world.population + "\n");
+        }
+    }
+
 
 //    /**
 //     * Gets all the current employees and salaries.
@@ -416,18 +463,21 @@ public class App
         // Connect to database
         a.connect("db:3306");
 
-        // Get details
-        City edinburgh = a.getCityEdinburgh("'Edinburgh'", "'GBR'");
-        City scotland = a.getDistrictScotland("'Scotland'", "'GBR'");
-        Country uK = a.getCountryUK("'United Kingdom'");
-        Country britIsles = a.getRegionBritIsles("'British Islands'");
-        Country europe = a.getContinentEurope("'Europe'");
-        // Print Details
-        a.printPopulationEdinburgh(edinburgh);
-        a.printPopulationScotland(scotland);
-        a.printPopulationUK(uK);
-        a.printPopulationBritIsles(britIsles);
-        a.printPopulationEurope(europe);
+        // Get details //
+        /*Task1*/City edinburgh = a.getCityEdinburghPop("'Edinburgh'", "'GBR'");
+        /*Task2*/City scotland = a.getDistrictScotlandPop("'Scotland'", "'GBR'");
+        /*Task3*/Country uK = a.getCountryUKPop("'United Kingdom'");
+        /*Task4*/Country britIsles = a.getRegionBritIslesPop("'British Islands'");
+        /*Task5*/Country europe = a.getContinentEuropePop("'Europe'");
+        /*Task7*/Country world = a.getWorldPop();
+
+        // Print Details //
+        /*Task1*/a.printPopulationEdinburgh(edinburgh);
+        /*Task2*/a.printPopulationScotland(scotland);
+        /*Task3*/a.printPopulationUK(uK);
+        /*Task4*/a.printPopulationBritIsles(britIsles);
+        /*Task5*/a.printPopulationEurope(europe);
+        /*Task7*/a.printPopulationWorld(world);
 
         // Extract employee salary information
         //ArrayList<Employee> employees = a.getAllSalaries();

@@ -135,4 +135,25 @@ public class AppTest
         continent.population = 7505000;
         app.printPopulationEurope(continent);
     }
+
+    @Test
+    void printWorldPopNull()
+    {
+        app.printPopulationWorld(null);
+    }
+
+    @Test
+    void printWorldPopTestEmpty()
+    {
+        Country world = new Country();
+        app.printPopulationWorld(world);
+    }
+
+    @Test
+    void printWorld()
+    {
+        Country world = new Country();
+        world.population = 6078749450L;
+        app.printPopulationWorld(world);
+    }
 }
