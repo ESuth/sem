@@ -74,6 +74,7 @@ public class App
         }
     }
 
+    //Get Methods
 
     /**
      * Task 1
@@ -264,6 +265,45 @@ public class App
     }
 
     /**
+     * Task 6
+     */
+    public ArrayList<Language> getLanguageList()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT DISTINCT countrylanguage.Language, SUM(city.Population) as worldPopulation, ROUND((SUM(city.Population) / 6078749450 * 100), 2) as WorldPercentage "
+                            + "FROM world.countrylanguage, world.city "
+                            + "WHERE city.CountryCode = countrylanguage.CountryCode "
+                            + "AND countrylanguage.Language in ('Chinese', 'English', 'Hindi', 'Spanish', 'Arabic') "
+                            + "GROUP BY countrylanguage.Language "
+                            + "ORDER BY worldPopulation DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<Language> languages = new ArrayList<Language>();
+            while (rset.next())
+            {
+                Language language = new Language();
+                language.language = rset.getString("countrylanguage.Language");
+                language.population = rset.getLong("worldPopulation");
+                language.percentage = rset.getDouble("WorldPercentage");
+                languages.add(language);
+            }
+            return languages;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get language details");
+            return null;
+        }
+    }
+
+    /**
      * Task 7
      */
     public Country getWorldPop()
@@ -295,6 +335,8 @@ public class App
             return null;
         }
     }
+
+    //Print Methods
 
     /**
      * Task 1
@@ -380,6 +422,25 @@ public class App
     }
 
     /**
+     * Task 6
+     */
+    public void printLanguages(ArrayList<Language> languages)
+    {
+        // Print header
+        System.out.println("\nTask: 6, Details retrieved for languages as follows: \n");
+        System.out.println(String.format("%-12s %-20s %-20s", " Language", " World Population", " World Percentage"));
+        System.out.println(String.format("%-12s %-20s %-20s", "==========", "==================", "=================="));
+        // Loop over all employees in the list
+        for (Language language : languages)
+        {
+            String language_string =
+                    String.format("%-12s %-20d %-20.2f",
+                            language.language, language.population, language.percentage + "\n");
+            System.out.println(language_string);
+        }
+    }
+
+    /**
      * Task 7
      */
     public void printPopulationWorld(Country world)
@@ -393,75 +454,13 @@ public class App
         }
     }
 
-
-//    /**
-//     * Gets all the current employees and salaries.
-//     * @return A list of all employees and salaries, or null if there is an error.
-//     */
-//    public ArrayList<Employee> getAllSalaries()
-//    {
-//        try
-//        {
-//            // Create an SQL statement
-//            Statement stmt = con.createStatement();
-//            // Create string for SQL statement
-//            String strSelect =
-//                    "SELECT employees.emp_no, employees.first_name, employees.last_name, salaries.salary "
-//                            + "FROM employees, salaries "
-//                            + "WHERE employees.emp_no = salaries.emp_no AND salaries.to_date = '9999-01-01' "
-//                            + "ORDER BY employees.emp_no ASC";
-//            // Execute SQL statement
-//            ResultSet rset = stmt.executeQuery(strSelect);
-//            // Extract employee information
-//            ArrayList<Employee> employees = new ArrayList<Employee>();
-//            while (rset.next())
-//            {
-//                Employee emp = new Employee();
-//                emp.emp_no = rset.getInt("employees.emp_no");
-//                emp.first_name = rset.getString("employees.first_name");
-//                emp.last_name = rset.getString("employees.last_name");
-//                emp.salary = rset.getInt("salaries.salary");
-//                employees.add(emp);
-//            }
-//            return employees;
-//        }
-//        catch (Exception e)
-//        {
-//            System.out.println(e.getMessage());
-//            System.out.println("Failed to get salary details");
-//            return null;
-//        }
-//    }
-//
-//
-//
-//    /**
-//     * Prints a list of employees.
-//     * @param employees The list of employees to print.
-//     */
-//    public void printSalaries(ArrayList<Employee> employees)
-//    {
-//        // Print header
-//        System.out.println(String.format("%-10s %-15s %-20s %-8s", "Emp No", "First Name", "Last Name", "Salary"));
-//        // Loop over all employees in the list
-//        for (Employee emp : employees)
-//        {
-//            String emp_string =
-//                    String.format("%-10s %-15s %-20s %-8s",
-//                            emp.emp_no, emp.first_name, emp.last_name, emp.salary);
-//            System.out.println(emp_string);
-//        }
-//    }
-
-
-
     public static void main(String[] args)
     {
         // Create new Application
         App a = new App();
 
         // Connect to database
-        a.connect("localhost:33060");
+        a.connect("db:3306");
 
         // Get details //
         /*Task1*/City edinburgh = a.getCityEdinburghPop("'Edinburgh'", "'GBR'");
@@ -469,6 +468,7 @@ public class App
         /*Task3*/Country uK = a.getCountryUKPop("'United Kingdom'");
         /*Task4*/Country britIsles = a.getRegionBritIslesPop("'British Islands'");
         /*Task5*/Country europe = a.getContinentEuropePop("'Europe'");
+        /*Task6 Get List of Details*/ArrayList<Language> languages = a.getLanguageList();
         /*Task7*/Country world = a.getWorldPop();
 
         // Print Details //
@@ -477,14 +477,8 @@ public class App
         /*Task3*/a.printPopulationUK(uK);
         /*Task4*/a.printPopulationBritIsles(britIsles);
         /*Task5*/a.printPopulationEurope(europe);
+        /*Task6 Print list of details*/a.printLanguages(languages);
         /*Task7*/a.printPopulationWorld(world);
-
-        // Extract employee salary information
-        //ArrayList<Employee> employees = a.getAllSalaries();
-        // Test the size of the returned data - should be 240124
-        //System.out.println(employees.size());
-
-        //a.printSalaries(employees);
 
         // Disconnect from database
         a.disconnect();

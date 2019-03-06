@@ -18,6 +18,9 @@ public class AppTest
         app = new App();
     }
 
+    /**
+     * Task 1
+     */
     @Test
     void printEdinburghPopNull()
     {
@@ -42,6 +45,9 @@ public class AppTest
         app.printPopulationEdinburgh(city);
     }
 
+    /**
+     * Task 2
+     */
     @Test
     void printScotlandPopNull()
     {
@@ -65,6 +71,9 @@ public class AppTest
         app.printPopulationScotland(district);
     }
 
+    /**
+     * Task 3
+     */
     @Test
     void printUKPopNull()
     {
@@ -91,6 +100,9 @@ public class AppTest
         app.printPopulationUK(country);
     }
 
+    /**
+     * Task 4
+     */
     @Test
     void printBritIslesPopNull()
     {
@@ -114,6 +126,9 @@ public class AppTest
         app.printPopulationBritIsles(region);
     }
 
+    /**
+     * Task 5
+     */
     @Test
     void printEuropePopNull()
     {
@@ -136,6 +151,42 @@ public class AppTest
         app.printPopulationEurope(continent);
     }
 
+    /**
+     * Task 6
+     */
+    @Test
+    void printLanguagesNull()
+    {
+        app.printLanguages(null);
+    }
+
+    @Test
+    void printLanguageTestEmpty()
+    {
+        ArrayList<Language> language = new ArrayList<Language>();
+        app.printLanguages(language);
+    }
+
+    @Test
+    void printLanguages()
+    {
+        ArrayList<Language> languages = new ArrayList<Language>();
+        Language language = new Language();
+        language.language = "English";
+        language.population = 237134840;
+        language.percentage = 3.90;
+        languages.add(language);
+        Language language2 = new Language();
+        language.language = "Spanish";
+        language.population = 280403952;
+        language.percentage = 4.61;
+        languages.add(language2);
+        app.printLanguages(languages);
+    }
+
+    /**
+     * Task 7
+     */
     @Test
     void printWorldPopNull()
     {
