@@ -100,7 +100,7 @@ public class App
                 edinburgh.name = rset.getString("Name");
                 edinburgh.country = rset.getString("country.Name");
                 edinburgh.district = rset.getString("District");
-                edinburgh.population = rset.getInt("Population");
+                edinburgh.population = rset.getLong("Population");
                 return edinburgh;
             }
             else
@@ -138,7 +138,7 @@ public class App
                 City scotland = new City();
                 scotland.country = rset.getString("country.Name");
                 scotland.district = rset.getString("city.District");
-                scotland.population = rset.getInt("SUM(city.Population)");
+                scotland.population = rset.getLong("SUM(city.Population)");
                 return scotland;
             }
             else
@@ -176,7 +176,7 @@ public class App
                 uK.name = rset.getString("Name");
                 uK.continent = rset.getString("Continent");
                 uK.region = rset.getString("Region");
-                uK.population = rset.getInt("Population");
+                uK.population = rset.getLong("Population");
                 uK.capital = rset.getInt("Capital");
                 return uK;
             }
@@ -214,7 +214,7 @@ public class App
                 Country britIsles = new Country();
                 britIsles.continent = rset.getString("Continent");
                 britIsles.region = rset.getString("Region");
-                britIsles.population = rset.getInt("SUM(Population)");
+                britIsles.population = rset.getLong("SUM(Population)");
                 return britIsles;
             }
             else
@@ -249,7 +249,7 @@ public class App
             {
                 Country europe = new Country();
                 europe.continent = rset.getString("Continent");
-                europe.population = rset.getInt("SUM(Population)");
+                europe.population = rset.getLong("SUM(Population)");
                 return europe;
             }
             else

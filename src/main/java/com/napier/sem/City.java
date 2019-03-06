@@ -20,5 +20,5 @@ public class City
     /**
      * population
      */
-    public double population;
+    public long population;
 }
