@@ -155,12 +155,6 @@ public class AppTest
      * Task 6
      */
     @Test
-    void printLanguagesNull()
-    {
-        app.printLanguages(null);
-    }
-
-    @Test
     void printLanguageTestEmpty()
     {
         ArrayList<Language> language = new ArrayList<Language>();

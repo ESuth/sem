@@ -435,9 +435,10 @@ public class App
         {
             String language_string =
                     String.format("%-12s %-20d %-20.2f",
-                            language.language, language.population, language.percentage + "\n");
+                            language.language, language.population, language.percentage);
             System.out.println(language_string);
         }
+        System.out.println(" ");
     }
 
     /**
