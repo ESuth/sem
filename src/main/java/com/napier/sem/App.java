@@ -461,7 +461,7 @@ public class App
         App a = new App();
 
         // Connect to database
-        a.connect("db:3306");
+        a.connect("localhost:33060");
 
         // Get details //
         /*Task1*/City edinburgh = a.getCityEdinburghPop("'Edinburgh'", "'GBR'");
