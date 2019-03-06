@@ -519,7 +519,14 @@ public class App
         App a = new App();
 
         // Connect to database
-        a.connect("db:3306");
+        if (args.length < 1)
+        {
+            a.connect("db:3306");
+        }
+        else
+        {
+            a.connect(args[0]);
+        }
 
         // Get details //
         /*Task 1 */City edinburgh = a.getCityEdinburghPop("'Edinburgh'", "'GBR'");
