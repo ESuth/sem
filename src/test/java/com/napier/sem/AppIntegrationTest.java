@@ -83,6 +83,22 @@ public class AppIntegrationTest
     }
 
     /**
+     * Task 6
+     */
+    @Test
+    void testGetLanguageList()
+    {
+        ArrayList<Language> languages = app.getLanguageList();
+        Language language = new Language();
+        language.language = "English";
+        language.population = 237134840;
+        language.percentage = 3.90;
+        assertEquals(language.language, "English");
+        assertEquals(language.population, 237134840);
+        assertEquals(language.percentage, 3.90);
+    }
+
+    /**
      * Task 7
      */
     @Test
