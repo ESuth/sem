@@ -201,4 +201,33 @@ public class AppTest
         world.population = 6078749450L;
         app.printPopulationWorld(world);
     }
+
+    /**
+     * Task 8
+     */
+    @Test
+    void printRegionCapitalCitiesTestEmpty()
+    {
+        ArrayList<City> city = new ArrayList<City>();
+        app.printRegionCapitalCities(city);
+    }
+
+    @Test
+    void printRegionCapitalCities()
+    {
+        ArrayList<City> cities = new ArrayList<City>();
+        City city = new City();
+        city.name = "London";
+        city.population = 7285000;
+        cities.add(city);
+        City city2 = new City();
+        city2.name = "Dublin";
+        city2.population = 481854;
+        cities.add(city2);
+        City city3 = new City();
+        city3.name = "Edinburgh";
+        city3.population = 450180;
+        cities.add(city3);
+        app.printRegionCapitalCities(cities);
+    }
 }

@@ -336,6 +336,44 @@ public class App
         }
     }
 
+    /**
+     * Task 8
+     */
+    public ArrayList<City> getRegionCapitalCityList()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                              "SELECT city.Name, city.Population "
+                            + "FROM world.city, world.country "
+                            + "Where city.CountryCode = country.Code "
+                            + "AND city.Name in (\"Edinburgh\", \"London\", \"Dublin\") "
+                            + "AND country.Region = 'British Islands' "
+                            + "ORDER BY city.Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<City> cities = new ArrayList<City>();
+            while (rset.next())
+            {
+                City city = new City();
+                city.name = rset.getString("city.Name");
+                city.population = rset.getLong("city.Population");
+                cities.add(city);
+            }
+            return cities;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get capital cities by region's details");
+            return null;
+        }
+    }
+
     //Print Methods
 
     /**
@@ -455,6 +493,26 @@ public class App
         }
     }
 
+    /**
+     * Task 8
+     */
+    public void printRegionCapitalCities(ArrayList<City> cities)
+    {
+        // Print header
+        System.out.println("\nTask: 8, Details retrieved for region capital cities as follows: \n");
+        System.out.println(String.format("%-12s %-20s", " City", " Population"));
+        System.out.println(String.format("%-12s %-20s", "======", "============"));
+        // Loop over all employees in the list
+        for (City city : cities)
+        {
+            String language_string =
+                    String.format("%-12s %-20d",
+                            city.name, city.population);
+            System.out.println(language_string);
+        }
+        System.out.println(" ");
+    }
+
     public static void main(String[] args)
     {
         // Create new Application
@@ -464,22 +522,24 @@ public class App
         a.connect("db:3306");
 
         // Get details //
-        /*Task1*/City edinburgh = a.getCityEdinburghPop("'Edinburgh'", "'GBR'");
-        /*Task2*/City scotland = a.getDistrictScotlandPop("'Scotland'", "'GBR'");
-        /*Task3*/Country uK = a.getCountryUKPop("'United Kingdom'");
-        /*Task4*/Country britIsles = a.getRegionBritIslesPop("'British Islands'");
-        /*Task5*/Country europe = a.getContinentEuropePop("'Europe'");
-        /*Task6 Get List of Details*/ArrayList<Language> languages = a.getLanguageList();
-        /*Task7*/Country world = a.getWorldPop();
+        /*Task 1 */City edinburgh = a.getCityEdinburghPop("'Edinburgh'", "'GBR'");
+        /*Task 2 */City scotland = a.getDistrictScotlandPop("'Scotland'", "'GBR'");
+        /*Task 3 */Country uK = a.getCountryUKPop("'United Kingdom'");
+        /*Task 4 */Country britIsles = a.getRegionBritIslesPop("'British Islands'");
+        /*Task 5 */Country europe = a.getContinentEuropePop("'Europe'");
+        /*Task 6 Get List of Details */ArrayList<Language> languages = a.getLanguageList();
+        /*Task 7 */Country world = a.getWorldPop();
+        /*Task 8 Get List of Details */ArrayList<City> cities = a.getRegionCapitalCityList();
 
         // Print Details //
-        /*Task1*/a.printPopulationEdinburgh(edinburgh);
-        /*Task2*/a.printPopulationScotland(scotland);
-        /*Task3*/a.printPopulationUK(uK);
-        /*Task4*/a.printPopulationBritIsles(britIsles);
-        /*Task5*/a.printPopulationEurope(europe);
-        /*Task6 Print list of details*/a.printLanguages(languages);
-        /*Task7*/a.printPopulationWorld(world);
+        /*Task 1 */a.printPopulationEdinburgh(edinburgh);
+        /*Task 2 */a.printPopulationScotland(scotland);
+        /*Task 3 */a.printPopulationUK(uK);
+        /*Task 4 */a.printPopulationBritIsles(britIsles);
+        /*Task 5 */a.printPopulationEurope(europe);
+        /*Task 6 Print list of details */a.printLanguages(languages);
+        /*Task 7 */a.printPopulationWorld(world);
+        /*Task 8 Print list of details */a.printRegionCapitalCities(cities);
 
         // Disconnect from database
         a.disconnect();
