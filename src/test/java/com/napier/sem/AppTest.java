@@ -404,4 +404,33 @@ void printRegionCitiesTestEmpty()
         cities.add(city3);
         app.printContinentCities(cities);
     }
+
+    /**
+     * Task 15
+     */
+    @Test
+    void printWorldCitiesTestEmpty()
+    {
+        ArrayList<City> city = new ArrayList<City>();
+        app.printWorldCities(city);
+    }
+
+    @Test
+    void printWorldCities()
+    {
+        ArrayList<City> cities = new ArrayList<City>();
+        City city = new City();
+        city.name = "Hamburg";
+        city.population = 1810000;
+        cities.add(city);
+        City city2 = new City();
+        city2.name = "Warsaw";
+        city2.population = 1745000;
+        cities.add(city2);
+        City city3 = new City();
+        city3.name = "Paris";
+        city3.population = 2200000;
+        cities.add(city3);
+        app.printWorldCities(cities);
+    }
 }
