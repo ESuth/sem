@@ -8,4 +8,6 @@ public class Continent {
 
     public ArrayList<City> capitals;
 
+    public ArrayList<City> cities;
+
 }

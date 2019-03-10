@@ -141,4 +141,21 @@ public class AppIntegrationTest
 
         assertEquals(world.capitals.get(0).population, 1890000);
     }
+
+    /**
+     * Task 11
+     */
+    @Test
+    void testGetDistrictCitiesPop()
+    {
+        District district = app.getDistrictCitiesPop();
+        City city = new City();
+        city.population = 1890000;
+        ArrayList<City> cityList = new ArrayList<City>();
+        cityList.add(city);
+        district.cities = cityList;
+
+
+        assertEquals(district.cities.get(0).population, 1890000);
+    }
 }
