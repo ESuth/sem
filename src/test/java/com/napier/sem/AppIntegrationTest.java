@@ -207,6 +207,8 @@ public class AppIntegrationTest
         continent.cities = cityList;
 
 
+
+
         assertEquals(continent.cities.get(0).population, 1890000);
     }
 
@@ -236,7 +238,7 @@ public class AppIntegrationTest
         Region region = app.getRegionCountriesPop();
         Country country = new Country();
         country.population = 1890000;
-        ArrayList<Country> countryList = new ArrayList<City>();
+        ArrayList<Country> countryList = new ArrayList<Country>();
         countryList.add(country);
         region.countries = countryList;
 

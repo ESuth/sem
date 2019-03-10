@@ -2,6 +2,8 @@ package com.napier.sem;
 
 import com.mysql.cj.x.protobuf.MysqlxExpr;
 
+import java.util.ArrayList;
+
 public class Region {
 
     public string name;

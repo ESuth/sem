@@ -451,15 +451,15 @@ void printRegionCitiesTestEmpty()
         Country country = new Country();
         country.name = "Spain";
         country.population = 1810000;
-        country.add(country);
+        countries.add(country);
         Country country2 = new Country();
         country2.name = "Ukraine";
         country2.population = 1810000;
-        country2.add(country);
+        countries.add(country);
         Country country3 = new Country();
         country3.name = "Germany";
         country3.population = 1810000;
-        country3.add(country);
+        countries.add(country);
 
         app.printRegionCountries(countries);
     }
