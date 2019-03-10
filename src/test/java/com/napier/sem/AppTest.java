@@ -259,4 +259,33 @@ public class AppTest
         cities.add(city3);
         app.printContinentCapitalCities(cities);
     }
+
+    /**
+     * Task 10
+     */
+    @Test
+    void printWorldCapitalCitiesTestEmpty()
+    {
+        ArrayList<City> city = new ArrayList<City>();
+        app.printWorldCapitalCities(city);
+    }
+
+    @Test
+    void printWorldCapitalCities()
+    {
+        ArrayList<City> cities = new ArrayList<City>();
+        City city = new City();
+        city.name = "Hamburg";
+        city.population = 1810000;
+        cities.add(city);
+        City city2 = new City();
+        city2.name = "Tokyo";
+        city2.population = 9273000;
+        cities.add(city2);
+        City city3 = new City();
+        city3.name = "Moscow";
+        city3.population = 11920000;
+        cities.add(city3);
+        app.printWorldCapitalCities(cities);
+    }
 }
