@@ -433,4 +433,34 @@ void printRegionCitiesTestEmpty()
         cities.add(city3);
         app.printWorldCities(cities);
     }
+
+    /**
+     * Task 16
+     */
+    @Test
+    void printRegionCountriesTestEmpty()
+    {
+        ArrayList<Country> country = new ArrayList<Country>();
+        app.printRegionCountries(country);
+    }
+
+    @Test
+    void printRegionCountries()
+    {
+        ArrayList<Country> countries = new ArrayList<Country>();
+        Country country = new Country();
+        country.name = "Spain";
+        country.population = 1810000;
+        country.add(country);
+        Country country2 = new Country();
+        country2.name = "Ukraine";
+        country2.population = 1810000;
+        country2.add(country);
+        Country country3 = new Country();
+        country3.name = "Germany";
+        country3.population = 1810000;
+        country3.add(country);
+
+        app.printRegionCountries(countries);
+    }
 }
