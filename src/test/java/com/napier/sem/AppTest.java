@@ -325,7 +325,7 @@ public class AppTest
     void printCountryCitiesTestEmpty()
     {
         ArrayList<City> city = new ArrayList<City>();
-        app.printWorldCapitalCities(city);
+        app.printCountryCities(city);
     }
 
     @Test
@@ -345,5 +345,34 @@ public class AppTest
         city3.population = 92830;
         cities.add(city3);
         app.printCountryCities(cities);
+    }
+
+    /**
+     * Task 13
+     */
+    @Test
+    void printRegionCitiesTestEmpty()
+    {
+        ArrayList<City> city = new ArrayList<City>();
+        app.printRegionCities(city);
+    }
+
+    @Test
+    void printRegionCities()
+    {
+        ArrayList<City> cities = new ArrayList<City>();
+        City city = new City();
+        city.name = "Edinburgh";
+        city.population = 482005;
+        cities.add(city);
+        City city2 = new City();
+        city2.name = "Glasgow";
+        city2.population = 598830;
+        cities.add(city2);
+        City city3 = new City();
+        city3.name = "Stirling";
+        city3.population = 92830;
+        cities.add(city3);
+        app.printRegionCities(cities);
     }
 }
