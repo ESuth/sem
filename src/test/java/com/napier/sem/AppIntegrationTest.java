@@ -107,4 +107,21 @@ public class AppIntegrationTest
         Country world = app.getWorldPop();
         assertEquals(world.population, 730074600);
     }
+
+    /**
+     * Task 9
+     */
+    @Test
+    void testGetContinentCapitalsPop()
+    {
+        Continent continent = app.getContinentCapitalsPop();
+        City city = new City();
+        city.population = 1890000;
+        ArrayList<City> cityList = new ArrayList<City>();
+        cityList.add(city);
+        continent.capitals = cityList;
+
+
+        assertEquals(cityList.get(0).population, 1890000);
+    }
 }
