@@ -31,4 +31,6 @@ public class Country
      * Capital
      */
     public int capital;
+
+    public ArrayList<City> cities;
 }
