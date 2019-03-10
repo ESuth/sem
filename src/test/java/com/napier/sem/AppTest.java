@@ -348,14 +348,14 @@ public class AppTest
     }
 
     /**
-     * Task 13
-     */
-    @Test
-    void printRegionCitiesTestEmpty()
-    {
-        ArrayList<City> city = new ArrayList<City>();
-        app.printRegionCities(city);
-    }
+ * Task 13
+ */
+@Test
+void printRegionCitiesTestEmpty()
+{
+    ArrayList<City> city = new ArrayList<City>();
+    app.printRegionCities(city);
+}
 
     @Test
     void printRegionCities()
@@ -374,5 +374,34 @@ public class AppTest
         city3.population = 92830;
         cities.add(city3);
         app.printRegionCities(cities);
+    }
+
+    /**
+     * Task 14
+     */
+    @Test
+    void printContinentCitiesTestEmpty()
+    {
+        ArrayList<City> city = new ArrayList<City>();
+        app.printContinentCities(city);
+    }
+
+    @Test
+    void printContinentCities()
+    {
+        ArrayList<City> cities = new ArrayList<City>();
+        City city = new City();
+        city.name = "Hamburg";
+        city.population = 1810000;
+        cities.add(city);
+        City city2 = new City();
+        city2.name = "Warsaw";
+        city2.population = 1745000;
+        cities.add(city2);
+        City city3 = new City();
+        city3.name = "Paris";
+        city3.population = 2200000;
+        cities.add(city3);
+        app.printContinentCities(cities);
     }
 }

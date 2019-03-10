@@ -192,4 +192,21 @@ public class AppIntegrationTest
 
         assertEquals(region.cities.get(0).population, 1890000);
     }
+
+    /**
+     * Task 14
+     */
+    @Test
+    void testGetContinentCitiesPop()
+    {
+        Continent continent = app.getContinentCitiesPop();
+        City city = new City();
+        city.population = 1890000;
+        ArrayList<City> cityList = new ArrayList<City>();
+        cityList.add(city);
+        continent.cities = cityList;
+
+
+        assertEquals(continent.cities.get(0).population, 1890000);
+    }
 }
