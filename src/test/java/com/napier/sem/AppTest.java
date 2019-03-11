@@ -464,9 +464,6 @@ void printRegionCitiesTestEmpty()
         app.printRegionCountries(countries);
     }
 
-
-
-
     /**
      *  Task 17
      */
@@ -514,12 +511,15 @@ void printRegionCitiesTestEmpty()
         ArrayList<Country> Country = new ArrayList();
         Country country = new Country();
 
-        country.code = "GER";
+
         country.name = "Germany";
         country.continent = "Europe";
-        country.region = "Western Europe";
         country.population = 82393880;
-        country.capital = 32;
+
+        country.name = "France";
+        country.continent = "Europe";
+        country.population = 59225700;
+
         Country.add(country);
         app.printPopulationCountryFromWorld(Country);
     }
@@ -531,7 +531,7 @@ void printRegionCitiesTestEmpty()
     @Test
     void printPopInUrbanAndRuralCountryEmpty()
     {
-        ArrayList<Country> Country = new ArrayList();
+        ArrayList<Country> Country = new ArrayList<Country>();
         app.printPopulationUrbanRural(Country);
 
     }
@@ -539,14 +539,19 @@ void printRegionCitiesTestEmpty()
     @Test
     void printPopInUrbanAndRuralCountry()
     {
-        ArrayList<Country> Country = new ArrayList();
-        Country country = new Country();
+        ArrayList<Country> Country = new ArrayList<Country>();
 
+        Country country = new Country();
         country.name = "United Kingdom";
         country.populationRural = 9458100;
         country.populationUrban = 55055726;
-        country.population = 66040200;
         Country.add(country);
+
+        Country country1 = new Country();
+        country.name = "France";
+        country.populationUrban = 49225700;
+        country.populationRural = 13250698;
+        Country.add(country1);
     }
 
     /**
@@ -556,9 +561,8 @@ void printRegionCitiesTestEmpty()
     @Test
     void printPopInUrbanAndRuralRegionEmpty()
     {
-        ArrayList<Country> Country = new ArrayList();
+        ArrayList<Country> Country = new ArrayList<Country>();
         app.printPopulationUrbanRural(Country);
-
     }
 
     @Test
@@ -567,11 +571,18 @@ void printRegionCitiesTestEmpty()
         ArrayList<Country> Country = new ArrayList();
         Country country = new Country();
 
-        country.name = "British Isles";
-        country.populationRural = 9458100;
-        country.populationUrban = 55055726;
-        country.population = 66040200;
+        country.region = "Western Europe";
+        country.populationRural = 102543123;
+        country.populationUrban = 295632344;
+        country.population = 397654173;
         Country.add(country);
+
+        Country country1 = Country();
+        country1.region = "Eastern Europe";
+        country1.populationRural = 95654163;
+        country1.populationUrban = 198422463;
+        country1.population = 291953328;
+        Country.add(country1);
     }
 
     /**
@@ -581,22 +592,25 @@ void printRegionCitiesTestEmpty()
     @Test
     void printPopInCityAndRuralContinentEmpty()
     {
-        ArrayList<Country> Country = new ArrayList();
+        ArrayList<City> City = new ArrayList<City>();
         app.printPopulationUrbanRural(continent);
-
     }
 
     @Test
-    void printPopInUrbanAndContinentRegion()
+    void printPopInCityAndContinentRegion()
     {
-        ArrayList<Country> Country = new ArrayList();
-        Country country = new Country();
+        ArrayList<City> City = new ArrayList<City>();
 
-        country.continent = "Europe";
-        country.populationRural = 106620800;
-        country.populationUrban = 405979200;
-        country.population = 51260000;
-        Country.add(country);
+        City city = new City();
+        city.name = "London";
+        city.country = "United Kingdom";
+        city.population = 8136000;
+        City.add(city);
+        City city1 = new City();
+        city1.name = "Paris";
+        city1.country = "France";
+        city.population = 2000000;
+        City.add(city1);
     }
 
     /**
@@ -606,21 +620,25 @@ void printRegionCitiesTestEmpty()
     @Test
     void printGivenCapitalCitiesInRegionEmpty()
     {
-        ArrayList<Country> Country = new ArrayList();
-        app.printCapitalCitiesInGivenRegion(Country);
+        ArrayList<City> City = new ArrayList<City>();
+
+        app.printCapitalCitiesInGivenRegion(City);
     }
 
     @Test
     void printGivenCapitalCitiesInRegion()
     {
-        ArrayList<Country> Country = new ArrayList();
-        Country country = new Country();
+        ArrayList<City> City = new ArrayList<City>();
 
-        country.name = "United Kingdom";
-        country.continent = "Europe";
-        country.capital = 32;
-        country.region = "British Isles";
-        Country.add(country);
+        City city = new City();
+        city.name = "London";
+        city.country = "United Kingdom";
+        city.region = "British Isles";
+
+        City city1 = new City();
+        city.name = "Paris";
+        city.country = "France";
+        city.region = "Western Europe";
     }
 
     /**
@@ -630,21 +648,34 @@ void printRegionCitiesTestEmpty()
     @Test
     void printGivenCapitalCitiesInContinentEmpty()
     {
-        ArrayList<Country> Country = new ArrayList();
-        app.printCapitalCitiesInGivenContinent(Country);
+        ArrayList<City> City = new ArrayList<City>();
+        app.printCapitalCitiesInGivenContinent(City);
     }
 
     @Test
     void printGivenCapitalCitiesInContinent()
     {
-        ArrayList<Country> Country = new ArrayList();
-        Country country = new Country();
+        ArrayList<City> City = new ArrayList<City>();
 
-        country.name = "United Kingdom";
-        country.continent = "Europe";
-        country.capital = 32;
-        country.region = "British Isles";
-        Country.add(country);
+        City city = new City();
+        city.name = "London";
+        city.continent = "Europe";
+        City.add(city);
+
+        City city1 = new City();
+        city.name = "London";
+        city.continent = "Europe";
+        City.add(city1);
+
+        City city2 = new City();
+        city.name = "Boston";
+        city.continent = "North America";
+        City.add(city2);
+
+        City city3 = new City();
+        city.name = "Washington";
+        city.continent = "North America";
+        City.add(city3);
     }
 
     /**
@@ -654,8 +685,8 @@ void printRegionCitiesTestEmpty()
     @Test
     void printGivenCapitalCitiesInWorldEmpty()
     {
-        ArrayList<Country> Country = new ArrayList();
-        app.printCapitalCitiesInGivenContinent(Country);
+        ArrayList<City> City = new ArrayList<City>();
+        app.printCapitalCitiesInGivenContinent(City);
     }
 
     @Test
@@ -664,11 +695,20 @@ void printRegionCitiesTestEmpty()
         ArrayList<Country> Country = new ArrayList();
         Country country = new Country();
 
-        country.name = "United Kingdom";
-        country.continent = "Europe";
-        country.capital = 32;
-        country.region = "British Isles";
-        Country.add(country);
+        City city = new City();
+        city.name = "London";
+
+        City city1 = new City();
+        city.name = "Budapest";
+
+        City city2 = new City();
+        city.name = "Bucharest";
+
+        City city3 = new City();
+        city.name = "Barcelona";
+
+        City city4 = new City();
+        city.name = "Milan";
     }
 
     /**
@@ -679,21 +719,25 @@ void printRegionCitiesTestEmpty()
     @Test
     void printGivenCapitalCitiesInWorldCountry()
     {
-        ArrayList<Country> Country = new ArrayList();
-        app.printCapitalCitiesInGivenContinent(Country);
+        ArrayList<City> City = new ArrayList<City>();
+        app.printCapitalCitiesInGivenContinent(City);
     }
 
     @Test
     void printGivenCapitalCitiesInCountry()
     {
-        ArrayList<Country> Country = new ArrayList();
-        Country country = new Country();
+        ArrayList<City> City = new ArrayList<City>();
+        City city = new City();
+        city.name = "London";
+        city.country = "United Kingdom";
 
-        country.name = "United Kingdom";
-        country.continent = "Europe";
-        country.capital = 32;
-        country.region = "British Isles";
-        Country.add(country);
+        City city1 = new City();
+        city1.name = "Paris";
+        city.country = "France";
+
+        City city2 = new City();
+        city2.name = "Lisbon";
+        city2.country = "Portugal";
     }
 
 }

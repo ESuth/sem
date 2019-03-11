@@ -21,4 +21,14 @@ public class City
      * population
      */
     public long population;
+
+    /**
+     * region
+     */
+    public String region;
+
+    /**
+     * continent
+     */
+    public String continent;
 }
