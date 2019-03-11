@@ -191,9 +191,9 @@ public class AppTest
         languages.add(language);
 
         Language language2 = new Language();
-        language.language = "Spanish";
-        language.population = 280403952;
-        language.percentage = 4.61;
+        language2.language = "Spanish";
+        language2.population = 280403952;
+        language2.percentage = 4.61;
 
         languages.add(language2);
 
@@ -557,13 +557,13 @@ public class AppTest
         country2.name = "Ukraine";
         country2.population = 1810000;
 
-        countries.add(country);
+        countries.add(country2);
 
         Country country3 = new Country();
         country3.name = "Germany";
         country3.population = 1810000;
 
-        countries.add(country);
+        countries.add(country3);
 
         app.printRegionCountries(countries);
     }
@@ -730,12 +730,12 @@ public class AppTest
 
         cities.add(city);
 
-        City city1 = new City();
-        city1.name = "Paris";
-        city1.country = "France";
-        city.population = 2000000;
+        City city2 = new City();
+        city2.name = "Paris";
+        city2.country = "France";
+        city2.population = 2000000;
 
-        cities.add(city1);
+        cities.add(city2);
 
         app.printPopInCityAndContinentRegion(cities);
     }
@@ -769,7 +769,7 @@ public class AppTest
         city2.name = "Paris";
         city2.country = "France";
         city2.region = "Western Europe";
-        city.population = 223456;
+        city2.population = 223456;
 
         cities.add(city2);
 
