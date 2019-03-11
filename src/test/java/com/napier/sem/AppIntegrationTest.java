@@ -114,15 +114,15 @@ public class AppIntegrationTest
     @Test
     void testGetContinentCapitalsPop()
     {
-        Continent continent = app.getContinentCapitalsPop();
-        City city = new City();
-        city.population = 1890000;
-        ArrayList<City> cityList = new ArrayList<City>();
-        cityList.add(city);
-        continent.capitals = cityList;
-
-
-        assertEquals(continent.capitals.get(0).population, 1890000);
+        ArrayList<Continent> continents = new app.getContinentCapitalsPop();
+        Continent continent = new Continent();
+        continent.city = "Edinburgh";
+        continent.population = 237134840;
+        continent.percentage = 3.90;
+        continents.add(continent);
+        assertEquals(continent.city, "Edinburgh");
+        assertEquals(continent.population, 237134840);
+        assertEquals(continent.percentage, 3.90);
     }
 
     /**
@@ -236,6 +236,7 @@ public class AppIntegrationTest
     void testGetRegionCountriesPop()
     {
         Region region = app.getRegionCountriesPop();
+
         Country country = new Country();
         country.population = 1890000;
         ArrayList<Country> countryList = new ArrayList<Country>();

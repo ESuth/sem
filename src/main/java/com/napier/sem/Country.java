@@ -30,6 +30,16 @@ public class Country
     public long population;
 
     /**
+     * Population Rural
+     */
+    public long populationRural;
+
+    /**
+     * Population Urban
+     */
+    public long populationUrban;
+
+    /**
      * Capital
      */
     public int capital;

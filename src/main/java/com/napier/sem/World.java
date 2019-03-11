@@ -8,11 +8,11 @@ public class World {
 
     public ArrayList<City> cities;
 
-    public string city;
+    public String city;
 
-    public string region;
+    public String region;
 
-    public string population;
+    public long population;
 
 
 }

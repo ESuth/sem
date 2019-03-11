@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Continent {
 
-    public string name;
+    public String name;
 
     public ArrayList<Country> countries;
 
@@ -12,10 +12,17 @@ public class Continent {
 
     public ArrayList<City> cities;
 
-    public string city;
+    public String city;
 
     public long population;
 
-    public string region;
+    public String region;
+
+    public String language;
+
+    /**
+     * World Percentage
+     */
+    public double percentage;
 
 }

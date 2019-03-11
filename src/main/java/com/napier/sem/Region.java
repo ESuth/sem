@@ -6,13 +6,13 @@ import java.util.ArrayList;
 
 public class Region {
 
-    public string name;
+    public String name;
 
     public ArrayList<City> cities;
 
     public ArrayList<Country> countries;
 
-    public string city;
+    public String city;
 
     public long population;
 }

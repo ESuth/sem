@@ -18,6 +18,7 @@ public class AppTest
         app = new App();
     }
 
+
     /**
      * Task 1
      */
@@ -31,6 +32,7 @@ public class AppTest
     void printEdinburghPopTestEmpty()
     {
         City city = new City();
+
         app.printPopulationEdinburgh(city);
     }
 
@@ -42,8 +44,10 @@ public class AppTest
         city.country = "United Kingdom";
         city.district = "Scotland";
         city.population = 500500;
+
         app.printPopulationEdinburgh(city);
     }
+
 
     /**
      * Task 2
@@ -58,6 +62,7 @@ public class AppTest
     void printScotlandPopTestEmpty()
     {
         City district = new City();
+
         app.printPopulationScotland(district);
     }
 
@@ -68,8 +73,10 @@ public class AppTest
         district.country = "United Kingdom";
         district.district = "Scotland";
         district.population = 500500;
+
         app.printPopulationScotland(district);
     }
+
 
     /**
      * Task 3
@@ -84,6 +91,7 @@ public class AppTest
     void printUKPopTestEmpty()
     {
         Country country = new Country();
+
         app.printPopulationUK(country);
     }
 
@@ -97,8 +105,10 @@ public class AppTest
         country.region = "British Islands";
         country.population = 5005000;
         country.capital = 32;
+
         app.printPopulationUK(country);
     }
+
 
     /**
      * Task 4
@@ -113,6 +123,7 @@ public class AppTest
     void printBritIslesPopTestEmpty()
     {
         Country region = new Country();
+
         app.printPopulationBritIsles(region);
     }
 
@@ -123,8 +134,10 @@ public class AppTest
         region.continent = "Europe";
         region.region = "British Islands";
         region.population = 6505000;
+
         app.printPopulationBritIsles(region);
     }
+
 
     /**
      * Task 5
@@ -139,6 +152,7 @@ public class AppTest
     void printEuropePopTestEmpty()
     {
         Country continent = new Country();
+
         app.printPopulationEurope(continent);
     }
 
@@ -148,8 +162,10 @@ public class AppTest
         Country continent = new Country();
         continent.continent = "Europe";
         continent.population = 7505000;
+
         app.printPopulationEurope(continent);
     }
+
 
     /**
      * Task 6
@@ -158,6 +174,7 @@ public class AppTest
     void printLanguageTestEmpty()
     {
         ArrayList<Language> language = new ArrayList<Language>();
+
         app.printLanguages(language);
     }
 
@@ -165,18 +182,24 @@ public class AppTest
     void printLanguages()
     {
         ArrayList<Language> languages = new ArrayList<Language>();
+
         Language language = new Language();
         language.language = "English";
         language.population = 237134840;
         language.percentage = 3.90;
+
         languages.add(language);
+
         Language language2 = new Language();
         language.language = "Spanish";
         language.population = 280403952;
         language.percentage = 4.61;
+
         languages.add(language2);
+
         app.printLanguages(languages);
     }
+
 
     /**
      * Task 7
@@ -191,6 +214,7 @@ public class AppTest
     void printWorldPopTestEmpty()
     {
         Country world = new Country();
+
         app.printPopulationWorld(world);
     }
 
@@ -199,8 +223,10 @@ public class AppTest
     {
         Country world = new Country();
         world.population = 6078749450L;
+
         app.printPopulationWorld(world);
     }
+
 
     /**
      * Task 8
@@ -209,6 +235,7 @@ public class AppTest
     void printRegionCapitalCitiesTestEmpty()
     {
         ArrayList<City> city = new ArrayList<City>();
+
         app.printRegionCapitalCities(city);
     }
 
@@ -216,20 +243,28 @@ public class AppTest
     void printRegionCapitalCities()
     {
         ArrayList<City> cities = new ArrayList<City>();
+
         City city = new City();
         city.name = "London";
         city.population = 7285000;
+
         cities.add(city);
+
         City city2 = new City();
         city2.name = "Dublin";
         city2.population = 481854;
+
         cities.add(city2);
+
         City city3 = new City();
         city3.name = "Edinburgh";
         city3.population = 450180;
+
         cities.add(city3);
-       app.printRegionCapitalCities(cities);
+
+        app.printRegionCapitalCities(cities);
     }
+
 
     /**
      * Task 9
@@ -238,6 +273,7 @@ public class AppTest
     void printContinentCapitalCitiesTestEmpty()
     {
         ArrayList<City> city = new ArrayList<City>();
+
         app.printContinentCapitalCities(city);
     }
 
@@ -245,20 +281,28 @@ public class AppTest
     void printContinentCapitalCities()
     {
         ArrayList<City> cities = new ArrayList<City>();
+
         City city = new City();
         city.name = "Hamburg";
         city.population = 1810000;
+
         cities.add(city);
+
         City city2 = new City();
         city2.name = "Warsaw";
         city2.population = 1745000;
+
         cities.add(city2);
+
         City city3 = new City();
         city3.name = "Paris";
         city3.population = 2200000;
+
         cities.add(city3);
+
         app.printContinentCapitalCities(cities);
     }
+
 
     /**
      * Task 10
@@ -267,6 +311,7 @@ public class AppTest
     void printWorldCapitalCitiesTestEmpty()
     {
         ArrayList<City> city = new ArrayList<City>();
+
         app.printWorldCapitalCities(city);
     }
 
@@ -274,20 +319,28 @@ public class AppTest
     void printWorldCapitalCities()
     {
         ArrayList<City> cities = new ArrayList<City>();
+
         City city = new City();
         city.name = "Hamburg";
         city.population = 1810000;
+
         cities.add(city);
+
         City city2 = new City();
         city2.name = "Tokyo";
         city2.population = 9273000;
+
         cities.add(city2);
+
         City city3 = new City();
         city3.name = "Moscow";
         city3.population = 11920000;
+
         cities.add(city3);
+
         app.printWorldCapitalCities(cities);
     }
+
 
     /**
      * Task 11
@@ -296,6 +349,7 @@ public class AppTest
     void printDistrictCitiesTestEmpty()
     {
         ArrayList<City> city = new ArrayList<City>();
+
         app.printWorldCapitalCities(city);
     }
 
@@ -303,20 +357,28 @@ public class AppTest
     void printDistrictCities()
     {
         ArrayList<City> cities = new ArrayList<City>();
+
         City city = new City();
         city.name = "Hamburg";
         city.population = 1810000;
+
         cities.add(city);
+
         City city2 = new City();
         city2.name = "Tokyo";
         city2.population = 9273000;
+
         cities.add(city2);
+
         City city3 = new City();
         city3.name = "Moscow";
         city3.population = 11920000;
+
         cities.add(city3);
+
         app.printDistrictCities(cities);
     }
+
 
     /**
      * Task 12
@@ -325,6 +387,7 @@ public class AppTest
     void printCountryCitiesTestEmpty()
     {
         ArrayList<City> city = new ArrayList<City>();
+
         app.printCountryCities(city);
     }
 
@@ -332,49 +395,66 @@ public class AppTest
     void printCountryCities()
     {
         ArrayList<City> cities = new ArrayList<City>();
+
         City city = new City();
         city.name = "Edinburgh";
         city.population = 482005;
+
         cities.add(city);
+
         City city2 = new City();
         city2.name = "Glasgow";
         city2.population = 598830;
+
         cities.add(city2);
+
         City city3 = new City();
         city3.name = "Stirling";
         city3.population = 92830;
+
         cities.add(city3);
+
         app.printCountryCities(cities);
     }
 
+
     /**
- * Task 13
- */
-@Test
-void printRegionCitiesTestEmpty()
-{
-    ArrayList<City> city = new ArrayList<City>();
-    app.printRegionCities(city);
-}
+     * Task 13
+     */
+    @Test
+    void printRegionCitiesTestEmpty()
+    {
+        ArrayList<City> city = new ArrayList<City>();
+
+        app.printRegionCities(city);
+    }
 
     @Test
     void printRegionCities()
     {
         ArrayList<City> cities = new ArrayList<City>();
+
         City city = new City();
         city.name = "Edinburgh";
         city.population = 482005;
+
         cities.add(city);
+
         City city2 = new City();
         city2.name = "Glasgow";
         city2.population = 598830;
+
         cities.add(city2);
+
         City city3 = new City();
         city3.name = "Stirling";
         city3.population = 92830;
+
         cities.add(city3);
+
         app.printRegionCities(cities);
     }
+
 
     /**
      * Task 14
@@ -383,27 +463,35 @@ void printRegionCitiesTestEmpty()
     void printContinentCitiesTestEmpty()
     {
         ArrayList<City> city = new ArrayList<City>();
+
         app.printContinentCities(city);
     }
 
     @Test
-    void printContinentCities()
-    {
+    void printContinentCities() {
         ArrayList<City> cities = new ArrayList<City>();
+
         City city = new City();
         city.name = "Hamburg";
         city.population = 1810000;
+
         cities.add(city);
+
         City city2 = new City();
         city2.name = "Warsaw";
         city2.population = 1745000;
+
         cities.add(city2);
+
         City city3 = new City();
         city3.name = "Paris";
         city3.population = 2200000;
+
         cities.add(city3);
+
         app.printContinentCities(cities);
     }
+
 
     /**
      * Task 15
@@ -412,6 +500,7 @@ void printRegionCitiesTestEmpty()
     void printWorldCitiesTestEmpty()
     {
         ArrayList<City> city = new ArrayList<City>();
+
         app.printWorldCities(city);
     }
 
@@ -419,20 +508,28 @@ void printRegionCitiesTestEmpty()
     void printWorldCities()
     {
         ArrayList<City> cities = new ArrayList<City>();
+
         City city = new City();
         city.name = "Hamburg";
         city.population = 1810000;
+
         cities.add(city);
+
         City city2 = new City();
         city2.name = "Warsaw";
         city2.population = 1745000;
+
         cities.add(city2);
+
         City city3 = new City();
         city3.name = "Paris";
         city3.population = 2200000;
+
         cities.add(city3);
+
         app.printWorldCities(cities);
     }
+
 
     /**
      * Task 16
@@ -441,6 +538,7 @@ void printRegionCitiesTestEmpty()
     void printRegionCountriesTestEmpty()
     {
         ArrayList<Country> country = new ArrayList<Country>();
+
         app.printRegionCountries(country);
     }
 
@@ -448,175 +546,204 @@ void printRegionCitiesTestEmpty()
     void printRegionCountries()
     {
         ArrayList<Country> countries = new ArrayList<Country>();
+
         Country country = new Country();
         country.name = "Spain";
         country.population = 1810000;
+
         countries.add(country);
+
         Country country2 = new Country();
         country2.name = "Ukraine";
         country2.population = 1810000;
+
         countries.add(country);
+
         Country country3 = new Country();
         country3.name = "Germany";
         country3.population = 1810000;
+
         countries.add(country);
 
         app.printRegionCountries(countries);
     }
 
+
     /**
-     *  Task 17
+     * Task 17
      */
 
     @Test
     void printCountryPopFromContinentEmpty()
     {
-        ArrayList<Country> Country = new ArrayList();
-        app.printPopulationCountryFromContinent(Country);
+        ArrayList<Country> country = new ArrayList();
+
+        app.printPopulationCountryFromContinent(country);
     }
 
     @Test
     void printCountryPopFromContinent()
     {
-        ArrayList<Country> Country = new ArrayList();
+        ArrayList<Country> countries = new ArrayList();
+
         Country country = new Country();
         country.name = "France";
         country.population = 65480710;
         country.continent = "Europe";
-        Country.add(country);
+
+        countries.add(country);
 
         Country country2 = new Country();
         country2.name = "Germany";
         country2.population = 82393880;
         country2.continent = "Europe";
-        Country.add(country2);
 
-        app.printPopulationCountry(Country);
+        countries.add(country2);
+
+        app.printPopulationCountry(countries);
     }
 
-    /**
-     *  Task 18
-     */
 
+    /**
+     * Task 18
+     */
     @Test
     void printCountryPopFromWorldEmpty()
     {
         ArrayList<Country> Country = new ArrayList();
+
         app.printPopulationCountryFromWorld(Country);
     }
 
     @Test
-    void printCountryFromWorld()
-    {
-        ArrayList<Country> Country = new ArrayList();
+    void printCountryFromWorld() {
+        ArrayList<Country> countries = new ArrayList();
+
         Country country = new Country();
-
-
         country.name = "Germany";
         country.continent = "Europe";
         country.population = 82393880;
 
-        country.name = "France";
-        country.continent = "Europe";
-        country.population = 59225700;
+        countries.add(country);
 
-        Country.add(country);
-        app.printPopulationCountryFromWorld(Country);
+        Country country2 = new Country();
+        country2.name = "France";
+        country2.continent = "Europe";
+        country2.population = 59225700;
+
+        countries.add(country2);
+
+        app.printPopulationCountryFromWorld(countries);
     }
 
-    /**
-     *  Task 19
-     */
 
+    /**
+     * Task 19
+     */
     @Test
     void printPopInUrbanAndRuralCountryEmpty()
     {
         ArrayList<Country> Country = new ArrayList<Country>();
-        app.printPopulationUrbanRural(Country);
 
+        app.printPopulationUrbanRural(Country);
     }
 
     @Test
     void printPopInUrbanAndRuralCountry()
     {
-        ArrayList<Country> Country = new ArrayList<Country>();
+        ArrayList<Country> countries = new ArrayList<Country>();
 
         Country country = new Country();
         country.name = "United Kingdom";
         country.populationRural = 9458100;
         country.populationUrban = 55055726;
-        Country.add(country);
 
-        Country country1 = new Country();
-        country.name = "France";
-        country.populationUrban = 49225700;
-        country.populationRural = 13250698;
-        Country.add(country1);
+        countries.add(country);
+
+        Country country2 = new Country();
+        country2.name = "France";
+        country2.populationUrban = 49225700;
+        country2.populationRural = 13250698;
+
+        countries.add(country2);
+
+        app.printPopInUrbanAndRuralCountry(countries);
     }
 
-    /**
-     *  Task 20
-     */
 
+    /**
+     * Task 20
+     */
     @Test
     void printPopInUrbanAndRuralRegionEmpty()
     {
-        ArrayList<Country> Country = new ArrayList<Country>();
-        app.printPopulationUrbanRural(Country);
+        ArrayList<Country> country = new ArrayList<Country>();
+
+        app.printPopulationUrbanRural(country);
     }
 
     @Test
     void printPopInUrbanAndRuralRegion()
     {
-        ArrayList<Country> Country = new ArrayList();
-        Country country = new Country();
+        ArrayList<Country> countries = new ArrayList();
 
+        Country country = new Country();
         country.region = "Western Europe";
         country.populationRural = 102543123;
         country.populationUrban = 295632344;
         country.population = 397654173;
-        Country.add(country);
 
-        Country country1 = Country();
-        country1.region = "Eastern Europe";
-        country1.populationRural = 95654163;
-        country1.populationUrban = 198422463;
-        country1.population = 291953328;
-        Country.add(country1);
+        countries.add(country);
+
+        Country country2 = new Country();
+        country2.region = "Eastern Europe";
+        country2.populationRural = 95654163;
+        country2.populationUrban = 198422463;
+        country2.population = 291953328;
+
+        countries.add(country2);
+
+        app.printPopInUrbanAndRuralRegion(countries);
     }
 
-    /**
-     *  Task 21
-     */
 
+    /**
+     * Task 21
+     */
     @Test
     void printPopInCityAndRuralContinentEmpty()
     {
         ArrayList<City> City = new ArrayList<City>();
+
         app.printPopulationUrbanRural(continent);
     }
 
     @Test
     void printPopInCityAndContinentRegion()
     {
-        ArrayList<City> City = new ArrayList<City>();
+        ArrayList<City> cities = new ArrayList<City>();
 
         City city = new City();
         city.name = "London";
         city.country = "United Kingdom";
         city.population = 8136000;
-        City.add(city);
+
+        cities.add(city);
+
         City city1 = new City();
         city1.name = "Paris";
         city1.country = "France";
         city.population = 2000000;
-        City.add(city1);
+
+        cities.add(city1);
+
+        app.printPopInCityAndContinentRegion(cities);
     }
 
-    /**
-     *  Task 22
-     */
 
+    /**
+     * Task 22
+     */
     @Test
     void printGivenCapitalCitiesInRegionEmpty()
     {
@@ -628,342 +755,435 @@ void printRegionCitiesTestEmpty()
     @Test
     void printGivenCapitalCitiesInRegion()
     {
-        ArrayList<City> City = new ArrayList<City>();
+        ArrayList<City> cities = new ArrayList<City>();
 
         City city = new City();
         city.name = "London";
         city.country = "United Kingdom";
         city.region = "British Isles";
+        city.population = 123456;
 
-        City city1 = new City();
-        city.name = "Paris";
-        city.country = "France";
-        city.region = "Western Europe";
+        cities.add(city);
+
+        City city2 = new City();
+        city2.name = "Paris";
+        city2.country = "France";
+        city2.region = "Western Europe";
+        city.population = 223456;
+
+        cities.add(city2);
+
+        app.printCapitalCitiesInRegion(cities);
     }
 
-    /**
-     *  Task 23
-     */
 
+    /**
+     * Task 23
+     */
     @Test
     void printGivenCapitalCitiesInContinentEmpty()
     {
         ArrayList<City> City = new ArrayList<City>();
+
         app.printCapitalCitiesInGivenContinent(City);
     }
 
     @Test
     void printGivenCapitalCitiesInContinent()
     {
-        ArrayList<City> City = new ArrayList<City>();
+        ArrayList<City> cities = new ArrayList<City>();
 
         City city = new City();
         city.name = "London";
         city.continent = "Europe";
-        City.add(city);
-
-        City city1 = new City();
-        city.name = "London";
-        city.continent = "Europe";
-        City.add(city1);
+        city.population = 123456;
+        cities.add(city);
 
         City city2 = new City();
-        city.name = "Boston";
-        city.continent = "North America";
-        City.add(city2);
+        city2.name = "London";
+        city2.continent = "Europe";
+        city2.population = 223456;
+        cities.add(city2);
 
         City city3 = new City();
-        city.name = "Washington";
-        city.continent = "North America";
-        City.add(city3);
+        city3.name = "Boston";
+        city3.continent = "North America";
+        city3.population = 323456;
+        cities.add(city3);
+
+        City city4 = new City();
+        city4.name = "Washington";
+        city4.continent = "North America";
+        city4.population = 423456;
+        cities.add(city4);
+
+        app.printCapitalCitiesInContinent(cities);
     }
 
-    /**
-     *  Task 24
-     */
 
+    /**
+     * Task 24
+     */
     @Test
     void printGivenCapitalCitiesInWorldEmpty()
     {
-        ArrayList<City> City = new ArrayList<City>();
-        app.printCapitalCitiesInGivenContinent(City);
+        ArrayList<City> city = new ArrayList<City>();
+
+        app.printCapitalCitiesInGivenContinent(city);
     }
 
     @Test
     void printGivenCapitalCitiesInWorld()
     {
-        ArrayList<Country> Country = new ArrayList();
-        Country country = new Country();
+        ArrayList<City> cities = new ArrayList<City>();
 
         City city = new City();
         city.name = "London";
-
-        City city1 = new City();
-        city.name = "Budapest";
+        city.population = 23456;
+        cities.add(city);
 
         City city2 = new City();
-        city.name = "Bucharest";
+        city2.name = "Budapest";
+        city2.population = 33456;
+        cities.add(city2);
 
         City city3 = new City();
-        city.name = "Barcelona";
+        city3.name = "Bucharest";
+        city3.population = 43456;
+        cities.add(city3);
 
         City city4 = new City();
-        city.name = "Milan";
+        city4.name = "Barcelona";
+        city4.population = 53456;
+        cities.add(city4);
+
+        City city5 = new City();
+        city5.name = "Milan";
+        city5.population = 63456;
+        cities.add(city5);
+
+        app.printCapitalCitiesInWorld(cities);
     }
 
+
     /**
-     *  Task 25
+     * Task 25
      */
-
-
     @Test
     void printGivenCapitalCitiesInWorldCountry()
     {
-        ArrayList<City> City = new ArrayList<City>();
-        app.printCapitalCitiesInGivenContinent(City);
+        ArrayList<City> city = new ArrayList<City>();
+
+        app.printCapitalCitiesInGivenContinent(city);
     }
 
     @Test
     void printGivenCapitalCitiesInCountry()
     {
-        ArrayList<City> City = new ArrayList<City>();
+        ArrayList<City> cities = new ArrayList<City>();
+
         City city = new City();
         city.name = "London";
         city.country = "United Kingdom";
-
-        City city1 = new City();
-        city1.name = "Paris";
-        city.country = "France";
+        cities.add(city);
 
         City city2 = new City();
-        city2.name = "Lisbon";
-        city2.country = "Portugal";
+        city2.name = "Paris";
+        city2.country = "France";
+        cities.add(city2);
+
+        City city3 = new City();
+        city3.name = "Lisbon";
+        city3.country = "Portugal";
+        cities.add(city3);
+
+        app.printCapitalCitiesInCountry(cities);
     }
 
-}
 
     /**
-     *  Task 26
+     * Task 26
      */
-
     @Test
     void toppopulatedcitiescountryempty()
     {
         ArrayList<Country> countries = new ArrayList<Country>();
-        app.printtoppopulatedcitiescountry(Countries);
+
+        app.printtoppopulatedcitiescountry(countries);
     }
+
     @Test
     void printtoppoplatedcitiescountry()
     {
         ArrayList<Country> countries = new ArrayList<Country>();
-        Country country= new Country();
+
+        Country country = new Country();
         country.city = "London";
         country.name = "United Kingdom";
-       country.population = 7285000;
+        country.population = 7285000;
+
         countries.add(country);
-        Country country2 = new country();
+
+        Country country2 = new Country();
         country2.city = "Dublin";
         country2.name = "Ireland";
         country2.population = 481854;
+
         countries.add(country2);
-        Country country3 = new country();
+
+        Country country3 = new Country();
         country3.city = "Paris";
         country3.name = "France";
         country3.population = 59225700;
+
         countries.add(country3);
+
         app.printtoppoplatedcitiescountry(countries);
+    }
 
 
-        /**
-         *  Task 27
-         */
+    /**
+     * Task 27
+     */
+    @Test
+    void topregionsempty()
+    {
+        ArrayList<Region> regions = new ArrayList<Region>();
 
-        @Test
-        void topregionsempty()
-        {
-            ArrayList<Region> regions = new ArrayList<region>();
-            app.printtopregions(regions);
-        }
-        @Test
-        void printtopregions()
-        {
-            ArrayList<Region> regions = new ArrayList<region>();
-            Region region= new Region();
-            region.city = "London";
-            region.name = "British Islands";
-            region.population = 7285000;
-            regions.add(region);
-            Region region2 = new Region();
-            region2.city = "Dublin";
-            region2.name = "British Islands";
-            region2.population = 481854;
-            regions.add(region2);
-            Region region3 = new Region();
-            region.city = "Paris";
-            region.name = "Western Europe";
-            region.population = 59225700;
-            regions.add(region3);
-            app.printtopregions(Regions);
+        app.printtopregions(regions);
+    }
 
+    @Test
+    void printtopregions()
+    {
+        ArrayList<Region> regions = new ArrayList<Region>();
 
-            /**
-             *  Task 28
-             */
+        Region region = new Region();
+        region.city = "London";
+        region.name = "British Islands";
+        region.population = 7285000;
 
-            @Test
-            void topcontinentempty()
-            {
-                ArrayList<Continent> Continents = new ArrayList<Continent>();
-                app.printtopcontinent(continents);
-            }
-            @Test
-            void printtopcontinents()
-            {
-                ArrayList<Continent> Continents = new ArrayList<Continent>();
-                continent continent = new continent();
-                continent.city = "London";
-                continent.name = "Europe";
-                continent.population = 7285000;
-                continent.add(continent);
-                continent continent2 = new continent();
-                continent2.city = "Dublin";
-                continent2.name = "Europe";
-                continent2.population = 481854;
-                continent.add(continent2);
-                continent continent3 = new continent();
-                continent3.city = "Paris";
-                continent3.name = "Europe";
-                continent3.population = 59225700;
-                continent.add(continent3);
-                app.printtopcontinents(continents);
-            }
+        regions.add(region);
 
-            /**
-             *  Task 29
-             */
+        Region region2 = new Region();
+        region2.city = "Dublin";
+        region2.name = "British Islands";
+        region2.population = 481854;
 
-            @Test
-            void topworldempty()
-            {
-                ArrayList<world> worlds = new ArrayList<world>();
-                app.printtopworld();
-            }
-            @Test
-            void printtopworld()
-            {
-                ArrayList<world> worlds = new ArrayList<world>();
-                world world = new world();
-                world.city = "London";
-                world.region = "Europe";
-                world.population = 7285000;
-                world.add(world);
-                world world2 = new world();
-                world2.city = "Dublin";
-                world2.name = "Europe";
-                world2.population = 481854;
-                world.add(world2);
-                world world3 = new world();
-                world3.city = "Paris";
-                world3.name = "Europe";
-                world3.population = 59225700;
-                world.add(world3);
-                app.printtopworld(worlds);
-            }
+        regions.add(region2);
+
+        Region region3 = new Region();
+        region3.city = "Paris";
+        region3.name = "Western Europe";
+        region3.population = 59225700;
+
+        regions.add(region3);
+
+        app.printtopregions(regions);
+    }
 
 
+    /**
+     * Task 28
+     */
+    @Test
+    void topcontinentempty()
+    {
+        ArrayList<Continent> continents = new ArrayList<Continent>();
 
-            /**
-             *  Task 30
-             */
+        app.printtopcontinent(continents);
+    }
 
-            @Test
-            void topregionsempty2()
-            {
-                ArrayList<Region> regions = new ArrayList<region>();
-                app.printtopregions2(regions);
-            }
-            @Test
-            void printtopregions2()
-            {
-                ArrayList<Region> regions = new ArrayList<region>();
-                Region region= new Region();
-                region.city = "London";
-                region.name = "British Islands";
-                region.population = 7285000;
-                regions.add(region);
-                Region region2 = new Region();
-                region2.city = "Dublin";
-                region2.name = "British Islands";
-                region2.population = 481854;
-                regions.add(region2);
-                Region region3 = new Region();
-                region.city = "Paris";
-                region.name = "Western Europe";
-                region.population = 59225700;
-                regions.add(region3);
-                app.printtopregions2(Regions);
+    @Test
+    void printtopcontinents()
+    {
+        ArrayList<Continent> continents = new ArrayList<Continent>();
+
+        Continent continent = new Continent();
+        continent.city = "London";
+        continent.name = "Europe";
+        continent.population = 7285000;
+
+        continents.add(continent);
+
+        Continent continent2 = new Continent();
+        continent2.city = "Dublin";
+        continent2.name = "Europe";
+        continent2.population = 481854;
+
+        continents.add(continent2);
+
+        Continent continent3 = new Continent();
+        continent3.city = "Paris";
+        continent3.name = "Europe";
+        continent3.population = 59225700;
+
+        continents.add(continent3);
+
+        app.printtopcontinents(continents);
+    }
 
 
-                /**
-                 *  Task 31
-                 */
+    /**
+     * Task 29
+     */
+    @Test
+    void topworldempty()
+    {
+        ArrayList<World> worlds = new ArrayList<World>();
 
-                @Test
-                void topcontinentempty2()
-                {
-                    ArrayList<Continent> Continents = new ArrayList<Continent>();
-                    app.printtopcontinent2(continents);
-                }
-                @Test
-                void printtopcontinents2()
-                {
-                    ArrayList<Continent> Continents = new ArrayList<Continent>();
-                    continent continent = new continent();
-                    continent.city = "London";
-                    continent.name = "Europe";
-                    continent.population = 7285000;
-                    continent.add(continent);
-                    continent continent2 = new continent();
-                    continent2.city = "Dublin";
-                    continent2.name = "Europe";
-                    continent2.population = 481854;
-                    continent.add(continent2);
-                    continent continent3 = new continent();
-                    continent3.city = "Paris";
-                    continent3.name = "Europe";
-                    continent3.population = 59225700;
-                    continent.add(continent3);
-                    app.printtopcontinents2(continents);
-                }
+        app.printtopworld();
+    }
 
-                /**
-                 *  Task 32
-                 */
+    @Test
+    void printtopworld()
+    {
+        ArrayList<World> worlds = new ArrayList<World>();
 
-                @Test
-                void topworldempty2()
-                {
-                    ArrayList<world> worlds = new ArrayList<world>();
-                    app.printtopworld2();
-                }
-                @Test
-                void printtopworld2()
-                {
-                    ArrayList<world> worlds = new ArrayList<world>();
-                    world world = new world();
-                    world.city = "London";
-                    world.region = "Europe";
-                    world.population = 7285000;
-                    world.add(world);
-                    world world2 = new world();
-                    world2.city = "Dublin";
-                    world2.name = "Europe";
-                    world2.population = 481854;
-                    world.add(world2);
-                    world world3 = new world();
-                    world3.city = "Paris";
-                    world3.name = "Europe";
-                    world3.population = 59225700;
-                    world.add(world3);
-                    app.printtopworld2(worlds);
-                }
+        World world = new World();
+        world.city = "London";
+        world.region = "Europe";
+        world.population = 7285000;
+
+        worlds.add(world);
+
+        World world2 = new World();
+        world2.city = "Dublin";
+        world2.region = "Europe";
+        world2.population = 481854;
+
+        worlds.add(world2);
+
+        World world3 = new World();
+        world3.city = "Paris";
+        world3.region = "Europe";
+        world3.population = 59225700;
+
+        worlds.add(world3);
+
+        app.printtopworld(worlds);
+    }
+
+
+    /**
+     * Task 30
+     */
+    @Test
+    void topregionsempty2()
+    {
+        ArrayList<Region> regions = new ArrayList<Region>();
+
+        app.printtopregions2(regions);
+    }
+
+    @Test
+    void printtopregions2()
+    {
+        ArrayList<Region> regions = new ArrayList<Region>();
+
+        Region region = new Region();
+        region.city = "London";
+        region.name = "British Islands";
+        region.population = 7285000;
+
+        regions.add(region);
+
+        Region region2 = new Region();
+        region2.city = "Dublin";
+        region2.name = "British Islands";
+        region2.population = 481854;
+
+        regions.add(region2);
+
+        Region region3 = new Region();
+        region3.city = "Paris";
+        region3.name = "Western Europe";
+        region3.population = 59225700;
+
+        regions.add(region3);
+
+        app.printtopregions2(regions);
+    }
+
+
+    /**
+     * Task 31
+     */
+    @Test
+    void topcontinentempty2()
+    {
+        ArrayList<Continent> continents = new ArrayList<Continent>();
+
+        app.printtopcontinent2(continents);
+    }
+
+    @Test
+    void printtopcontinents2()
+    {
+        ArrayList<Continent> continents = new ArrayList<Continent>();
+
+        Continent continent = new Continent();
+        continent.city = "London";
+        continent.name = "Europe";
+        continent.population = 7285000;
+
+        continents.add(continent);
+
+        Continent continent2 = new Continent();
+        continent2.city = "Dublin";
+        continent2.name = "Europe";
+        continent2.population = 481854;
+
+        continents.add(continent2);
+
+        Continent continent3 = new Continent();
+        continent3.city = "Paris";
+        continent3.name = "Europe";
+        continent3.population = 59225700;
+
+        continents.add(continent3);
+
+        app.printtopcontinents2(continents);
+    }
+
+
+    /**
+     * Task 32
+     */
+    @Test
+    void topworldempty2()
+    {
+        ArrayList<World> worlds = new ArrayList<World>();
+
+        app.printtopworld2();
+    }
+
+    @Test
+    void printtopworld2()
+    {
+        ArrayList<World> worlds = new ArrayList<World>();
+
+        World world = new World();
+        world.city = "London";
+        world.region = "Europe";
+        world.population = 7285000;
+
+        worlds.add(world);
+
+        World world2 = new World();
+        world2.city = "Dublin";
+        world2.region = "Europe";
+        world2.population = 481854;
+
+        worlds.add(world2);
+
+        World world3 = new World();
+        world3.city = "Paris";
+        world3.region = "Europe";
+        world3.population = 59225700;
+
+        worlds.add(world3);
+
+        app.printtopworld2(worlds);
+    }
+}
