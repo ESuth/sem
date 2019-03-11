@@ -12,4 +12,10 @@ public class Continent {
 
     public ArrayList<City> cities;
 
+    public string city;
+
+    public long population;
+
+    public string region;
+
 }

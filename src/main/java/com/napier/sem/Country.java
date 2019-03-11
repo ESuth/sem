@@ -35,4 +35,10 @@ public class Country
     public int capital;
 
     public ArrayList<City> cities;
+
+    public String city;
+
+
+
 }
+

@@ -11,4 +11,8 @@ public class Region {
     public ArrayList<City> cities;
 
     public ArrayList<Country> countries;
+
+    public string city;
+
+    public long population;
 }
