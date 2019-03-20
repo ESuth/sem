@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class App
 {
     /**
-     * Connection to MySQL database.
+     * Connection to MySQL database..
      */
     private Connection con = null;
 
