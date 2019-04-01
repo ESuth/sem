@@ -43,9 +43,9 @@ public class App
             try
             {
                 // Wait a bit for db to start
-                Thread.sleep(30000);
+                Thread.sleep(3000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC", "root", "dubstep5");
                 System.out.println("Successfully connected");
                 break;
             }
@@ -94,7 +94,7 @@ public class App
      * @return The record of the city and its population.
      */
     @RequestMapping("citypop")
-    public City getCityEdinburghPop(@RequestParam(value = "city")String city, @RequestParam(value = "code") String code)
+    public City getCityEdinburghPop(@RequestParam(value = "city") String city, @RequestParam(value = "code") String code)
     {
         try
         {
@@ -104,8 +104,8 @@ public class App
             String strSelect = "SELECT city.Name, country.Name, city.District, city.Population " +
                                "FROM world.city, world.country " +
                                "WHERE city.CountryCode = country.Code " +
-                               "AND city.Name = " + city + " " +
-                               "AND country.Code = " + code;
+                               "AND city.Name = '" + city + "' " +
+                               "AND country.Code = '" + code + "'";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Return new employee if valid.
@@ -133,7 +133,14 @@ public class App
     /**
      * Task 2
      */
-    public City getDistrictScotlandPop(String district, String code)
+    /**
+     * Get a single district's population.
+     * @param district name of the district to get.
+     * @param code code of the country the district is in.
+     * @return The record of the district and its population.
+     */
+    @RequestMapping("districtpop")
+    public City getDistrictScotlandPop(@RequestParam(value = "district") String district, @RequestParam(value = "code") String code)
     {
         try
         {
@@ -143,8 +150,8 @@ public class App
             String strSelect = "SELECT country.Name, city.District, SUM(city.Population) " +
                     "FROM world.city, world.country " +
                     "WHERE city.CountryCode = country.Code " +
-                    "AND city.District = " + district + " " +
-                    "AND country.Code = " + code;
+                    "AND city.District = '" + district + "' " +
+                    "AND country.Code = '" + code + "'";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Return new employee if valid.
@@ -171,7 +178,13 @@ public class App
     /**
      * Task 3
      */
-    public Country getCountryUKPop(String country)
+    /**
+     * Get a single country's population.
+     * @param country name of the country to get.
+     * @return The record of the country and its population.
+     */
+    @RequestMapping("countrypop")
+    public Country getCountryUKPop(@RequestParam(value = "country") String country)
     {
         try
         {
@@ -180,7 +193,7 @@ public class App
             // Create string for SQL statement
             String strSelect = "SELECT Code, Name, Continent, Region, Capital, Population " +
                     "FROM world.country " +
-                    "WHERE Name = " + country;
+                    "WHERE Name = '" + country + "'";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Return new employee if valid.
@@ -210,7 +223,13 @@ public class App
     /**
      * Task 4
      */
-    public Country getRegionBritIslesPop(String region)
+    /**
+     * Get a single region's population.
+     * @param region name of the region to get.
+     * @return The record of the region and its population.
+     */
+    @RequestMapping("regionpop")
+    public Country getRegionBritIslesPop(@RequestParam(value = "region") String region)
     {
         try
         {
@@ -219,7 +238,7 @@ public class App
             // Create string for SQL statement
             String strSelect = "SELECT Region, Continent, SUM(Population) " +
                     "FROM world.country " +
-                    "WHERE Region = " + region + " " +
+                    "WHERE Region = '" + region + "' " +
                     "GROUP BY Region, Continent";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -247,7 +266,13 @@ public class App
     /**
      * Task 5
      */
-    public Country getContinentEuropePop(String continent)
+    /**
+     * Get a single continent's population.
+     * @param continent name of the region to get.
+     * @return The record of the continent and its population.
+     */
+    @RequestMapping("continentpop")
+    public Country getContinentEuropePop(@RequestParam(value = "continent") String continent)
     {
         try
         {
@@ -256,7 +281,7 @@ public class App
             // Create string for SQL statement
             String strSelect = "SELECT Continent, SUM(Population) " +
                     "FROM world.country " +
-                    "WHERE Continent = " + continent;
+                    "WHERE Continent = '" + continent + "'";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Return new employee if valid.
@@ -282,6 +307,11 @@ public class App
     /**
      * Task 6
      */
+    /**
+     * Get a list of specific languages and the population of the world that speaks them in a specific order and there percentages.
+     * @return The record of the languages and there populations.
+     */
+    @RequestMapping("languages")
     public ArrayList<Language> getLanguageList()
     {
         try
@@ -359,6 +389,11 @@ public class App
     /**
      * Task 8
      */
+    /**
+     * Get a list of all the capital cities in a region and their populations in a specific order.
+     * @return The record of the capital cities in a region and there populations.
+     */
+    @RequestMapping("regioncapcitypop")
     public ArrayList<City> getRegionCapitalCityList()
     {
         try
@@ -541,7 +576,7 @@ public class App
         // Connect to database
         if (args.length < 1)
         {
-            a.connect("localhost:33060");
+            a.connect("localhost:3306");
         }
         else
         {
@@ -551,11 +586,11 @@ public class App
         SpringApplication.run(App.class, args);
 
         // Get details //
-        /*Task 1 */City edinburgh = a.getCityEdinburghPop("'Edinburgh'", "'GBR'");
-        /*Task 2 */City scotland = a.getDistrictScotlandPop("'Scotland'", "'GBR'");
-        /*Task 3 */Country uK = a.getCountryUKPop("'United Kingdom'");
-        /*Task 4 */Country britIsles = a.getRegionBritIslesPop("'British Islands'");
-        /*Task 5 */Country europe = a.getContinentEuropePop("'Europe'");
+        /*Task 1 */City edinburgh = a.getCityEdinburghPop("Edinburgh", "GBR");
+        /*Task 2 */City scotland = a.getDistrictScotlandPop("Scotland", "GBR");
+        /*Task 3 */Country uK = a.getCountryUKPop("United Kingdom");
+        /*Task 4 */Country britIsles = a.getRegionBritIslesPop("British Islands");
+        /*Task 5 */Country europe = a.getContinentEuropePop("Europe");
         /*Task 6 Get List of Details */ArrayList<Language> languages = a.getLanguageList();
         /*Task 7 */Country world = a.getWorldPop();
         /*Task 8 Get List of Details */ArrayList<City> cities = a.getRegionCapitalCityList();
@@ -571,6 +606,6 @@ public class App
         /*Task 8 Print list of details */a.printRegionCapitalCities(cities);
 
         // Disconnect from database
-        a.disconnect();
+        //a.disconnect();
     }
 }
