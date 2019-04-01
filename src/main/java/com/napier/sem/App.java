@@ -606,6 +606,6 @@ public class App
         /*Task 8 Print list of details */a.printRegionCapitalCities(cities);
 
         // Disconnect from database
-        a.disconnect();
+        //a.disconnect();
     }
 }
