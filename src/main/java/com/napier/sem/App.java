@@ -90,7 +90,7 @@ public class App
     /**
      * Get a single city's population.
      * @param city name of the city to get.
-     * @param code code of the country.
+     * @param code code of the country the city is in.
      * @return The record of the city and its population.
      */
     @RequestMapping("citypop")
