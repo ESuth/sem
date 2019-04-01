@@ -321,6 +321,11 @@ public class App
     /**
      * Task 7
      */
+    /**
+     * Get a single city's population.
+     * @return The record of the world population.
+     */
+    @RequestMapping("worldpop")
     public Country getWorldPop()
     {
         try
