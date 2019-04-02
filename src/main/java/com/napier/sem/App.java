@@ -394,7 +394,7 @@ public class App
      * @return The record of the capital cities in a region and there populations.
      */
     @RequestMapping("regioncapcitypop")
-    public ArrayList<City> getRegionCapitalCityList()
+    public ArrayList<City> getRegionCapitalCityList(String region)
     {
         try
         {
@@ -406,7 +406,7 @@ public class App
                             + "FROM world.city, world.country "
                             + "Where city.CountryCode = country.Code "
                             + "AND city.Name in (\"Edinburgh\", \"London\", \"Dublin\") "
-                            + "AND country.Region = 'British Islands' "
+                            + "AND country.Region = '" + region + "' "
                             + "ORDER BY city.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -593,7 +593,7 @@ public class App
         /*Task 5 */Country europe = a.getContinentEuropePop("Europe");
         /*Task 6 Get List of Details */ArrayList<Language> languages = a.getLanguageList();
         /*Task 7 */Country world = a.getWorldPop();
-        /*Task 8 Get List of Details */ArrayList<City> cities = a.getRegionCapitalCityList();
+        /*Task 8 Get List of Details */ArrayList<City> cities = a.getRegionCapitalCityList("British Islands");
 
         // Print Details //
         /*Task 1 */a.printPopulationEdinburgh(edinburgh);
