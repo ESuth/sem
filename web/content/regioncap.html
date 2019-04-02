@@ -31,7 +31,7 @@
     var urlParams = new URLSearchParams(window.location.search);
     var region = urlParams.get('region');
 
-    var URL = "http://" + window.location.hostname + "/app/regioncap?region=" + region;
+    var URL = "http://" + window.location.hostname + "/app/regioncapcitypop?region=" + region;
 
     $.getJSON(URL, function(data) {
         // EXTRACT VALUE FOR HTML HEADER.
