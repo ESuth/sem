@@ -391,10 +391,11 @@ public class App
      */
     /**
      * Get a list of all the capital cities in a region and their populations in a specific order.
+     * @param region name of the region to get.
      * @return The record of the capital cities in a region and there populations.
      */
     @RequestMapping("regioncapcitypop")
-    public ArrayList<City> getRegionCapitalCityList(String region)
+    public ArrayList<City> getRegionCapitalCityList(@RequestParam(value = "region") String region)
     {
         try
         {
