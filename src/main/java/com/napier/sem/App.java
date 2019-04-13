@@ -433,7 +433,7 @@ public class App
      *  Task 9
      */
     /**
-     * Get a list of all capital cities in a region and their population from largest to smallest.
+     * Get a list of all capital cities in a continent and their population from largest to smallest.
      * @param continent name of the continent to get.
      * @return The record of the capital cities in a continent and their population.
      */
@@ -450,6 +450,48 @@ public class App
                             +   "WHERE country.Capital = city.ID "
                             +   "AND country.Continent = '" + continent + "' "
                             +   "ORDER BY city.Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract city information
+            ArrayList<City> cities = new ArrayList<City>();
+            while(rset.next()) {
+                City city = new City();
+                city.name = rset.getString("city.Name");
+                city.population = rset.getLong("city.Population");
+                cities.add(city);
+            }
+            return cities;
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get capital cities by continent's details");
+            return null;
+        }
+    }
+
+    /**
+     *  Task 23
+     */
+    /**
+     * Get a list of the top N capital cities in a continent and their population from largest to smallest. Where N is supplied by user
+     * @param continent name of the continent to get.
+     * @param limit amount of rows to return.
+     * @return The record of the top N capital cities in a continent and their population.
+     */
+    @RequestMapping("continentcitypoplimit")
+    public ArrayList<City> getContinentCapitalCityListWithLimit (@RequestParam(value = "continent") String continent, @RequestParam(value = "limit") String limit)
+    {
+        try {
+            // Create SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, city.Population "
+                            +   "FROM world.city, world.country "
+                            +   "WHERE country.Capital = city.ID "
+                            +   "AND country.Continent = '" + continent + "' "
+                            +   "ORDER BY city.Population DESC"
+                            +   "LIMIT " + limit;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract city information
