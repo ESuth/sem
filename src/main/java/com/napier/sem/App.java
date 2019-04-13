@@ -45,7 +45,7 @@ public class App
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "dubstep5");
                 System.out.println("Successfully connected");
                 break;
             }
@@ -406,7 +406,7 @@ public class App
                               "SELECT city.Name, city.Population "
                             + "FROM world.city, world.country "
                             + "Where city.CountryCode = country.Code "
-                            + "AND city.Name in (\"Edinburgh\", \"London\", \"Dublin\") "
+                            + "AND country.Capital = city.ID "
                             + "AND country.Region = '" + region + "' "
                             + "ORDER BY city.Population DESC";
             // Execute SQL statement
