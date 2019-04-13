@@ -45,7 +45,7 @@ public class App
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC", "root", "dubstep5");
+                con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
             }
@@ -698,7 +698,7 @@ public class App
         // Connect to database
         if (args.length < 1)
         {
-            a.connect("localhost:3306");
+            a.connect("localhost:33060");
         }
         else
         {
