@@ -28,9 +28,6 @@
 <div class="showData">Waiting</div>
 </body>
 <script>
-    var urlParams = new URLSearchParams(window.location.search);
-    var region = urlParams.get('region');
-
     var URL = "http://" + window.location.hostname + "/app/worldcitypop?";
 
     $.getJSON(URL, function(data) {
