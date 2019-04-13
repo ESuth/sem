@@ -491,7 +491,7 @@ public class App
                             +   "WHERE country.Capital = city.ID "
                             +   "AND country.Continent = '" + continent + "' "
                             +   "ORDER BY city.Population DESC "
-                            +   "LIMIT 5";
+                            +   "LIMIT " + limit;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract city information
