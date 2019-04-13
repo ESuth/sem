@@ -511,6 +511,46 @@ public class App
     }
 
     /**
+     *  Task 12
+     */
+    /**
+     * Get a list of all cities in a country and their population from largest to smallest.
+     * @param country name of the country to get.
+     * @return The record of the capital cities in a country and their population.
+     */
+    @RequestMapping("countrycitypop")
+    public ArrayList<City> getCountryCityList (@RequestParam(value = "country") String country)
+    {
+        try {
+            // Create SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, country.Name, city.Population "
+                            +   "FROM world.city, world.country "
+                            +   "AND country = '" + country + "' "
+                            +   "ORDER BY city.Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract city information
+            ArrayList<City> cities = new ArrayList<City>();
+            while(rset.next()) {
+                City city = new City();
+                city.name = rset.getString("city.Name");
+                city.country = rset.getString("country.Name");
+                city.population = rset.getLong("city.Population");
+                cities.add(city);
+            }
+            return cities;
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get cities by country's details");
+            return null;
+        }
+    }
+
+    /**
      *  Task 23
      */
     /**
@@ -718,7 +758,27 @@ public class App
     public void printWorldCapitalCities(ArrayList<City> cities)
     {
         // Print header
-        System.out.println("\nTask: 9, Details retrieved for world capital cities as follows: \n");
+        System.out.println("\nTask: 10, Details retrieved for world capital cities as follows: \n");
+        System.out.println(String.format("%-15s %-38s %-20s", " City", " Country", " Population"));
+        System.out.println(String.format("%-15s %-38s %-20s", "======", "=========", "============"));
+        // Loop over all employees in the list
+        for (City city : cities)
+        {
+            String language_string =
+                    String.format("%-15s %-38s %-20d",
+                            city.name, city.country, city.population);
+            System.out.println(language_string);
+        }
+        System.out.println(" ");
+    }
+
+    /**
+     * Task 12
+     */
+    public void printCountryCities(ArrayList<City> cities)
+    {
+        // Print header
+        System.out.println("\nTask: 12, Details retrieved for country cities as follows: \n");
         System.out.println(String.format("%-15s %-38s %-20s", " City", " Country", " Population"));
         System.out.println(String.format("%-15s %-38s %-20s", "======", "=========", "============"));
         // Loop over all employees in the list
