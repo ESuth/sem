@@ -650,6 +650,46 @@ public class App
         System.out.println(" ");
     }
 
+    /**
+     * Task 9
+     */
+    public void printContinentCapitalCities(ArrayList<City> cities)
+    {
+        // Print header
+        System.out.println("\nTask: 9, Details retrieved for continent capital cities as follows: \n");
+        System.out.println(String.format("%-12s %-20s", " City", " Population"));
+        System.out.println(String.format("%-12s %-20s", "======", "============"));
+        // Loop over all employees in the list
+        for (City city : cities)
+        {
+            String language_string =
+                    String.format("%-12s %-20d",
+                            city.name, city.population);
+            System.out.println(language_string);
+        }
+        System.out.println(" ");
+    }
+
+    /**
+     * Task 23
+     */
+    public void printContinentCapitalCitiesListWithN(ArrayList<City> cities)
+    {
+        // Print header
+        System.out.println("\nTask: 23, Details retrieved for continent top capital cities as follows: \n");
+        System.out.println(String.format("%-12s %-20s", " City", " Population"));
+        System.out.println(String.format("%-12s %-20s", "======", "============"));
+        // Loop over all employees in the list
+        for (City city : cities)
+        {
+            String language_string =
+                    String.format("%-12s %-20d",
+                            city.name, city.population);
+            System.out.println(language_string);
+        }
+        System.out.println(" ");
+    }
+
     public static void main(String[] args)
     {
         // Create new Application
@@ -675,7 +715,9 @@ public class App
         /*Task 5 */Country europe = a.getContinentEuropePop("Europe");
         /*Task 6 Get List of Details */ArrayList<Language> languages = a.getLanguageList();
         /*Task 7 */Country world = a.getWorldPop();
-        /*Task 8 Get List of Details */ArrayList<City> cities = a.getRegionCapitalCityList("British Islands");
+        /*Task 8 Get List of Details */ArrayList<City> regionCapCities = a.getRegionCapitalCityList("British Islands");
+        /*Task 9 Get List of Details */ArrayList<City> continentCapCities = a.getContinentCapitalCityList("Africa");
+        /*Task 23 Get List of Details */ArrayList<City> continentCapCitiesWithLimit = a.getContinentCapitalCityListWithLimit("Oceania", "10");
 
         // Print Details //
         /*Task 1 */a.printPopulationEdinburgh(edinburgh);
@@ -685,7 +727,9 @@ public class App
         /*Task 5 */a.printPopulationEurope(europe);
         /*Task 6 Print list of details */a.printLanguages(languages);
         /*Task 7 */a.printPopulationWorld(world);
-        /*Task 8 Print list of details */a.printRegionCapitalCities(cities);
+        /*Task 8 Print list of details */a.printRegionCapitalCities(regionCapCities);
+        /*Task 9 Print list of details */a.printContinentCapitalCities(continentCapCities);
+        /*Task 23 Print list of details */a.printContinentCapitalCitiesListWithN(continentCapCitiesWithLimit);
 
         // Disconnect from database
         //a.disconnect();
