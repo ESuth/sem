@@ -25,7 +25,7 @@ public class AppIntegrationTest
     @Test
     void testGetCityPop()
     {
-        City city = app.getCityEdinburghPop("'Edinburgh'", "'GBR'");
+        City city = app.getCityEdinburghPop("Edinburgh", "GBR");
         assertEquals(city.name, "Edinburgh");
         assertEquals(city.country, "United Kingdom");
         assertEquals(city.district, "Scotland");
@@ -38,7 +38,7 @@ public class AppIntegrationTest
     @Test
     void testGetDistrictPop()
     {
-        City district = app.getDistrictScotlandPop("'Scotland'", "'GBR'");
+        City district = app.getDistrictScotlandPop("Scotland", "GBR");
         assertEquals(district.district, "Scotland");
         assertEquals(district.country, "United Kingdom");
         assertEquals(district.population, 1429620);
@@ -50,7 +50,7 @@ public class AppIntegrationTest
     @Test
     void testGetCountryPop()
     {
-        Country country = app.getCountryUKPop("'United Kingdom'");
+        Country country = app.getCountryUKPop("United Kingdom");
         assertEquals(country.code, "GBR");
         assertEquals(country.name, "United Kingdom");
         assertEquals(country.continent, "Europe");
@@ -65,7 +65,7 @@ public class AppIntegrationTest
     @Test
     void testGetRegionPop()
     {
-        Country region = app.getRegionBritIslesPop("'British Islands'");
+        Country region = app.getRegionBritIslesPop("British Islands");
         assertEquals(region.continent, "Europe");
         assertEquals(region.region, "British Islands");
         assertEquals(region.population, 63398500);
@@ -77,7 +77,7 @@ public class AppIntegrationTest
     @Test
     void testGetContinentPop()
     {
-        Country continent = app.getContinentEuropePop("'Europe'");
+        Country continent = app.getContinentEuropePop("Europe");
         assertEquals(continent.continent, "Europe");
         assertEquals(continent.population, 730074600);
     }
