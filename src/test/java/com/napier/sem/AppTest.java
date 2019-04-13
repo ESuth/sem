@@ -246,64 +246,104 @@ public class AppTest
 
         City city = new City();
         city.name = "London";
+        city.country = "United Kingdom";
         city.population = 7285000;
 
         cities.add(city);
 
         City city2 = new City();
         city2.name = "Dublin";
+        city2.country = "Ireland";
         city2.population = 481854;
 
         cities.add(city2);
-
-        City city3 = new City();
-        city3.name = "Edinburgh";
-        city3.population = 450180;
-
-        cities.add(city3);
 
         app.printRegionCapitalCities(cities);
     }
 
 
- //   /**
- //    * Task 9
- //    */
- //   @Test
- //   void printContinentCapitalCitiesTestEmpty()
- //   {
- //       ArrayList<City> city = new ArrayList<City>();
-//
- //       app.printContinentCapitalCities(city);
- //   }
-//
- //   @Test
- //   void printContinentCapitalCities()
- //   {
- //       ArrayList<City> cities = new ArrayList<City>();
-//
- //       City city = new City();
- //       city.name = "Hamburg";
- //       city.population = 1810000;
-//
- //       cities.add(city);
-//
- //       City city2 = new City();
- //       city2.name = "Warsaw";
- //       city2.population = 1745000;
-//
- //       cities.add(city2);
-//
- //       City city3 = new City();
- //       city3.name = "Paris";
- //       city3.population = 2200000;
-//
- //       cities.add(city3);
-//
- //       app.printContinentCapitalCities(cities);
- //   }
-//
-//
+   /**
+    * Task 9
+    */
+   @Test
+   void printContinentCapitalCitiesTestEmpty()
+   {
+       ArrayList<City> city = new ArrayList<City>();
+
+       app.printContinentCapitalCities(city);
+   }
+
+   @Test
+   void printContinentCapitalCities()
+   {
+       ArrayList<City> cities = new ArrayList<City>();
+
+       City city = new City();
+       city.name = "Moscow";
+       city.country = "Russian Federation";
+       city.population = 8389200;
+
+       cities.add(city);
+
+       City city2 = new City();
+       city2.name = "London";
+       city2.country = "United Kingdom";
+       city2.population = 7285000;
+
+       cities.add(city2);
+
+       City city3 = new City();
+       city3.name = "Berlin";
+       city3.country = "Germany";
+       city3.population = 3386667;
+
+       cities.add(city3);
+
+       app.printContinentCapitalCities(cities);
+   }
+
+
+    /**
+     * Task 23
+     */
+    @Test
+    void printContinentCapitalCitiesTestEmptyWithLimit()
+    {
+        ArrayList<City> city = new ArrayList<City>();
+
+        app.printContinentCapitalCities(city);
+    }
+
+    @Test
+    void printContinentCapitalCitiesWithLimit()
+    {
+        ArrayList<City> cities = new ArrayList<City>();
+
+        City city = new City();
+        city.name = "Canberra";
+        city.country = "Australia";
+        city.population = 322723;
+
+        cities.add(city);
+
+        City city2 = new City();
+        city2.name = "Port Moresby";
+        city2.country = "Papua New Guinea";
+        city2.population = 247000;
+
+        cities.add(city2);
+
+        City city3 = new City();
+        city3.name = "Wellington";
+        city3.country = "New Zealand";
+        city3.population = 166700;
+
+        cities.add(city3);
+
+        app.printContinentCapitalCities(cities);
+    }
+
+
  //   /**
  //    * Task 10
  //    */
@@ -777,48 +817,6 @@ public class AppTest
  //   }
 //
 //
- //   /**
- //    * Task 23
- //    */
- //   @Test
- //   void printGivenCapitalCitiesInContinentEmpty()
- //   {
- //       ArrayList<City> City = new ArrayList<City>();
-//
- //       app.printCapitalCitiesInGivenContinent(City);
- //   }
-//
- //   @Test
- //   void printGivenCapitalCitiesInContinent()
- //   {
- //       ArrayList<City> cities = new ArrayList<City>();
-//
- //       City city = new City();
- //       city.name = "London";
- //       city.continent = "Europe";
- //       city.population = 123456;
- //       cities.add(city);
-//
- //       City city2 = new City();
- //       city2.name = "London";
- //       city2.continent = "Europe";
- //       city2.population = 223456;
- //       cities.add(city2);
-//
- //       City city3 = new City();
- //       city3.name = "Boston";
- //       city3.continent = "North America";
- //       city3.population = 323456;
- //       cities.add(city3);
-//
- //       City city4 = new City();
- //       city4.name = "Washington";
- //       city4.continent = "North America";
- //       city4.population = 423456;
- //       cities.add(city4);
-//
- //       app.printCapitalCitiesInContinent(cities);
- //   }
 //
 //
  //   /**

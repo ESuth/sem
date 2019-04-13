@@ -403,7 +403,7 @@ public class App
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                              "SELECT city.Name, city.Population "
+                              "SELECT city.Name, country.Name, city.Population "
                             + "FROM world.city, world.country "
                             + "WHERE country.Capital = city.ID "
                             + "AND country.Region = '" + region + "' "
@@ -416,6 +416,7 @@ public class App
             {
                 City city = new City();
                 city.name = rset.getString("city.Name");
+                city.country = rset.getString("country.Name");
                 city.population = rset.getLong("city.Population");
                 cities.add(city);
             }
@@ -445,7 +446,7 @@ public class App
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT city.Name, city.Population "
+                    "SELECT city.Name, country.Name, city.Population "
                             +   "FROM world.city, world.country "
                             +   "WHERE country.Capital = city.ID "
                             +   "AND country.Continent = '" + continent + "' "
@@ -457,6 +458,7 @@ public class App
             while(rset.next()) {
                 City city = new City();
                 city.name = rset.getString("city.Name");
+                city.country = rset.getString("country.Name");
                 city.population = rset.getLong("city.Population");
                 cities.add(city);
             }
@@ -486,7 +488,7 @@ public class App
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT city.Name, city.Population "
+                    "SELECT city.Name, country.Name, city.Population "
                             +   "FROM world.city, world.country "
                             +   "WHERE country.Capital = city.ID "
                             +   "AND country.Continent = '" + continent + "' "
@@ -499,6 +501,7 @@ public class App
             while(rset.next()) {
                 City city = new City();
                 city.name = rset.getString("city.Name");
+                city.country = rset.getString("country.Name");
                 city.population = rset.getLong("city.Population");
                 cities.add(city);
             }
@@ -637,14 +640,14 @@ public class App
     {
         // Print header
         System.out.println("\nTask: 8, Details retrieved for region capital cities as follows: \n");
-        System.out.println(String.format("%-12s %-20s", " City", " Population"));
-        System.out.println(String.format("%-12s %-20s", "======", "============"));
+        System.out.println(String.format("%-12s %-18s %-20s", " City", " Country", " Population"));
+        System.out.println(String.format("%-12s %-18s %-20s", "======", "=========", "============"));
         // Loop over all employees in the list
         for (City city : cities)
         {
             String language_string =
-                    String.format("%-12s %-20d",
-                            city.name, city.population);
+                    String.format("%-12s %-18s %-20d",
+                            city.name, city.country, city.population);
             System.out.println(language_string);
         }
         System.out.println(" ");
@@ -657,14 +660,14 @@ public class App
     {
         // Print header
         System.out.println("\nTask: 9, Details retrieved for continent capital cities as follows: \n");
-        System.out.println(String.format("%-12s %-20s", " City", " Population"));
-        System.out.println(String.format("%-12s %-20s", "======", "============"));
+        System.out.println(String.format("%-15s %-38s %-20s", " City", " Country", " Population"));
+        System.out.println(String.format("%-15s %-38s %-20s", "======", "=========", "============"));
         // Loop over all employees in the list
         for (City city : cities)
         {
             String language_string =
-                    String.format("%-12s %-20d",
-                            city.name, city.population);
+                    String.format("%-15s %-38s %-20d",
+                            city.name, city.country, city.population);
             System.out.println(language_string);
         }
         System.out.println(" ");
@@ -676,15 +679,15 @@ public class App
     public void printContinentCapitalCitiesListWithN(ArrayList<City> cities)
     {
         // Print header
-        System.out.println("\nTask: 23, Details retrieved for continent top capital cities as follows: \n");
-        System.out.println(String.format("%-12s %-20s", " City", " Population"));
-        System.out.println(String.format("%-12s %-20s", "======", "============"));
+        System.out.println("\nTask: 23, Details retrieved for continent top N capital cities as follows: \n");
+        System.out.println(String.format("%-22s %-25s %-20s", " City", " Country", " Population"));
+        System.out.println(String.format("%-22s %-25s %-20s", "======", "=========", "============"));
         // Loop over all employees in the list
         for (City city : cities)
         {
             String language_string =
-                    String.format("%-12s %-20d",
-                            city.name, city.population);
+                    String.format("%-22s %-25s %-20d",
+                            city.name, city.country, city.population);
             System.out.println(language_string);
         }
         System.out.println(" ");

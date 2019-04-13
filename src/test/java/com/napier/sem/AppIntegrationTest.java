@@ -19,6 +19,7 @@ public class AppIntegrationTest
         app.connect("localhost:33060");
     }
 
+
     /**
      * Task 1
      */
@@ -32,6 +33,7 @@ public class AppIntegrationTest
         assertEquals(city.population, 450180);
     }
 
+
     /**
      * Task 2
      */
@@ -43,6 +45,7 @@ public class AppIntegrationTest
         assertEquals(district.country, "United Kingdom");
         assertEquals(district.population, 1429620);
     }
+
 
     /**
      * Task 3
@@ -59,6 +62,7 @@ public class AppIntegrationTest
         assertEquals(country.capital, 456);
     }
 
+
     /**
      * Task  4
      */
@@ -71,6 +75,7 @@ public class AppIntegrationTest
         assertEquals(region.population, 63398500);
     }
 
+
     /**
      * Task 5
      */
@@ -81,6 +86,7 @@ public class AppIntegrationTest
         assertEquals(continent.continent, "Europe");
         assertEquals(continent.population, 730074600);
     }
+
 
     /**
      * Task 6
@@ -98,6 +104,7 @@ public class AppIntegrationTest
         assertEquals(language.percentage, 3.90);
     }
 
+
     /**
      * Task 7
      */
@@ -108,23 +115,60 @@ public class AppIntegrationTest
         assertEquals(world.population, 6078749450L);
     }
 
-//    /**
-//     * Task 9
-//     */
-//    @Test
-//    void testGetContinentCapitalsPop()
-//    {
-//        ArrayList<Continent> continents = app.getContinentCapitalsPop();
-//        Continent continent = new Continent();
-//        continent.city = "Edinburgh";
-//        continent.population = 237134840;
-//        continent.percentage = 3.90;
-//        continents.add(continent);
-//        assertEquals(continent.city, "Edinburgh");
-//        assertEquals(continent.population, 237134840);
-//        assertEquals(continent.percentage, 3.90);
-//    }
-//
+
+    /**
+     * Task 8
+     */
+    @Test
+    void testGetRegionCapitalsPop()
+    {
+        ArrayList<City> regions = app.getRegionCapitalCityList("British Islands");
+        City city = new City();
+        city.name = "London";
+        city.country = "United Kingdom";
+        city.population = 7285000;
+        regions.add(city);
+        assertEquals(city.name, "London");
+        assertEquals(city.country, "United Kingdom");
+        assertEquals(city.population, 7285000);
+    }
+
+
+    /**
+     * Task 9
+     */
+    @Test
+    void testGetContinentCapitalsPop()
+    {
+        ArrayList<City> continents = app.getContinentCapitalCityList("Africa");
+        City continent = new City();
+        continent.name = "Cairo";
+        continent.country = "Egypt";
+        continent.population = 6789479;
+        continents.add(continent);
+        assertEquals(continent.name, "Cairo");
+        assertEquals(continent.country, "Egypt");
+        assertEquals(continent.population, 6789479);
+    }
+
+
+    /**
+     * Task 23
+     */
+    @Test
+    void testGetContinentCapitalsPopWithLimit()
+    {
+        ArrayList<City> continents = app.getContinentCapitalCityListWithLimit("Africa", "5");
+        City continent = new City();
+        continent.name = "Canberra";
+        continent.country = "Australia";
+        continent.population = 322723;
+        continents.add(continent);
+        assertEquals(continent.name, "Canberra");
+        assertEquals(continent.country, "Australia");
+        assertEquals(continent.population, 322723);
+    }
+
 //    /**
 //     * Task 10
 //     */
