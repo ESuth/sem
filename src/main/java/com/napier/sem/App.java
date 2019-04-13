@@ -45,7 +45,7 @@ public class App
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC", "root", "dubstep5");
                 System.out.println("Successfully connected");
                 break;
             }
@@ -490,8 +490,8 @@ public class App
                             +   "FROM world.city, world.country "
                             +   "WHERE country.Capital = city.ID "
                             +   "AND country.Continent = '" + continent + "' "
-                            +   "ORDER BY city.Population DESC"
-                            +   "LIMIT " + limit;
+                            +   "ORDER BY city.Population DESC "
+                            +   "LIMIT 5";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract city information
@@ -658,7 +658,7 @@ public class App
         // Connect to database
         if (args.length < 1)
         {
-            a.connect("localhost:33060");
+            a.connect("localhost:3306");
         }
         else
         {
