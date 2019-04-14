@@ -598,8 +598,8 @@ public class App
      * @param region name of the region to get.
      * @return The record of the countries in a region and there populations.
      */
-    @RequestMapping("regioncapcitypop")
-    public ArrayList<City> getRegionCountryList(@RequestParam(value = "region") String region)
+    @RequestMapping("regioncountrypop")
+    public ArrayList<Country> getRegionCountryList(@RequestParam(value = "region") String region)
     {
         try
         {
