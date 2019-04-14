@@ -591,6 +591,48 @@ public class App
     }
 
     /**
+     * Task 16
+     */
+    /**
+     * Get a list of all the countries in a region and their populations from largest to smallest
+     * @param region name of the region to get.
+     * @return The record of the countries in a region and there populations.
+     */
+    @RequestMapping("regioncapcitypop")
+    public ArrayList<City> getRegionCapitalCityList(@RequestParam(value = "region") String region)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT country.Name, country.Population "
+                            + "FROM world.country "
+                            + "AND country.Region = '" + region + "' "
+                            + "ORDER BY country.Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<Country> countries = new ArrayList<Country>();
+            while (rset.next())
+            {
+                Country country = new Country();
+                country.name = rset.getString("country.Name");
+                country.population = rset.getLong("country.Population");
+                countries.add(city);
+            }
+            return countries;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get countries by region's details");
+            return null;
+        }
+    }
+
+    /**
      *  Task 23
      */
     /**
@@ -835,7 +877,7 @@ public class App
     /**
      * Task 14
      */
-    public void printContinentCapitalCities(ArrayList<City> cities)
+    public void printContinentCities(ArrayList<City> cities)
     {
         // Print header
         System.out.println("\nTask: 14, Details retrieved for continent cities as follows: \n");
@@ -847,6 +889,26 @@ public class App
             String language_string =
                     String.format("%-15s %-38s %-20d",
                             city.name, city.country, city.population);
+            System.out.println(language_string);
+        }
+        System.out.println(" ");
+    }
+
+    /**
+     * Task 16
+     */
+    public void printRegionCountries(ArrayList<Country> countries)
+    {
+        // Print header
+        System.out.println("\nTask: 16, Details retrieved for region countries as follows: \n");
+        System.out.println(String.format("%-12s %-18s %-20s", " Country", " Population"));
+        System.out.println(String.format("%-12s %-18s %-20s", "=========", "============"));
+        // Loop over all employees in the list
+        for (Country country : countries)
+        {
+            String language_string =
+                    String.format("%-12s %-18s %-20d",
+                            country.name, country.population);
             System.out.println(language_string);
         }
         System.out.println(" ");
