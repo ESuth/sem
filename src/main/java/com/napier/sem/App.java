@@ -569,6 +569,7 @@ public class App
                     "SELECT city.Name, country.Name, city.Population "
                             +   "FROM world.city, world.country "
                             +   "WHERE country.Continent = '" + continent + "' "
+                            +   "AND city.CountryCode = country.Code"
                             +   "ORDER BY city.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
