@@ -559,7 +559,7 @@ public class App
      * @return The record of the cities in a continent and their population.
      */
     @RequestMapping("continentcitypop")
-    public ArrayList<City> getContinentCapitalCityList (@RequestParam(value = "continent") String continent)
+    public ArrayList<City> getContinentCityList (@RequestParam(value = "continent") String continent)
     {
         try {
             // Create SQL statement
@@ -599,7 +599,7 @@ public class App
      * @return The record of the countries in a region and there populations.
      */
     @RequestMapping("regioncapcitypop")
-    public ArrayList<City> getRegionCapitalCityList(@RequestParam(value = "region") String region)
+    public ArrayList<City> getRegionCountryList(@RequestParam(value = "region") String region)
     {
         try
         {
