@@ -149,7 +149,8 @@ public class App
                     "FROM world.city, world.country " +
                     "WHERE city.CountryCode = country.Code " +
                     "AND city.District = '" + district + "' " +
-                    "AND country.Code = city.CountryCode";
+                    "AND country.Code = city.CountryCode " +
+                    "GROUP BY country.Name, city.District";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Return new employee if valid.
