@@ -26,7 +26,7 @@ public class AppIntegrationTest
     @Test
     void testGetCityPop()
     {
-        City city = app.getCityEdinburghPop("Edinburgh", "GBR");
+        City city = app.getCityEdinburghPop("Edinburgh");
         assertEquals(city.name, "Edinburgh");
         assertEquals(city.country, "United Kingdom");
         assertEquals(city.district, "Scotland");
@@ -40,7 +40,7 @@ public class AppIntegrationTest
     @Test
     void testGetDistrictPop()
     {
-        City district = app.getDistrictScotlandPop("Scotland", "GBR");
+        City district = app.getDistrictScotlandPop("Scotland");
         assertEquals(district.district, "Scotland");
         assertEquals(district.country, "United Kingdom");
         assertEquals(district.population, 1429620);

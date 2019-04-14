@@ -90,11 +90,10 @@ public class App
     /**
      * Get a single city's population.
      * @param city name of the city to get.
-     * @param code code of the country the city is in.
      * @return The record of the city and its population.
      */
     @RequestMapping("citypop")
-    public City getCityEdinburghPop(@RequestParam(value = "city") String city, @RequestParam(value = "code") String code)
+    public City getCityEdinburghPop(@RequestParam(value = "city") String city)
     {
         try
         {
@@ -105,7 +104,7 @@ public class App
                                "FROM world.city, world.country " +
                                "WHERE city.CountryCode = country.Code " +
                                "AND city.Name = '" + city + "' " +
-                               "AND country.Code = '" + code + "'";
+                               "AND country.Code = city.CountryCode";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Return new employee if valid.
@@ -113,10 +112,10 @@ public class App
             if (rset.next())
             {
                 City edinburgh = new City();
-                edinburgh.name = rset.getString("Name");
+                edinburgh.name = rset.getString("city.Name");
                 edinburgh.country = rset.getString("country.Name");
-                edinburgh.district = rset.getString("District");
-                edinburgh.population = rset.getLong("Population");
+                edinburgh.district = rset.getString("city.District");
+                edinburgh.population = rset.getLong("city.Population");
                 return edinburgh;
             }
             else
@@ -136,11 +135,10 @@ public class App
     /**
      * Get a single district's population.
      * @param district name of the district to get.
-     * @param code code of the country the district is in.
      * @return The record of the district and its population.
      */
     @RequestMapping("districtpop")
-    public City getDistrictScotlandPop(@RequestParam(value = "district") String district, @RequestParam(value = "code") String code)
+    public City getDistrictScotlandPop(@RequestParam(value = "district") String district)
     {
         try
         {
@@ -151,7 +149,7 @@ public class App
                     "FROM world.city, world.country " +
                     "WHERE city.CountryCode = country.Code " +
                     "AND city.District = '" + district + "' " +
-                    "AND country.Code = '" + code + "'";
+                    "AND country.Code = city.CountryCode";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Return new employee if valid.
@@ -191,9 +189,10 @@ public class App
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
-            String strSelect = "SELECT Code, Name, Continent, Region, Capital, Population " +
-                    "FROM world.country " +
-                    "WHERE Name = '" + country + "'";
+            String strSelect = "SELECT country.Code, country.Name, country.Continent, country.Region, city.Name, country.Population " +
+                    "FROM world.country, world.city " +
+                    "WHERE country.Name = '" + country + "' " +
+                    "AND country.Capital = city.ID";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Return new employee if valid.
@@ -201,12 +200,12 @@ public class App
             if (rset.next())
             {
                 Country uK = new Country();
-                uK.code = rset.getString("Code");
-                uK.name = rset.getString("Name");
-                uK.continent = rset.getString("Continent");
-                uK.region = rset.getString("Region");
-                uK.population = rset.getLong("Population");
-                uK.capital = rset.getInt("Capital");
+                uK.code = rset.getString("country.Code");
+                uK.name = rset.getString("country.Name");
+                uK.continent = rset.getString("country.Continent");
+                uK.region = rset.getString("country.Region");
+                uK.city = rset.getString("city.Name");
+                uK.population = rset.getLong("country.Population");
                 return uK;
             }
             else
@@ -479,7 +478,7 @@ public class App
      * @return The record of the capital cities in the world and their population.
      */
     @RequestMapping("worldcitypop")
-    public ArrayList<City> getWorldCapitalCityList()
+    public ArrayList<City> getWorldCapitalCityList(@RequestParam(value = "limit") String limit)
     {
         try {
             // Create SQL statement
@@ -489,7 +488,8 @@ public class App
                     "SELECT city.Name, country.Name, city.Population "
                             +   "FROM world.city, world.country "
                             +   "WHERE country.Capital = city.ID "
-                            +   "ORDER BY city.Population DESC";
+                            +   "ORDER BY city.Population DESC"
+                            +   "LIMIT " + limit;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract city information
@@ -516,7 +516,7 @@ public class App
     /**
      * Get a list of all cities in a country and their population from largest to smallest.
      * @param country name of the country to get.
-     * @return The record of the capital cities in a country and their population.
+     * @return The record of the cities in a country and their population.
      */
     @RequestMapping("countrycitypop")
     public ArrayList<City> getCountryCityList (@RequestParam(value = "country") String country)
@@ -526,9 +526,10 @@ public class App
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT city.Name, country.Name, city.Population "
+                    "SELECT city.Name, country.Name, city.District, city.Population "
                             +   "FROM world.city, world.country "
-                            +   "WHERE country = '" + country + "' "
+                            +   "WHERE country.Name = '" + country + "' "
+                            +   "AND country.Code = city.CountryCode "
                             +   "ORDER BY city.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -538,6 +539,7 @@ public class App
                 City city = new City();
                 city.name = rset.getString("city.Name");
                 city.country = rset.getString("country.Name");
+                city.district = rset.getString("city.District");
                 city.population = rset.getLong("city.Population");
                 cities.add(city);
             }
@@ -566,10 +568,10 @@ public class App
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT city.Name, country.Name, city.Population "
+                    "SELECT city.Name, country.Name, city.District, city.Population "
                             +   "FROM world.city, world.country "
                             +   "WHERE country.Continent = '" + continent + "' "
-                            +   "AND city.CountryCode = country.Code"
+                            +   "AND city.CountryCode = country.Code "
                             +   "ORDER BY city.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -579,6 +581,7 @@ public class App
                 City city = new City();
                 city.name = rset.getString("city.Name");
                 city.country = rset.getString("country.Name");
+                city.district = rset.getString("city.District");
                 city.population = rset.getLong("city.Population");
                 cities.add(city);
             }
@@ -608,9 +611,10 @@ public class App
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT country.Name, country.Population "
-                            + "FROM world.country "
+                    "SELECT country.Code, country.Name, country.Continent, country.Region, city.Name, country.Population "
+                            + "FROM world.country, world.city "
                             + "WHERE country.Region = '" + region + "' "
+                            + "AND country.Capital = city.ID "
                             + "ORDER BY country.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -619,7 +623,11 @@ public class App
             while (rset.next())
             {
                 Country country = new Country();
+                country.code = rset.getString("country.Code");
                 country.name = rset.getString("country.Name");
+                country.continent = rset.getString("country.Continent");
+                country.region = rset.getString("country.Region");
+                country.city = rset.getString("city.Name");
                 country.population = rset.getLong("country.Population");
                 countries.add(country);
             }
@@ -725,7 +733,7 @@ public class App
                     + "Name: " + uK.name + "\n"
                     + "Continent: " + uK.continent + "\n"
                     + "Region: " + uK.region + "\n"
-                    + "Capital: " + uK.capital + "\n"
+                    + "Capital: " + uK.city + "\n"
                     + "Population: " + uK.population + "\n");
         }
     }
@@ -804,7 +812,7 @@ public class App
         System.out.println("\nTask: 8, Details retrieved for region capital cities as follows: \n");
         System.out.println(String.format("%-12s %-18s %-20s", " City", " Country", " Population"));
         System.out.println(String.format("%-12s %-18s %-20s", "======", "=========", "============"));
-        // Loop over all employees in the list
+
         for (City city : cities)
         {
             String language_string =
@@ -824,7 +832,7 @@ public class App
         System.out.println("\nTask: 9, Details retrieved for continent capital cities as follows: \n");
         System.out.println(String.format("%-15s %-38s %-20s", " City", " Country", " Population"));
         System.out.println(String.format("%-15s %-38s %-20s", "======", "=========", "============"));
-        // Loop over all employees in the list
+
         for (City city : cities)
         {
             String language_string =
@@ -862,14 +870,14 @@ public class App
     {
         // Print header
         System.out.println("\nTask: 12, Details retrieved for country cities as follows: \n");
-        System.out.println(String.format("%-15s %-38s %-20s", " City", " Country", " Population"));
-        System.out.println(String.format("%-15s %-38s %-20s", "======", "=========", "============"));
+        System.out.println(String.format("%-15s %-38s %-38s %-20s", " City", " Country", " District", " Population"));
+        System.out.println(String.format("%-15s %-38s %-38s %-20s", "======", "=========", "===========", "============"));
         // Loop over all employees in the list
         for (City city : cities)
         {
             String language_string =
-                    String.format("%-15s %-38s %-20d",
-                            city.name, city.country, city.population);
+                    String.format("%-15s %-38s %-38s %-20d",
+                            city.name, city.country, city.district, city.population);
             System.out.println(language_string);
         }
         System.out.println(" ");
@@ -882,14 +890,14 @@ public class App
     {
         // Print header
         System.out.println("\nTask: 14, Details retrieved for continent cities as follows: \n");
-        System.out.println(String.format("%-15s %-38s %-20s", " City", " Country", " Population"));
-        System.out.println(String.format("%-15s %-38s %-20s", "======", "=========", "============"));
+        System.out.println(String.format("%-15s %-38s %-38s %-20s", " City", " Country", " District", " Population"));
+        System.out.println(String.format("%-15s %-38s %-38s %-20s", "======", "=========", "===========", "============"));
         // Loop over all employees in the list
         for (City city : cities)
         {
             String language_string =
-                    String.format("%-15s %-38s %-20d",
-                            city.name, city.country, city.population);
+                    String.format("%-15s %-38s %-38s %-20d",
+                            city.name, city.country, city.district, city.population);
             System.out.println(language_string);
         }
         System.out.println(" ");
@@ -902,14 +910,14 @@ public class App
     {
         // Print header
         System.out.println("\nTask: 16, Details retrieved for region countries as follows: \n");
-        System.out.println(String.format("%-12s %-18s %-20s", " Country", " Population"));
-        System.out.println(String.format("%-12s %-18s %-20s", "=========", "============"));
+        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s", " Code", " Country", " Continent", " Region", " Capital", " Population"));
+        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s", "======", "=========", "===========", "========", "=========", "============"));
         // Loop over all employees in the list
         for (Country country : countries)
         {
             String language_string =
-                    String.format("%-12s %-18s %-20d",
-                            country.name, country.population);
+                    String.format("%-12s %-25s %-25s %-25s %-25s %-25s",
+                            country.code, country.name, country.continent, country.region, country.city, country.population);
             System.out.println(language_string);
         }
         System.out.println(" ");
@@ -950,11 +958,12 @@ public class App
             a.connect(args[0]);
         }
 
+        //Run the URL app compatibility
         SpringApplication.run(App.class, args);
 
         // Get details //
-        /*Task 1 */City edinburgh = a.getCityEdinburghPop("Edinburgh", "GBR");
-        /*Task 2 */City scotland = a.getDistrictScotlandPop("Scotland", "GBR");
+        /*Task 1 */City edinburgh = a.getCityEdinburghPop("Edinburgh");
+        /*Task 2 */City scotland = a.getDistrictScotlandPop("Scotland");
         /*Task 3 */Country uK = a.getCountryUKPop("United Kingdom");
         /*Task 4 */Country britIsles = a.getRegionBritIslesPop("British Islands");
         /*Task 5 */Country europe = a.getContinentEuropePop("Europe");
