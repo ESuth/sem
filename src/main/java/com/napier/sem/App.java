@@ -620,7 +620,7 @@ public class App
                 Country country = new Country();
                 country.name = rset.getString("country.Name");
                 country.population = rset.getLong("country.Population");
-                countries.add(city);
+                countries.add(country);
             }
             return countries;
         }
