@@ -511,6 +511,44 @@ public class App
         }
     }
 
+
+    /**
+     *  Task 11
+     *  Get a list of all cities in a district and their population from largest to smallest
+     *  @param district name of the district to search
+     *  @return The record of the capital cities in a district and their population.
+     */
+    @RequestMapping("districtcitypop")
+    public ArrayList<City> getDistrictCityList (@RequestParam(value = "district") String district)
+    {
+        try {
+            // Create SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, city.Population "
+                            +   "FROM world.city, world.country "
+                            +   "WHERE country.District = '" + district + " '"
+                            +   "ORDER BY city.Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract city information
+            ArrayList<City> cities = new ArrayList<City>();
+            while(rset.next()) {
+                City city = new City();
+                city.name = rset.getString("city.Name");
+                city.population = rset.getLong("city.Population");
+                cities.add(city);
+            }
+            return cities;
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get cities by district's details");
+            return null;
+        }
+    }
+
     /**
      *  Task 12
      */
@@ -552,6 +590,46 @@ public class App
             return null;
         }
     }
+
+    /**
+     *  Task 13
+     */
+    /**
+     * Get a list of all cities in a region and their population from largest to smallest.
+     * @param region name of the region to get.
+     * @return The record of the cities in a region and their population.
+     */
+    @RequestMapping("regioncitypop")
+    public ArrayList<City> getRegionCityList (@RequestParam(value = "district") String region)
+    {
+        try {
+            // Create SQL statement
+            Statement stmt = con.createStatement();
+            // create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, city.Population "
+                            +   "FROM world.city, world.country "
+                            +   "WHERE country.region = '" + region + " '"
+                            +   "ORDER BY city.Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract city information
+            ArrayList<City> cities = new ArrayList<City>();
+            while(rset.next()) {
+                City city = new City();
+                city.name = rset.getString("city.Name");
+                city.population = rset.getLong("city.Population");
+                cities.add(city);
+            }
+            return cities;
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get cities by distric's details");
+            return null;
+        }
+    }
+
 
     /**
      *  Task 14
@@ -865,6 +943,26 @@ public class App
     }
 
     /**
+     * Task 11
+     */
+    public void printDistrictCities(ArrayList<City> cities)
+    {
+        // Print header
+        System.out.println("\nTask: 11, Details retrieved for cities in a district as follows: \n");
+        System.out.println(String.format("%-15s %-25s %-20s", " City", " District", "Population"));
+        System.out.println(String.format("%-15s %-25s %-20s", "=====", "=========", "============"));
+        // Loop over all cities in the list
+        for(City city : cities)
+        {
+            String language_string =
+                    String.format("%-15s %-25s %-20s" ,
+                            city.name, city.district, city.population);
+            System.out.println(language_string);
+        }
+        System.out.println(" ");
+    }
+
+    /**
      * Task 12
      */
     public void printCountryCities(ArrayList<City> cities)
@@ -879,6 +977,25 @@ public class App
             String language_string =
                     String.format("%-15s %-38s %-38s %-20d",
                             city.name, city.country, city.district, city.population);
+            System.out.println(language_string);
+        }
+        System.out.println(" ");
+    }
+
+    /**
+     *  Task 13
+     */
+    public void printRegionCities(ArrayList<City> cities)
+    {
+        // Print header
+        System.out.println("\nTask 13, Details retrieved for cities in a region as follows: \n");
+        System.out.println(String.format("%-15s %-25s %-20s", " City", "Region", "Population"));
+        System.out.println(String.format("%-15s %-25s %-20s", "=====", "=========", "============"));
+        // Loop over all cities in the list
+        for(City city : cities)
+        {
+            String language_string =
+                    String.format("%-15s %-25s %-20s" , city.name, city.district, city.population);
             System.out.println(language_string);
         }
         System.out.println(" ");
