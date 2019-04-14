@@ -511,7 +511,6 @@ public class App
         }
     }
 
-
     /**
      *  Task 11
      *  Get a list of all cities in a district and their population from largest to smallest
@@ -526,9 +525,10 @@ public class App
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT DISTINCT city.Name, city.Population "
+                    "SELECT DISTINCT city.Name, country.Name, city.District, city.Population "
                             +   "FROM world.city, world.country "
                             +   "WHERE city.District = '" + district + "' "
+                            +   "AND country.Code = city.CountryCode"
                             +   "ORDER BY city.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -565,7 +565,7 @@ public class App
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT city.Name, country.Name, city.District, city.Population "
+                    "SELECT city.Name, country.Name, city.Population "
                             +   "FROM world.city, world.country "
                             +   "WHERE country.Name = '" + country + "' "
                             +   "AND country.Code = city.CountryCode "
@@ -607,9 +607,10 @@ public class App
             Statement stmt = con.createStatement();
             // create string for SQL statement
             String strSelect =
-                    "SELECT DISTINCT city.Name, city.Region, city.Population "
+                    "SELECT DISTINCT city.Name, country.Name, city.District, city.Population "
                             +   "FROM world.city, world.country "
                             +   "WHERE country.region = '" + region + "' "
+                            +   "AND country.Code = city.CountryCode"
                             +   "ORDER BY city.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -629,7 +630,6 @@ public class App
             return null;
         }
     }
-
 
     /**
      *  Task 14
