@@ -528,7 +528,7 @@ public class App
             String strSelect =
                     "SELECT city.Name, country.Name, city.Population "
                             +   "FROM world.city, world.country "
-                            +   "AND country = '" + country + "' "
+                            +   "WHERE country = '" + country + "' "
                             +   "ORDER BY city.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -568,7 +568,7 @@ public class App
             String strSelect =
                     "SELECT city.Name, country.Name, city.Population "
                             +   "FROM world.city, world.country "
-                            +   "AND country.Continent = '" + continent + "' "
+                            +   "WHERE country.Continent = '" + continent + "' "
                             +   "ORDER BY city.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -609,7 +609,7 @@ public class App
             String strSelect =
                     "SELECT country.Name, country.Population "
                             + "FROM world.country "
-                            + "AND country.Region = '" + region + "' "
+                            + "WHERE country.Region = '" + region + "' "
                             + "ORDER BY country.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
