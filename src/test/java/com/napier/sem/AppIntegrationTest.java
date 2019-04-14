@@ -59,7 +59,7 @@ public class AppIntegrationTest
         assertEquals(country.continent, "Europe");
         assertEquals(country.region, "British Islands");
         assertEquals(country.population, 59623400);
-        assertEquals(country.capital, 456);
+        assertEquals(country.city, "London");
     }
 
 
