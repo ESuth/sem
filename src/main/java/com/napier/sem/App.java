@@ -526,9 +526,9 @@ public class App
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT city.Name, city.Population "
+                    "SELECT DISTINCT city.Name, city.District, city.Population "
                             +   "FROM world.city, world.country "
-                            +   "WHERE country.District = '" + district + " '"
+                            +   "WHERE country.District = '" + district + "' "
                             +   "ORDER BY city.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -600,16 +600,16 @@ public class App
      * @return The record of the cities in a region and their population.
      */
     @RequestMapping("regioncitypop")
-    public ArrayList<City> getRegionCityList (@RequestParam(value = "district") String region)
+    public ArrayList<City> getRegionCityList (@RequestParam(value = "region") String region)
     {
         try {
             // Create SQL statement
             Statement stmt = con.createStatement();
             // create string for SQL statement
             String strSelect =
-                    "SELECT city.Name, city.Population "
+                    "SELECT DISTINCT city.Name, city.Region, city.Population "
                             +   "FROM world.city, world.country "
-                            +   "WHERE country.region = '" + region + " '"
+                            +   "WHERE country.region = '" + region + "' "
                             +   "ORDER BY city.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
