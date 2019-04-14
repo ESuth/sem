@@ -526,9 +526,9 @@ public class App
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT DISTINCT city.Name, city.District, city.Population "
+                    "SELECT DISTINCT city.Name, city.Population "
                             +   "FROM world.city, world.country "
-                            +   "WHERE country.District = '" + district + "' "
+                            +   "WHERE city.District = '" + district + "' "
                             +   "ORDER BY city.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
