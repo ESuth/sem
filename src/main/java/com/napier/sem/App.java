@@ -537,6 +537,8 @@ public class App
             while(rset.next()) {
                 City city = new City();
                 city.name = rset.getString("city.Name");
+                city.country = rset.getString("country.Name");
+                city.district = rset.getString("city.District");
                 city.population = rset.getLong("city.Population");
                 cities.add(city);
             }
@@ -619,6 +621,8 @@ public class App
             while(rset.next()) {
                 City city = new City();
                 city.name = rset.getString("city.Name");
+                city.country = rset.getString("country.Name");
+                city.district = rset.getString("city.District");
                 city.population = rset.getLong("city.Population");
                 cities.add(city);
             }
