@@ -489,7 +489,7 @@ public class App
                     "SELECT city.Name, country.Name, city.Population "
                             +   "FROM world.city, world.country "
                             +   "WHERE country.Capital = city.ID "
-                            +   "ORDER BY city.Population DESC"
+                            +   "ORDER BY city.Population DESC "
                             +   "LIMIT " + limit;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
