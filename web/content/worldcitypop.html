@@ -25,13 +25,13 @@
     </style>
 </head>
 <body>
-<div class="showData2">Waiting2</div>
+<div class="showData">Waiting</div>
 </body>
 <script>
     var urlParams = new URLSearchParams(window.location.search);
     var limit = urlParams.get('limit');
 
-    var URL = "http://" + window.location.hostname + "/app/worldcapcitypop?limit=" + limit";
+    var URL = "http://" + window.location.hostname + "/app/worldcapcitypop?limit=" + limit;
 
     $.getJSON(URL, function(data) {
         // EXTRACT VALUE FOR HTML HEADER.
@@ -65,7 +65,7 @@
         }
 
         // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
-        $(".showData2").html(table);
+        $(".showData").html(table);
     });
 </script>
 </html>
