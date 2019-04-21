@@ -478,7 +478,7 @@ public class App
      * Get a list of all capital cities in the world and their population from largest to smallest.
      * @return The record of the capital cities in the world and their population.
      */
-    @RequestMapping("worldcitypop")
+    @RequestMapping("worldcapcitypop")
     public ArrayList<City> getWorldCapitalCityList(@RequestParam(value = "limit") String limit)
     {
         try {
