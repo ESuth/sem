@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Languages</title>
+    <title>Capital Cities by Continent</title>
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
@@ -28,8 +28,10 @@
 <div class="showData">Waiting</div>
 </body>
 <script>
+    var urlParams = new URLSearchParams(window.location.search);
+    var continent = urlParams.get('continent');
 
-    var URL = "http://" + window.location.hostname + "/app/languages?";
+    var URL = "http://" + window.location.hostname + "/app/continentcapcitypop?continent=" + continent;
 
     $.getJSON(URL, function(data) {
         // EXTRACT VALUE FOR HTML HEADER.
