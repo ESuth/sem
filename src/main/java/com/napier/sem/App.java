@@ -479,7 +479,7 @@ public class App
      * @return The record of the capital cities in the world and their population.
      */
     @RequestMapping("worldcapcitypop")
-    public ArrayList<City> getWorldCapitalCityList(@RequestParam(value = "limit") String limit)
+    public ArrayList<City> getWorldCapitalCityList()
     {
         try {
             // Create SQL statement
@@ -489,8 +489,7 @@ public class App
                     "SELECT city.Name, country.Name, city.Population "
                             +   "FROM world.city, world.country "
                             +   "WHERE country.Capital = city.ID "
-                            +   "ORDER BY city.Population DESC "
-                            +   "LIMIT " + limit;
+                            +   "ORDER BY city.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract city information

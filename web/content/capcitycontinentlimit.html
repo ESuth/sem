@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Citys of World</title>
+    <title>Capital Cities by Continent with limit</title>
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
@@ -28,7 +28,11 @@
 <div class="showData">Waiting</div>
 </body>
 <script>
-    var URL = "http://" + window.location.hostname + "/app/worldcapcitypop?";
+    var urlParams = new URLSearchParams(window.location.search);
+    var continent = urlParams.get('continent');
+    var limit = urlParams.get('limit');
+
+    var URL = "http://" + window.location.hostname + "/app/continentcitypoplimit?continent=" + continent + "&limit=" + limit;
 
     $.getJSON(URL, function(data) {
         // EXTRACT VALUE FOR HTML HEADER.
