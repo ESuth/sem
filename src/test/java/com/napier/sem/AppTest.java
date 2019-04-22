@@ -384,7 +384,67 @@ public class AppTest
 
     }
 
+    /**
+     *  Task 15
+     */
+    void printWorldCitiesTestEmpty()
+    {
+        ArrayList<City> city = new ArrayList<>();
 
+        app.printWorldCities(city);
+    }
+
+    @Test
+    void printWorldCities()
+    {
+        ArrayList<City> cities = new ArrayList<City>();
+
+        City city = new City();
+        city.name = "Amsterdam";
+        city.population = 731200;
+        city.district = "Noord-Holland";
+        city.country = "Netherlands";
+
+        cities.add(city);
+
+        City city2 = new City();
+        city.name = "San Juan";
+        city.population = 119152;
+        city.district = "San Juan";
+        city.country = "Argentina";
+
+        cities.add(city2);
+    }
+
+    /**
+     * Task 17
+     */
+    void printContinentCitiesTestEmpty()
+    {
+        ArrayList<Country> country = new ArrayList<>();
+
+        app.printContinentCountries(country);
+    }
+
+    @Test
+    void printContinentCities()
+    {
+        ArrayList<Country> countries = new ArrayList<>();
+
+        Country country = new Country();
+        country.name = "Bolivia";
+        country.population = 8329000;
+
+        countries.add(country);
+
+        Country country2 = new Country();
+        country.name = "Iran";
+        country.population = 67702000;
+
+        Country country3 = new Country();
+        country.name = "Turkey";
+        country.population = 66591000;
+    }
 
     /**
      * Task 23

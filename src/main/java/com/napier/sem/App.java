@@ -677,6 +677,45 @@ public class App
     }
 
     /**
+     *  Task 15
+     */
+    /**
+     * @return The record of the cities in the world and their population.
+     */
+    @RequestMapping("worldcitypop")
+    public ArrayList<City> getWorldCityPopList()
+    {
+        try {
+            // Create SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, country.Name, city.District, city.Population "
+                            +   "FROM world.city, world.country "
+                            +   "WHERE country.Code = city.CountryCode "
+                            +   "ORDER BY city.Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract city information
+            ArrayList<City> cities = new ArrayList<City>();
+            while(rset.next()) {
+                City city = new City();
+                city.name = rset.getString("city.Name");
+                city.country = rset.getString("country.Name");
+                city.district = rset.getString("city.District");
+                city.population = rset.getLong("city.Population");
+                cities.add(city);
+            }
+            return cities;
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get cities of the world");
+            return null;
+        }
+    }
+
+    /**
      * Task 16
      */
     /**
@@ -719,6 +758,52 @@ public class App
         {
             System.out.println(e.getMessage());
             System.out.println("Failed to get countries by region's details");
+            return null;
+        }
+    }
+
+    /**
+     *  Task 17
+     */
+    /**
+     *  Get a list of all countries in a continent and their population from largest to smallest
+     *  @return The record of all the countries in a continent and there populations
+     */
+    @RequestMapping("continentcountrypop")
+    public ArrayList<Country> getContinentCountryPop(@RequestParam(value = "continent")String continent)
+    {
+        try
+        {
+            // Create and SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT country.Code, country.Name, country.Continent, country.Region, city.Name, country.Population "
+                            + "FROM world.country, world.city "
+                            + "WHERE country.Continent = '" + continent + "' "
+                            + "AND country.Capital = city.ID "
+                            + "ORDER BY country.Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<Country> countries = new ArrayList<Country>();
+            while (rset.next())
+            {
+                Country country = new Country();
+                country.code = rset.getString("country.Code");
+                country.name = rset.getString("country.Name");
+                country.continent = rset.getString("country.Continent");
+                country.region = rset.getString("country.Region");
+                country.city = rset.getString("city.Name");
+                country.population = rset.getLong("country.Population");
+                countries.add(country);
+            }
+            return countries;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get countries by continent's details");
             return null;
         }
     }
@@ -1070,12 +1155,52 @@ public class App
     }
 
     /**
+     *  Task 15
+     */
+    public void printWorldCities(ArrayList<City> cities)
+    {
+        // Print Header
+        System.out.println("\nTask: 15, Details retrieved for world cities as follows: \n");
+        System.out.println(String.format("%-15s %-38s %-20s", " City", " Country", " Population"));
+        System.out.println(String.format("%-15s %-38s %-20s", "======", "=========", "===========", "============"));
+        // Loop over all employees in the list
+        for (City city : cities)
+        {
+            String language_string =
+                    String.format("%-15s %-38s %-20d",
+                            city.name, city.country, city.population);
+            System.out.println(language_string);
+        }
+        System.out.println(" ");
+    }
+
+    /**
      * Task 16
      */
     public void printRegionCountries(ArrayList<Country> countries)
     {
         // Print header
         System.out.println("\nTask: 16, Details retrieved for region countries as follows: \n");
+        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s", " Code", " Country", " Continent", " Region", " Capital", " Population"));
+        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s", "======", "=========", "===========", "========", "=========", "============"));
+        // Loop over all employees in the list
+        for (Country country : countries)
+        {
+            String language_string =
+                    String.format("%-12s %-25s %-25s %-25s %-25s %-25s",
+                            country.code, country.name, country.continent, country.region, country.city, country.population);
+            System.out.println(language_string);
+        }
+        System.out.println(" ");
+    }
+
+    /**
+     *  Task 17
+     */
+    public void printContinentCountries(ArrayList<Country> countries)
+    {
+        // Print header
+        System.out.println("\nTask: 16, Details retrieved for continent's countries as follows: \n");
         System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s", " Code", " Country", " Continent", " Region", " Capital", " Population"));
         System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s", "======", "=========", "===========", "========", "=========", "============"));
         // Loop over all employees in the list
