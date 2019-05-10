@@ -10,6 +10,7 @@
         <module name="sem(lab9)" />
         <module name="seMethods" />
         <module name="semFinal" />
+        <module name="semHTML" />
         <module name="semtesting" />
       </profile>
     </annotationProcessing>
@@ -17,6 +18,7 @@
       <module name="sem" target="1.8" />
       <module name="sem(lab9)" target="1.8" />
       <module name="semFinal" target="1.8" />
+      <module name="semHTML" target="1.8" />
       <module name="semtesting" target="1.8" />
     </bytecodeTargetLevel>
   </component>
@@ -25,6 +27,7 @@
       <module name="sem" options="-parameters" />
       <module name="sem(lab9)" options="-parameters" />
       <module name="semFinal" options="-parameters" />
+      <module name="semHTML" options="-parameters" />
       <module name="semtesting" options="-parameters" />
     </option>
   </component>
