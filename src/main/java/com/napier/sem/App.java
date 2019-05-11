@@ -1332,7 +1332,7 @@ public class App
     public void printContinentCountries(ArrayList<Country> countries)
     {
         // Print header
-        System.out.println("\nTask: 16, Details retrieved for continent's countries as follows: \n");
+        System.out.println("\nTask: 17, Details retrieved for every country in a given continent: \n");
         System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s", " Code", " Country", " Continent", " Region", " Capital", " Population"));
         System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s", "======", "=========", "===========", "========", "=========", "============"));
         // Loop over all employees in the list
