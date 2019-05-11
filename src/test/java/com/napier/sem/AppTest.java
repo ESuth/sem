@@ -441,9 +441,30 @@ public class AppTest
         country.name = "Iran";
         country.population = 67702000;
 
+        countries.add(country2);
+
         Country country3 = new Country();
         country.name = "Turkey";
         country.population = 66591000;
+
+        countries.add(country);
+    }
+
+    /**
+     * Task 19
+     */
+    void printRuralUrbanCountryTestEmpty()
+    {
+        ArrayList<Country> country = new ArrayList<>();
+
+        app.printRuralUrbanCountries(country);
+    }
+
+    @Test
+    void printRuralUrbanCountry()
+    {
+        ArrayList<Country> countries = new ArrayList<>();
+
     }
 
     /**
