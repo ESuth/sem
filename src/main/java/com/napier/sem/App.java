@@ -896,6 +896,52 @@ public class App
         }
     }
 
+    /**
+     *
+     *  Task 20
+     */
+    /**
+     * Get a list of all people living in cities and people not living in cities in each region
+     *
+     */
+    @RequestMapping("populationruralurbanregion")
+    public ArrayList<Country> getPopulationFromRuralUrbanRegion (@RequestParam(value = "region") String region)
+    {
+        try {
+            // Create SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.populationRural, country.populationUrban, country.Capital "
+                            +   "FROM world.country "
+                            +   "WHERE country.Region = '" + region + "' "
+                            +   "ORDER BY country.Code DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract Information
+            ArrayList<Country> countries = new ArrayList<>();
+            while(rset.next())
+            {
+                Country country1 = new Country();
+                country1.code = rset.getString("country.Code");
+                country1.name = rset.getString("country.Name");
+                country1.continent = rset.getString("country.Continent");
+                country1.region = rset.getString("country.Region");
+                country1.population = rset.getLong("country.Population");
+                country1.populationRural = rset.getLong("country.populationRural");
+                country1.populationUrban = rset.getLong("country.populationUrban");
+                country1.capital = rset.getInt("country.Capital");
+            }
+            return countries;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get urban/rural pop from continent");
+            return null;
+        }
+    }
+
 
     /**
      *
@@ -939,6 +985,48 @@ public class App
         {
             System.out.println(e.getMessage());
             System.out.println("Failed to get urban/rural pop from continent");
+            return null;
+        }
+    }
+
+    /**
+     *  Task 22
+     */
+    /**
+     * Get a list of the top N capital cities in a region and their population from largest to smallest. Where N is supplied by user
+     * @param limit amount of rows to return.
+     * @return The record of the top N capital cities in the world and their population.
+     */
+    @RequestMapping("regioncapitalcitypoplimit")
+    public ArrayList<City> getRegionCapitalCityListWithLimit (@RequestParam(value = "region") String region, @RequestParam(value = "limit") String limit)
+    {
+        try {
+            // Create SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, country.Name, city.Population "
+                            +   "FROM world.city, world.country "
+                            +   "WHERE country.Region = '" + region + "' "
+                            +   "AND country.Capital = city.ID "
+                            +   "ORDER BY city.Population DESC "
+                            +   "LIMIT " + limit;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract city information
+            ArrayList<City> cities = new ArrayList<City>();
+            while(rset.next()) {
+                City city = new City();
+                city.name = rset.getString("city.Name");
+                city.country = rset.getString("country.Name");
+                city.population = rset.getLong("city.Population");
+                cities.add(city);
+            }
+            return cities;
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get capital cities by regions details");
             return null;
         }
     }
@@ -1600,6 +1688,27 @@ public class App
     }
 
     /**
+     *  Task 20
+     */
+    public void printRuralUrbanRegion(ArrayList<Country> countries)
+    {
+        // Print header
+        System.out.println("\nTask: 21, Details retrieved for Rural/Urban population in a region: \n");
+        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s %-25s %25-s", " Code", " Country", " Continent", " Region", " Population", " PopulationRural", " PopulationUrban", " Capital"));
+        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s %-25s %25-s", "======", "=========", "===========", "========", "============", "=============", "=============", "========"));
+        // Loop over all employees in the list
+        for (Country country : countries)
+        {
+            String language_string =
+                    String.format("%-12s %-25s %-25s %-25s %-25s %-25s  %-25s %25-s",
+                            country.code, country.name, country.continent, country.region, country.population, country.populationRural, country.populationUrban, country.city);
+            System.out.println(language_string);
+        }
+        System.out.println(" ");
+
+    }
+
+    /**
      *  Task 21
      */
     public void printRuralUrbanContinent(ArrayList<Country> countries)
@@ -1619,6 +1728,27 @@ public class App
         System.out.println(" ");
 
     }
+
+    /**
+     * Task 22
+     */
+    public void printRegionCapitalCitiesListWithN(ArrayList<City> cities)
+    {
+        // Print header
+        System.out.println("\nTask: 23, Details retrieved for region top N capital cities as follows: \n");
+        System.out.println(String.format("%-22s %-25s %-20s", " City", " Country", " Population"));
+        System.out.println(String.format("%-22s %-25s %-20s", "======", "=========", "============"));
+        // Loop over all employees in the list
+        for (City city : cities)
+        {
+            String language_string =
+                    String.format("%-22s %-25s %-20d",
+                            city.name, city.country, city.population);
+            System.out.println(language_string);
+        }
+        System.out.println(" ");
+    }
+
     /**
      * Task 23
      */
@@ -1677,8 +1807,9 @@ public class App
         /*Task 17 Get List of Details */ArrayList<Country> countriesContinent = a.getContinentCountryPop("Asia");
         /*Task 18 Get List of Details */ArrayList<Country> worldCountries = a.getWorldCountryList();
         /*Task 19 Get List of Details */ArrayList<Country> countryRuralUrban = a.getPopulationFromRuralUrbanCountry("United Kingdom");
+        /*Task 20 Get List of Details */ArrayList<Country> regionRuralUrban = a.getPopulationFromRuralUrbanRegion("Caribbean");
         /*Task 21 Get List of Details */ArrayList<Country> continentRuralUrban = a.getPopulationFromRuralUrbanContinent("Africa");
-
+        /*Task 23 Get List of Details */ArrayList<City> regionCapCitiesWithLimit = a.getRegionCapitalCityListWithLimit("Caribbean", "10");
         /*Task 23 Get List of Details */ArrayList<City> continentCapCitiesWithLimit = a.getContinentCapitalCityListWithLimit("Oceania", "10");
 
         // Print Details //
@@ -1701,7 +1832,9 @@ public class App
         /*Task 17 Print list of Details */a.printContinentCountries(countriesContinent);
         /*Task 18 Get List of Details */a.printWorldCountries(worldCountries);
         /*Task 19 Print list of Details */a.printRuralUrbanCountries(countryRuralUrban);
+        /*Task 20 Print list of Details */a.printRuralUrbanRegion(regionRuralUrban);
         /*Task 21 Print list of Details */a.printRuralUrbanContinent(continentRuralUrban);
+        /*Task 23 Print list of details */a.printRegionCapitalCitiesListWithN(regionCapCitiesWithLimit);
         /*Task 23 Print list of details */a.printContinentCapitalCitiesListWithN(continentCapCitiesWithLimit);
 
         // Disconnect from database
