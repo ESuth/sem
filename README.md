@@ -41,4 +41,4 @@
 | 29 | Retrieve data for the top N populated cities in the world where N is provided by the user | YES | |
 | 30 | Retrieve data for the top N populated countries in a region where N is provided by the user | NO | |
 | 31 | Retrieve data for the top N populated countries in the continent where N is provided by the user | NO | |
-| 32 | Retrieve data for the top N populated countries in the world where N is provided by the user | NO | |
+| 32 | Retrieve data for the top N populated countries in the world where N is provided by the user | YES | |
