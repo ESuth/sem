@@ -1330,6 +1330,50 @@ public class App
         }
     }
 
+    /**
+     *  Task 32
+     */
+    /**
+     * Get a list of the top N populated countries in the world where N is provided by the user
+     * @param limit amount of rows to return.
+     * @return The record of the top N  cities in the world and their population.
+     */
+    @RequestMapping("worldcountrypoplimit")
+    public ArrayList<Country> getWorldCountryListWithLimit (@RequestParam(value = "limit") String limit)
+    {
+        try {
+            // Create SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT country.Code, country.Name, country.Continent, country.Region, city.Name, country.Population "
+                            + "FROM world.country, world.city "
+                            +   "WHERE country.Code = city.CountryCode "
+                            +   "ORDER BY country.Population DESC "
+                            +   "LIMIT " + limit;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract city information
+            ArrayList<Country> countries = new ArrayList<Country>();
+            while(rset.next()) {
+                Country country = new Country();
+                country.code = rset.getString("country.Code");
+                country.name = rset.getString("country.Name");
+                country.continent = rset.getString("country.Continent");
+                country.region = rset.getString("country.Region");
+                country.city = rset.getString("city.Name");
+                country.population = rset.getLong("country.Population");
+                countries.add(country);
+            }
+            return countries;
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get country population by world details");
+            return null;
+        }
+    }
+
     //Print Methods
 
     /**
@@ -1885,6 +1929,26 @@ public class App
         System.out.println(" ");
     }
 
+    /**
+     * Task 32
+     */
+    public void printWorldCountriesWithLimit(ArrayList<Country> countries)
+    {
+        // Print header
+        System.out.println("\nTask: 16, Details retrieved for world countries as follows: \n");
+        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s", " Code", " Country", " Continent", " Region", " Capital", " Population"));
+        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s", "======", "=========", "===========", "========", "=========", "============"));
+        // Loop over all employees in the list
+        for (Country country : countries)
+        {
+            String language_string =
+                    String.format("%-12s %-25s %-25s %-25s %-25s %-25s",
+                            country.code, country.name, country.continent, country.region, country.city, country.population);
+            System.out.println(language_string);
+        }
+        System.out.println(" ");
+    }
+
 
 
     public static void main(String[] args)
@@ -1935,6 +1999,7 @@ public class App
         /*Task 27 Get List of Details */ArrayList<City> regionCitiesWithLimit = a.getregionCityListWithLimit("British Islands", "4");
         /*Task 28 Get List of Details */ArrayList<City> continentCitiesWithLimit = a.getContinentsCityListWithLimit2("Europe","2");
         /*Task 29 Get List of Details */ArrayList<City> worldCitiesWithLimit = a.getworldCityListWithLimit("10");
+        /*Task 32 Get List of Details */ArrayList<Country> worldCountriesWithLimit = a.getWorldCountryListWithLimit("10");
         // Print Details //
         /*Task 1 */a.printPopulationEdinburgh(edinburgh);
         /*Task 2 */a.printPopulationScotland(scotland);
@@ -1965,6 +2030,7 @@ public class App
         /*Task 27 Get List of Details */ a.printRegionCitiesListWithN(regionCitiesWithLimit);
         /*Task 28 Get List of Details */ a.printCountinentCitiesListWithN(continentCitiesWithLimit);
         /*Task 29 Get List of Details */ a.printWorldCitiesListWithN(worldCitiesWithLimit);
+        /*Task 32 Get List of Details */ a.printWorldCountriesWithLimit(worldCountriesWithLimit);
         // Disconnect from database
         //a.disconnect();
     }
