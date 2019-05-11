@@ -903,7 +903,45 @@ public class App
      */
     /**
      * Get a list of all people living in cities and people not living in cities in each continent
+     *
      */
+    @RequestMapping("populationruralurbancountry")
+    public ArrayList<Country> getPopulationFromRuralUrbanContinent (@RequestParam(value = "continent") String continent)
+    {
+        try {
+            // Create SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.populationRural, country.populationUrban, country.Capital "
+                            +   "FROM world.country "
+                            +   "WHERE country.Continent = '" + continent + "' "
+                            +   "ORDER BY country.Code DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract Information
+            ArrayList<Country> countries = new ArrayList<>();
+            while(rset.next())
+            {
+                Country country1 = new Country();
+                country1.code = rset.getString("country.Code");
+                country1.name = rset.getString("country.Name");
+                country1.continent = rset.getString("country.Continent");
+                country1.region = rset.getString("country.Region");
+                country1.population = rset.getLong("country.Population");
+                country1.populationRural = rset.getLong("country.populationRural");
+                country1.populationUrban = rset.getLong("country.populationUrban");
+                country1.capital = rset.getInt("country.Capital");
+            }
+            return countries;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get urban/rural pop from continent");
+            return null;
+        }
+    }
 
     /**
      *  Task 23
@@ -1541,7 +1579,46 @@ public class App
         }
         System.out.println(" ");
     }
+    /**
+     *  Task 19
+     */
+    public void printRuralUrbanCountries(ArrayList<Country> countries)
+    {
+        // Print header
+        System.out.println("\nTask: 19, Details retrieved for Urban/Rural population in each country: \n");
+        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s %-25s %25-s", " Code", " Country", " Continent", " Region", " Population", " PopulationRural", " PopulationUrban", " Capital"));
+        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s %-25s %25-s", "======", "=========", "===========", "========", "============", "=============", "=============", "========"));
+        // Loop over all employees in the list
+        for (Country country : countries)
+        {
+            String language_string =
+                    String.format("%-12s %-25s %-25s %-25s %-25s %-25s  %-25s %25-s",
+                            country.code, country.name, country.continent, country.region, country.population, country.populationRural, country.populationUrban, country.city);
+            System.out.println(language_string);
+        }
+        System.out.println(" ");
+    }
 
+    /**
+     *  Task 21
+     */
+    public void printRuralUrbanContinent(ArrayList<Country> countries)
+    {
+        // Print header
+        System.out.println("\nTask: 21, Details retrieved for Rural/Urban population in a continent: \n");
+        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s %-25s %25-s", " Code", " Country", " Continent", " Region", " Population", " PopulationRural", " PopulationUrban", " Capital"));
+        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s %-25s %25-s", "======", "=========", "===========", "========", "============", "=============", "=============", "========"));
+        // Loop over all employees in the list
+        for (Country country : countries)
+        {
+            String language_string =
+                    String.format("%-12s %-25s %-25s %-25s %-25s %-25s  %-25s %25-s",
+                            country.code, country.name, country.continent, country.region, country.population, country.populationRural, country.populationUrban, country.city);
+            System.out.println(language_string);
+        }
+        System.out.println(" ");
+
+    }
     /**
      * Task 23
      */
