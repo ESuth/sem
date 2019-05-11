@@ -1667,6 +1667,13 @@ public class App
         /*Task 7 */Country world = a.getWorldPop();
         /*Task 8 Get List of Details */ArrayList<City> regionCapCities = a.getRegionCapitalCityList("British Islands");
         /*Task 9 Get List of Details */ArrayList<City> continentCapCities = a.getContinentCapitalCityList("Africa");
+        /*Task 11 Get List of Details */ArrayList<City> districtCities = a.getDistrictCityList("Scotland");
+        /*Task 13 Get List of Details */ArrayList<City> regionCities = a.getRegionCityList("Western Europe");
+        /*Task 15 Get List of Details */ArrayList<City> worldCities = a.getWorldCityPopList();
+        /*Task 17 Get List of Details */ArrayList<Country> countriesContinent = a.getContinentCountryPop("Asia");
+        /*Task 19 Get List of Details */ArrayList<Country> countryRuralUrban = a.getPopulationFromRuralUrbanCountry("United Kingdom");
+        /*Task 21 Get List of Details */ArrayList<Country> continentRuralUrban = a.getPopulationFromRuralUrbanContinent("Africa");
+
         /*Task 23 Get List of Details */ArrayList<City> continentCapCitiesWithLimit = a.getContinentCapitalCityListWithLimit("Oceania", "10");
 
         // Print Details //
@@ -1679,6 +1686,12 @@ public class App
         /*Task 7 */a.printPopulationWorld(world);
         /*Task 8 Print list of details */a.printRegionCapitalCities(regionCapCities);
         /*Task 9 Print list of details */a.printContinentCapitalCities(continentCapCities);
+        /*Task 11 Print list of Details */a.printDistrictCities(districtCities);
+        /*Task 13 Print list of Details */a.printRegionCities(regionCities);
+        /*Task 15 Print list of Details */a.printWorldCities(worldCities);
+        /*Task 17 Print list of Details */a.printContinentCountries(countriesContinent);
+        /*Task 19 Print list of Details */a.printRuralUrbanCountries(countryRuralUrban);
+        /*Task 21 Print list of Details */a.printRuralUrbanContinent(continentRuralUrban);
         /*Task 23 Print list of details */a.printContinentCapitalCitiesListWithN(continentCapCitiesWithLimit);
 
         // Disconnect from database
