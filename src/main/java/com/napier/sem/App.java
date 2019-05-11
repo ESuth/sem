@@ -854,6 +854,58 @@ public class App
     }
 
     /**
+     *  Task 19
+     */
+    /**
+     *  Get a list of all people living in cities and people not living in cities in each country
+     */
+    @RequestMapping("populationruralurbancountry")
+    public ArrayList<Country> getPopulationFromRuralUrbanCountry (@RequestParam(value = "country") String country)
+    {
+        try {
+            // Create SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                        "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.populationRural, country.populationUrban, country.Capital "
+                    +   "FROM world.country "
+                    +   "ORDER BY country.Code DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract Information
+            ArrayList<Country> countries = new ArrayList<>();
+            while(rset.next())
+            {
+                Country country1 = new Country();
+                country1.code = rset.getString("country.Code");
+                country1.name = rset.getString("country.Name");
+                country1.continent = rset.getString("country.Continent");
+                country1.region = rset.getString("country.Region");
+                country1.population = rset.getLong("country.Population");
+                country1.populationRural = rset.getLong("country.populationRural");
+                country1.populationUrban = rset.getLong("country.populationUrban");
+                country1.capital = rset.getInt("country.Capital");
+            }
+            return countries;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get urban/rural pop from countries");
+            return null;
+        }
+    }
+
+
+    /**
+     *
+     *  Task 21
+     */
+    /**
+     * Get a list of all people living in cities and people not living in cities in each continent
+     */
+
+    /**
      *  Task 23
      */
     /**
