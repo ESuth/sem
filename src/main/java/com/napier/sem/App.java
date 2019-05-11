@@ -1678,7 +1678,7 @@ public class App
     public void printContinentCountries(ArrayList<Country> countries)
     {
         // Print header
-        System.out.println("\nTask: 16, Details retrieved for continent's countries as follows: \n");
+        System.out.println("\nTask: 17, Details retrieved for continent's countries as follows: \n");
         System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s", " Code", " Country", " Continent", " Region", " Capital", " Population"));
         System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s", "======", "=========", "===========", "========", "=========", "============"));
         // Loop over all employees in the list
@@ -1698,7 +1698,7 @@ public class App
     public void printWorldCountries(ArrayList<Country> countries)
     {
         // Print header
-        System.out.println("\nTask: 16, Details retrieved for world countries as follows: \n");
+        System.out.println("\nTask: 18, Details retrieved for world countries as follows: \n");
         System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s", " Code", " Country", " Continent", " Region", " Capital", " Population"));
         System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s", "======", "=========", "===========", "========", "=========", "============"));
         // Loop over all employees in the list
@@ -1737,7 +1737,7 @@ public class App
     public void printRuralUrbanRegion(ArrayList<Country> countries)
     {
         // Print header
-        System.out.println("\nTask: 21, Details retrieved for Rural/Urban population in a region: \n");
+        System.out.println("\nTask: 20, Details retrieved for Rural/Urban population in a region: \n");
         System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s %-25s %25-s", " Code", " Country", " Continent", " Region", " Population", " PopulationRural", " PopulationUrban", " Capital"));
         System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s %-25s %25-s", "======", "=========", "===========", "========", "============", "=============", "=============", "========"));
         // Loop over all employees in the list
@@ -1779,7 +1779,7 @@ public class App
     public void printRegionCapitalCitiesListWithN(ArrayList<City> cities)
     {
         // Print header
-        System.out.println("\nTask: 23, Details retrieved for region top N capital cities as follows: \n");
+        System.out.println("\nTask: 22, Details retrieved for region top N capital cities as follows: \n");
         System.out.println(String.format("%-22s %-25s %-20s", " City", " Country", " Population"));
         System.out.println(String.format("%-22s %-25s %-20s", "======", "=========", "============"));
         // Loop over all employees in the list
@@ -1818,7 +1818,7 @@ public class App
     public void printworldCapitalCitiesListWithN(ArrayList<City> cities)
     {
         // Print header
-        System.out.println("\nTask: 23, Details retrieved for continent top N capital cities as follows: \n");
+        System.out.println("\nTask: 24, Details retrieved for world top N capital cities as follows: \n");
         System.out.println(String.format("%-22s %-25s %-20s", " City", " Country", " Population"));
         System.out.println(String.format("%-22s %-25s %-20s", "======", "=========", "============"));
         // Loop over all employees in the list
@@ -1838,7 +1838,7 @@ public class App
     public void printDistrictCitiesListWithN(ArrayList<City> cities)
     {
         // Print header
-        System.out.println("\nTask: 23, Details retrieved for continent top N capital cities as follows: \n");
+        System.out.println("\nTask: 25, Details retrieved for district top N capital cities as follows: \n");
         System.out.println(String.format("%-22s %-25s %-20s", " City", " Country", " Population"));
         System.out.println(String.format("%-22s %-25s %-20s", "======", "=========", "============"));
         // Loop over all employees in the list
@@ -1857,7 +1857,7 @@ public class App
     public void printCountryCitiesListWithN(ArrayList<City> cities)
     {
         // Print header
-        System.out.println("\nTask: 23, Details retrieved for continent top N capital cities as follows: \n");
+        System.out.println("\nTask: 26, Details retrieved for country top N capital cities as follows: \n");
         System.out.println(String.format("%-22s %-25s %-20s", " City", " Country", " Population"));
         System.out.println(String.format("%-22s %-25s %-20s", "======", "=========", "============"));
         // Loop over all employees in the list
@@ -1876,7 +1876,7 @@ public class App
     public void printRegionCitiesListWithN(ArrayList<City> cities)
     {
         // Print header
-        System.out.println("\nTask: 23, Details retrieved for continent top N capital cities as follows: \n");
+        System.out.println("\nTask: 27, Details retrieved for region top N cities as follows: \n");
         System.out.println(String.format("%-22s %-25s %-20s", " City", " Country", " Population"));
         System.out.println(String.format("%-22s %-25s %-20s", "======", "=========", "============"));
         // Loop over all employees in the list
@@ -1895,7 +1895,7 @@ public class App
     public void printCountinentCitiesListWithN(ArrayList<City> cities)
     {
         // Print header
-        System.out.println("\nTask: 23, Details retrieved for continent top N capital cities as follows: \n");
+        System.out.println("\nTask: 28, Details retrieved for continent top N cities as follows: \n");
         System.out.println(String.format("%-22s %-25s %-20s", " City", " Country", " Population"));
         System.out.println(String.format("%-22s %-25s %-20s", "======", "=========", "============"));
         // Loop over all employees in the list
@@ -1915,7 +1915,7 @@ public class App
     public void printWorldCitiesListWithN(ArrayList<City> cities)
     {
         // Print header
-        System.out.println("\nTask: 23, Details retrieved for continent top N capital cities as follows: \n");
+        System.out.println("\nTask: 29, Details retrieved for world top N cities as follows: \n");
         System.out.println(String.format("%-22s %-25s %-20s", " City", " Country", " Population"));
         System.out.println(String.format("%-22s %-25s %-20s", "======", "=========", "============"));
         // Loop over all employees in the list
@@ -1935,7 +1935,7 @@ public class App
     public void printWorldCountriesWithLimit(ArrayList<Country> countries)
     {
         // Print header
-        System.out.println("\nTask: 16, Details retrieved for world countries as follows: \n");
+        System.out.println("\nTask: 32, Details retrieved for world countries as follows: \n");
         System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s", " Code", " Country", " Continent", " Region", " Capital", " Population"));
         System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s", "======", "=========", "===========", "========", "=========", "============"));
         // Loop over all employees in the list
