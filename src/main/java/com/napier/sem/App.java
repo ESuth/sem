@@ -896,6 +896,48 @@ public class App
         }
     }
 
+    /**
+     *  Task 20
+     */
+    /**
+     * Get a list of population of people, people living in cities and people not living in cities in a region
+     * @param region name of the region to get.
+     * @return The record of the cities in a region and their population.
+     */
+    @RequestMapping("regioncitypopandnotpop")
+    public ArrayList<City> getRegionCityPopList (@RequestParam(value = "region") String region)
+    {
+        try {
+            // Create SQL statement
+            Statement stmt = con.createStatement();
+            // create string for SQL statement
+            String strSelect =
+                    "SELECT DISTINCT city.Name, country.Name, city.District, city.Population "
+                            +   "FROM world.city, world.country "
+                            +   "WHERE country.region = '" + region + "' "
+                            +   "AND country.Code = city.CountryCode "
+                            +   "ORDER BY city.Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract city information
+            ArrayList<City> cities = new ArrayList<City>();
+            while(rset.next()) {
+                City city = new City();
+                city.name = rset.getString("city.Name");
+                city.country = rset.getString("country.Name");
+                city.district = rset.getString("city.District");
+                city.population = rset.getLong("city.Population");
+                cities.add(city);
+            }
+            return cities;
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get cities by district's details");
+            return null;
+        }
+    }
+
 
     /**
      *  Task 21
@@ -986,6 +1028,7 @@ public class App
             return null;
         }
     }
+    
 /**
  *  Task 25
  */
