@@ -986,7 +986,48 @@ public class App
             return null;
         }
     }
-
+/**
+ *  Task 25
+ */
+    /**
+     * Get a list of the top N populated cities in a district where N is provided by the user
+     * @param district name of the continent to get.
+     * @param limit amount of rows to return.
+     * @return The record of the top N capital cities in a district and their population.
+     */
+    @RequestMapping("districtcitypoplimit")
+    public ArrayList<City> getDistrictCapitalCityListWithLimit (@RequestParam(value = "district") String district, @RequestParam(value = "limit") String limit)
+    {
+        try {
+            // Create SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, country.Name, city.Population "
+                            +   "FROM world.city, world.country "
+                            +   "WHERE country.Capital = city.ID "
+                            +   "AND city.District = '" + district  + "' "
+                            +   "ORDER BY city.Population DESC "
+                            +   "LIMIT " + limit;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract city information
+            ArrayList<City> cities = new ArrayList<City>();
+            while(rset.next()) {
+                City city = new City();
+                city.name = rset.getString("city.Name");
+                city.country = rset.getString("country.Name");
+                city.population = rset.getLong("city.Population");
+                cities.add(city);
+            }
+            return cities;
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get capital cities by district's details");
+            return null;
+        }
+    }
     //Print Methods
 
     /**
