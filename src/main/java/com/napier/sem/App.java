@@ -896,95 +896,14 @@ public class App
         }
     }
 
-    /**
-     *  Task 20
-     */
-    /**
-     * Get a list of population of people, people living in cities and people not living in cities in a region
-     * @param region name of the region to get.
-     * @return The record of the cities in a region and their population.
-     */
-    @RequestMapping("regioncitypopandnotpop")
-    public ArrayList<City> getRegionCityPopList (@RequestParam(value = "region") String region)
-    {
-        try {
-            // Create SQL statement
-            Statement stmt = con.createStatement();
-            // create string for SQL statement
-            String strSelect =
-                    "SELECT DISTINCT city.Name, country.Name, city.District, city.Population "
-                            +   "FROM world.city, world.country "
-                            +   "WHERE country.region = '" + region + "' "
-                            +   "AND country.Code = city.CountryCode "
-                            +   "ORDER BY city.Population DESC";
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            // Extract city information
-            ArrayList<City> cities = new ArrayList<City>();
-            while(rset.next()) {
-                City city = new City();
-                city.name = rset.getString("city.Name");
-                city.country = rset.getString("country.Name");
-                city.district = rset.getString("city.District");
-                city.population = rset.getLong("city.Population");
-                cities.add(city);
-            }
-            return cities;
-        }
-        catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get cities by district's details");
-            return null;
-        }
-    }
-
 
     /**
+     *
      *  Task 21
      */
     /**
      * Get a list of all people living in cities and people not living in cities in each continent
      */
-    @RequestMapping("populationruralurbancountry")
-    public ArrayList<Country> getPopulationFromRuralUrbanContinent (@RequestParam(value = "continent") String continent)
-    {
-        try {
-            // Create SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String strSelect =
-                    "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.populationRural, country.populationUrban, country.Capital "
-                            +   "FROM world.country "
-                            +   "WHERE country.Continent = '" + continent + "' "
-                            +   "ORDER BY country.Code DESC";
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            // Extract Information
-            ArrayList<Country> countries = new ArrayList<>();
-            while(rset.next())
-            {
-                Country country1 = new Country();
-                country1.code = rset.getString("country.Code");
-                country1.name = rset.getString("country.Name");
-                country1.continent = rset.getString("country.Continent");
-                country1.region = rset.getString("country.Region");
-                country1.population = rset.getLong("country.Population");
-                country1.populationRural = rset.getLong("country.populationRural");
-                country1.populationUrban = rset.getLong("country.populationUrban");
-                country1.capital = rset.getInt("country.Capital");
-            }
-            return countries;
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get urban/rural pop from continent");
-            return null;
-        }
-    }
-
-
-
 
     /**
      *  Task 23
@@ -1028,18 +947,16 @@ public class App
             return null;
         }
     }
-    
-/**
- *  Task 25
- */
     /**
-     * Get a list of the top N populated cities in a district where N is provided by the user
-     * @param district name of the continent to get.
-     * @param limit amount of rows to return.
-     * @return The record of the top N capital cities in a district and their population.
+     *  Task 24
      */
-    @RequestMapping("districtcitypoplimit")
-    public ArrayList<City> getDistrictCapitalCityListWithLimit (@RequestParam(value = "district") String district, @RequestParam(value = "limit") String limit)
+    /**
+     * Get a list of the top N capital cities in the world and their population from largest to smallest. Where N is supplied by user
+     * @param limit amount of rows to return.
+     * @return The record of the top N capital cities in the world and their population.
+     */
+    @RequestMapping("worldcapitalcitypoplimit")
+    public ArrayList<City> getworldCapitalCityListWithLimit ( @RequestParam(value = "limit") String limit)
     {
         try {
             // Create SQL statement
@@ -1049,6 +966,50 @@ public class App
                     "SELECT city.Name, country.Name, city.Population "
                             +   "FROM world.city, world.country "
                             +   "WHERE country.Capital = city.ID "
+                            +   "AND country.Code = city.CountryCode "
+                            +   "ORDER BY city.Population DESC "
+                            +   "LIMIT " + limit;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract city information
+            ArrayList<City> cities = new ArrayList<City>();
+            while(rset.next()) {
+                City city = new City();
+                city.name = rset.getString("city.Name");
+                city.country = rset.getString("country.Name");
+                city.population = rset.getLong("city.Population");
+                cities.add(city);
+            }
+            return cities;
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get capital cities by worlds details");
+            return null;
+        }
+    }
+
+
+/**
+ *  Task 25
+ */
+    /**
+     * Get a list of the top N populated cities in a district where N is provided by the user
+     * @param district name of the continent to get.
+     * @param limit amount of rows to return.
+     * @return The record of the top N  cities in a district and their population.
+     */
+    @RequestMapping("districtcitypoplimit")
+    public ArrayList<City> getDistrictCityListWithLimit (@RequestParam(value = "district") String district, @RequestParam(value = "limit") String limit)
+    {
+        try {
+            // Create SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, country.Name, city.Population "
+                            +   "FROM world.city, world.country "
+                            +   "WHERE country.Code = city.CountryCode "
                             +   "AND city.District = '" + district  + "' "
                             +   "ORDER BY city.Population DESC "
                             +   "LIMIT " + limit;
@@ -1071,6 +1032,178 @@ public class App
             return null;
         }
     }
+    /**
+     *  Task 26
+     */
+    /**
+     * Get a list of the top N populated cities in a country where N is provided by the user
+     * @param country name of the country to get.
+     * @param limit amount of rows to return.
+     * @return The record of the top N  cities in a country and their population.
+     */
+    @RequestMapping("countrycitypoplimit")
+    public ArrayList<City> getCountryCityListWithLimit (@RequestParam(value = "country") String country, @RequestParam(value = "limit") String limit)
+    {
+        try {
+            // Create SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, country.Name, city.Population "
+                            +   "FROM world.city, world.country "
+                            +   "WHERE country.Code = city.CountryCode "
+                            +   "AND world.country = '" + country  + "' "
+                            +   "ORDER BY city.Population DESC "
+                            +   "LIMIT " + limit;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract city information
+            ArrayList<City> cities = new ArrayList<City>();
+            while(rset.next()) {
+                City city = new City();
+                city.name = rset.getString("city.Name");
+                city.country = rset.getString("country.Name");
+                city.population = rset.getLong("city.Population");
+                cities.add(city);
+            }
+            return cities;
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get capital cities by countries details");
+            return null;
+        }
+    }
+
+
+
+/**
+ *  Task 27
+ */
+    /**
+     * Get a list of the top N populated cities in a region where N is provided by the user
+     * @param region name of the continent to get.
+     * @param limit amount of rows to return.
+     * @return The record of the top N  cities in a region and their population.
+     */
+    @RequestMapping("regioncitypoplimit")
+    public ArrayList<City> getregionCityListWithLimit (@RequestParam(value = "region") String region, @RequestParam(value = "limit") String limit)
+    {
+        try {
+            // Create SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, country.Name, city.Population "
+                            +   "FROM world.city, world.country "
+                            +   "WHERE country.Code = city.CountryCode "
+                            +   "AND world.region = '" + region  + "' "
+                            +   "ORDER BY city.Population DESC "
+                            +   "LIMIT " + limit;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract city information
+            ArrayList<City> cities = new ArrayList<City>();
+            while(rset.next()) {
+                City city = new City();
+                city.name = rset.getString("city.Name");
+                city.country = rset.getString("country.Name");
+                city.population = rset.getLong("city.Population");
+                cities.add(city);
+            }
+            return cities;
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get capital cities by region's details");
+            return null;
+        }
+    }
+
+    /**
+ *  Task 28
+ */
+    /**
+     * Get a list of the top N populated cities in a continent where N is provided by the user
+     * @param continent name of the continent to get.
+     * @param limit amount of rows to return.
+     * @return The record of the top N  cities in a continent and their population.
+     */
+    @RequestMapping("continentcitypoplimit2")
+    public ArrayList<City> getContinentsCityListWithLimit2 (@RequestParam(value = "continent") String continent, @RequestParam(value = "limit") String limit)
+    {
+        try {
+            // Create SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, country.Name, city.Population "
+                            +   "FROM world.city, world.country "
+                            +   "WHERE country.Code = city.CountryCode "
+                            +   "AND world.continent = '" + continent  + "' "
+                            +   "ORDER BY city.Population DESC "
+                            +   "LIMIT " + limit;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract city information
+            ArrayList<City> cities = new ArrayList<City>();
+            while(rset.next()) {
+                City city = new City();
+                city.name = rset.getString("city.Name");
+                city.country = rset.getString("country.Name");
+                city.population = rset.getLong("city.Population");
+                cities.add(city);
+            }
+            return cities;
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get capital cities by continent's details");
+            return null;
+        }
+    }
+
+    /**
+     *  Task 29
+     */
+    /**
+     * Get a list of the top N populated cities in the world where N is provided by the user
+     * @param limit amount of rows to return.
+     * @return The record of the top N  cities in the world and their population.
+     */
+    @RequestMapping("worldcitypoplimit")
+    public ArrayList<City> getworldCityListWithLimit (@RequestParam(value = "limit") String limit)
+    {
+        try {
+            // Create SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, country.Name, city.Population "
+                            +   "FROM world.city, world.country "
+                            +   "WHERE country.Code = city.CountryCode "
+                            +   "ORDER BY city.Population DESC "
+                            +   "LIMIT " + limit;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract city information
+            ArrayList<City> cities = new ArrayList<City>();
+            while(rset.next()) {
+                City city = new City();
+                city.name = rset.getString("city.Name");
+                city.country = rset.getString("country.Name");
+                city.population = rset.getLong("city.Population");
+                cities.add(city);
+            }
+            return cities;
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get capital cities by world details");
+            return null;
+        }
+    }
+
     //Print Methods
 
     /**
@@ -1375,7 +1508,7 @@ public class App
     public void printContinentCountries(ArrayList<Country> countries)
     {
         // Print header
-        System.out.println("\nTask: 17, Details retrieved for every country in a given continent: \n");
+        System.out.println("\nTask: 16, Details retrieved for continent's countries as follows: \n");
         System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s", " Code", " Country", " Continent", " Region", " Capital", " Population"));
         System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s", "======", "=========", "===========", "========", "=========", "============"));
         // Loop over all employees in the list
@@ -1407,48 +1540,6 @@ public class App
             System.out.println(language_string);
         }
         System.out.println(" ");
-    }
-
-
-    /**
-     *  Task 19
-     */
-    public void printRuralUrbanCountries(ArrayList<Country> countries)
-    {
-        // Print header
-        System.out.println("\nTask: 19, Details retrieved for Urban/Rural population in each country: \n");
-        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s %-25s %25-s", " Code", " Country", " Continent", " Region", " Population", " PopulationRural", " PopulationUrban", " Capital"));
-        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s %-25s %25-s", "======", "=========", "===========", "========", "============", "=============", "=============", "========"));
-        // Loop over all employees in the list
-        for (Country country : countries)
-        {
-            String language_string =
-                    String.format("%-12s %-25s %-25s %-25s %-25s %-25s  %-25s %25-s",
-                            country.code, country.name, country.continent, country.region, country.population, country.populationRural, country.populationUrban, country.city);
-            System.out.println(language_string);
-        }
-        System.out.println(" ");
-    }
-
-    /**
-     *  Task 21
-     */
-    public void printRuralUrbanContinent(ArrayList<Country> countries)
-    {
-        // Print header
-        System.out.println("\nTask: 21, Details retrieved for Rural/Urban population in a continent: \n");
-        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s %-25s %25-s", " Code", " Country", " Continent", " Region", " Population", " PopulationRural", " PopulationUrban", " Capital"));
-        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s %-25s %25-s", "======", "=========", "===========", "========", "============", "=============", "=============", "========"));
-        // Loop over all employees in the list
-        for (Country country : countries)
-        {
-            String language_string =
-                    String.format("%-12s %-25s %-25s %-25s %-25s %-25s  %-25s %25-s",
-                            country.code, country.name, country.continent, country.region, country.population, country.populationRural, country.populationUrban, country.city);
-            System.out.println(language_string);
-        }
-        System.out.println(" ");
-        
     }
 
     /**
