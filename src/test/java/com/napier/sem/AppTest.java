@@ -421,33 +421,39 @@ public class AppTest
      */
     void printContinentCitiesTestEmpty()
     {
-        ArrayList<Country> country = new ArrayList<>();
+        ArrayList<City> city = new ArrayList<>();
 
-        app.printContinentCountries(country);
+        app.printContinentCities(city);
     }
 
     @Test
     void printContinentCities()
     {
-        ArrayList<Country> countries = new ArrayList<>();
+        ArrayList<City> cities = new ArrayList<>();
 
-        Country country = new Country();
-        country.name = "Bolivia";
-        country.population = 8329000;
+        City city = new City();
+        city.name = "La Paz";
+        city.country = "Bolivia";
+        city.population = 8329000;
+        city.continent = "South America";
 
-        countries.add(country);
+        cities.add(city);
 
-        Country country2 = new Country();
-        country.name = "Iran";
-        country.population = 67702000;
+        City city2 = new City();
+        city2.name = "Iran";
+        city2.country = "Teheran";
+        city2.population = 67702000;
+        city2.continent = "Asia";
 
-        countries.add(country2);
+        cities.add(city2);
 
-        Country country3 = new Country();
-        country.name = "Turkey";
-        country.population = 66591000;
+        City city3 = new City();
+        city3.country = "Turkey";
+        city3.name = "Istanbul";
+        city3.population = 66591000;
+        city3.continent = "Asia";
 
-        countries.add(country);
+        cities.add(city3);
     }
 
     /**

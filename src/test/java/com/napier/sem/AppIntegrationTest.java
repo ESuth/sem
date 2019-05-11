@@ -151,6 +151,76 @@ public class AppIntegrationTest
         assertEquals(continent.population, 6789479);
     }
 
+    /**
+     * Task 11
+     */
+    @Test
+    void testGetDistrictCitiesPop()
+    {
+        ArrayList<City> districts = app.getDistrictCityList("Herat");
+        City district = new City();
+        district.name = "Herat";
+        district.district = "Herat";
+        district.population = 186800;
+        districts.add(district);
+        assertEquals(district.name, "Herat");
+        assertEquals(district.district, "Herat");
+        assertEquals(district.population, 186800);
+    }
+
+    /**
+     * Task 13
+     */
+    @Test
+    void testGetRegionCitiesPop()
+    {
+        ArrayList<City> regions = app.getRegionCityList("Western Europe");
+        City region = new City();
+        region.name = "Lyon";
+        region.region = "Western Europe";
+        region.population = 445452;
+        regions.add(region);
+        assertEquals(region.name, "Lyon");
+        assertEquals(region.region, "Western Europe");
+        assertEquals(region.population, 445452);
+    }
+
+    /**
+     * Task 15
+     */
+    @Test
+    void testGetWorldCitiesPop()
+    {
+        ArrayList<City> worlds = app.getWorldCityPopList();
+        City world = new City();
+        world.name = "Amsterdam";
+        world.population = 731200;
+        world.district = "Noord-Holland";
+        world.country = "Netherlands";
+        worlds.add(world);
+        assertEquals(world.name, "Amsterdam");
+        assertEquals(world.population, 731200);
+        assertEquals(world.district, "Noord-Holland");
+        assertEquals(world.country, "Netherlands");
+    }
+
+    /**
+     * Task 17
+     */
+    @Test
+    void testGetContinentCitiesPop()
+    {
+        ArrayList<City> continents = app.getContinentCityList("South America");
+        City continent = new City();
+        continent.name = "La Paz";
+        continent.population = 8329000;
+        continent.country = "Bolivia";
+        continents.add(continent);
+        assertEquals(continent.continent,"South America");
+        assertEquals(continent.population, 8329000);
+        assertEquals(continent.name, "La Paz");
+    }
+
 
     /**
      * Task 23
