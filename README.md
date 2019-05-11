@@ -29,16 +29,16 @@
 | 17 | Retrieve data for all the countries in a continent. Organised by largest population to smallest | YES | |
 | 18 | Retrieve data for all the countries in the world. Organised by largest population to smallest | YES | |
 | 19 | Retrieve data for the population of people, people living in cities, and people not living in cities in each country | YES | |
-| 20 | Retrieve data for the population of people, people living in cities, and people not living in cities in each region | NO | |
-| 21 | Retrieve data for the population of people, people living in cities, and people not living in cities in each continent | NO | |
-| 22 | Retrieve data for the top N populated capital cities in a region where N is provided by the user | NO | |
+| 20 | Retrieve data for the population of people, people living in cities, and people not living in cities in each region | YES | |
+| 21 | Retrieve data for the population of people, people living in cities, and people not living in cities in each continent | YES | |
+| 22 | Retrieve data for the top N populated capital cities in a region where N is provided by the user | YES | |
 | 23 | Retrieve data for the top N populated capital cities in a continent where N is provided by the user | YES | |
-| 24 | Retrieve data for the top N populated capital cities in the world where N is provided by the user | NO | |
-| 25 | Retrieve data for the top N populated cities in a district where N is provided by the user | NO | |
-| 26 | Retrieve data for the top N populated cities in a country where N is provided by the user | NO | |
-| 27 | Retrieve data for the top N populated cities in a region where N is provided by the user | NO | |
-| 28 | Retrieve data for the top N populated cities in a continent where N is provided by the user | NO | |
-| 29 | Retrieve data for the top N populated cities in the world where N is provided by the user | NO | |
+| 24 | Retrieve data for the top N populated capital cities in the world where N is provided by the user | YES | |
+| 25 | Retrieve data for the top N populated cities in a district where N is provided by the user | YES | |
+| 26 | Retrieve data for the top N populated cities in a country where N is provided by the user | YES | |
+| 27 | Retrieve data for the top N populated cities in a region where N is provided by the user | YES | |
+| 28 | Retrieve data for the top N populated cities in a continent where N is provided by the user | YES | |
+| 29 | Retrieve data for the top N populated cities in the world where N is provided by the user | YES | |
 | 30 | Retrieve data for the top N populated countries in a region where N is provided by the user | NO | |
 | 31 | Retrieve data for the top N populated countries in the continent where N is provided by the user | NO | |
 | 32 | Retrieve data for the top N populated countries in the world where N is provided by the user | NO | |
