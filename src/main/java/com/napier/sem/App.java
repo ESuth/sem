@@ -867,7 +867,7 @@ public class App
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                        "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.populationRural, country.populationUrban, country.Capital "
+                        "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.Capital "
                     +   "FROM world.country "
                     +   "ORDER BY country.Code DESC";
             // Execute SQL statement
@@ -882,8 +882,6 @@ public class App
                 country1.continent = rset.getString("country.Continent");
                 country1.region = rset.getString("country.Region");
                 country1.population = rset.getLong("country.Population");
-                country1.populationRural = rset.getLong("country.populationRural");
-                country1.populationUrban = rset.getLong("country.populationUrban");
                 country1.capital = rset.getInt("country.Capital");
             }
             return countries;
@@ -912,7 +910,7 @@ public class App
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.populationRural, country.populationUrban, country.Capital "
+                    "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.Capital "
                             +   "FROM world.country "
                             +   "WHERE country.Region = '" + region + "' "
                             +   "ORDER BY country.Code DESC";
@@ -928,8 +926,6 @@ public class App
                 country1.continent = rset.getString("country.Continent");
                 country1.region = rset.getString("country.Region");
                 country1.population = rset.getLong("country.Population");
-                country1.populationRural = rset.getLong("country.populationRural");
-                country1.populationUrban = rset.getLong("country.populationUrban");
                 country1.capital = rset.getInt("country.Capital");
             }
             return countries;
@@ -959,7 +955,7 @@ public class App
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.populationRural, country.populationUrban, country.Capital "
+                    "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.Capital "
                             +   "FROM world.country "
                             +   "WHERE country.Continent = '" + continent + "' "
                             +   "ORDER BY country.Code DESC";
@@ -975,8 +971,6 @@ public class App
                 country1.continent = rset.getString("country.Continent");
                 country1.region = rset.getString("country.Region");
                 country1.population = rset.getLong("country.Population");
-                country1.populationRural = rset.getLong("country.populationRural");
-                country1.populationUrban = rset.getLong("country.populationUrban");
                 country1.capital = rset.getInt("country.Capital");
             }
             return countries;
@@ -1809,14 +1803,14 @@ public class App
     {
         // Print header
         System.out.println("\nTask: 19, Details retrieved for Urban/Rural population in each country: \n");
-        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s %-25s %25-s", " Code", " Country", " Continent", " Region", " Population", " PopulationRural", " PopulationUrban", " Capital"));
-        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s %-25s %25-s", "======", "=========", "===========", "========", "============", "=============", "=============", "========"));
+        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %25-s", " Code", " Country", " Continent", " Region", " Population", " Capital"));
+        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %25-s", "======", "=========", "===========", "========", "============", "========"));
         // Loop over all employees in the list
         for (Country country : countries)
         {
             String language_string =
                     String.format("%-12s %-25s %-25s %-25s %-25s %-25s  %-25s %25-s",
-                            country.code, country.name, country.continent, country.region, country.population, country.populationRural, country.populationUrban, country.city);
+                            country.code, country.name, country.continent, country.region, country.population, country.city);
             System.out.println(language_string);
         }
         System.out.println(" ");
@@ -1829,14 +1823,14 @@ public class App
     {
         // Print header
         System.out.println("\nTask: 20, Details retrieved for Rural/Urban population in a region: \n");
-        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s %-25s %25-s", " Code", " Country", " Continent", " Region", " Population", " PopulationRural", " PopulationUrban", " Capital"));
-        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s %-25s %25-s", "======", "=========", "===========", "========", "============", "=============", "=============", "========"));
+        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %25-s", " Code", " Country", " Continent", " Region", " Population", " Capital"));
+        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %25-s", "======", "=========", "===========", "========", "============","========"));
         // Loop over all employees in the list
         for (Country country : countries)
         {
             String language_string =
                     String.format("%-12s %-25s %-25s %-25s %-25s %-25s  %-25s %25-s",
-                            country.code, country.name, country.continent, country.region, country.population, country.populationRural, country.populationUrban, country.city);
+                            country.code, country.name, country.continent, country.region, country.population, country.city);
             System.out.println(language_string);
         }
         System.out.println(" ");
@@ -1850,14 +1844,14 @@ public class App
     {
         // Print header
         System.out.println("\nTask: 21, Details retrieved for Rural/Urban population in a continent: \n");
-        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s %-25s %25-s", " Code", " Country", " Continent", " Region", " Population", " PopulationRural", " PopulationUrban", " Capital"));
-        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s %-25s %25-s", "======", "=========", "===========", "========", "============", "=============", "=============", "========"));
+        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %25-s", " Code", " Country", " Continent", " Region", " Population", " Capital"));
+        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %25-s", "======", "=========", "===========", "========", "============",  "========"));
         // Loop over all employees in the list
         for (Country country : countries)
         {
             String language_string =
                     String.format("%-12s %-25s %-25s %-25s %-25s %-25s  %-25s %25-s",
-                            country.code, country.name, country.continent, country.region, country.population, country.populationRural, country.populationUrban, country.city);
+                            country.code, country.name, country.continent, country.region, country.population, country.city);
             System.out.println(language_string);
         }
         System.out.println(" ");
