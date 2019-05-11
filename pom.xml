@@ -7,7 +7,7 @@
     <groupId>com.napier.sem</groupId>
     <artifactId>seMethods</artifactId>
     <version>0.1.0.4</version>
-         
+
      <parent>
          <groupId>org.springframework.boot</groupId>
          <artifactId>spring-boot-starter-parent</artifactId>
@@ -27,11 +27,11 @@
             <version>[5.1,)</version>
             <scope>test</scope>
         </dependency>
-             
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>             
+        </dependency>
     </dependencies>
 
     <properties>
