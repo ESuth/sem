@@ -987,6 +987,48 @@ public class App
         }
     }
 
+    /**
+     *  Task 22
+     */
+    /**
+     * Get a list of the top N capital cities in a region and their population from largest to smallest. Where N is supplied by user
+     * @param limit amount of rows to return.
+     * @return The record of the top N capital cities in the world and their population.
+     */
+    @RequestMapping("regioncapitalcitypoplimit")
+    public ArrayList<City> getRegionCapitalCityListWithLimit (@RequestParam(value = "region") String region, @RequestParam(value = "limit") String limit)
+    {
+        try {
+            // Create SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, country.Name, city.Population "
+                            +   "FROM world.city, world.country "
+                            +   "WHERE country.Region = '" + region + "' "
+                            +   "AND country.Capital = city.ID "
+                            +   "ORDER BY city.Population DESC "
+                            +   "LIMIT " + limit;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract city information
+            ArrayList<City> cities = new ArrayList<City>();
+            while(rset.next()) {
+                City city = new City();
+                city.name = rset.getString("city.Name");
+                city.country = rset.getString("country.Name");
+                city.population = rset.getLong("city.Population");
+                cities.add(city);
+            }
+            return cities;
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get capital cities by regions details");
+            return null;
+        }
+    }
+
     //Print Methods
 
     /**
@@ -1369,7 +1411,25 @@ public class App
 
     }
 
-
+    /**
+     * Task 22
+     */
+    public void printRegionCapitalCitiesListWithN(ArrayList<City> cities)
+    {
+        // Print header
+        System.out.println("\nTask: 22, Details retrieved for region top N capital cities as follows: \n");
+        System.out.println(String.format("%-22s %-25s %-20s", " City", " Country", " Population"));
+        System.out.println(String.format("%-22s %-25s %-20s", "======", "=========", "============"));
+        // Loop over all employees in the list
+        for (City city : cities)
+        {
+            String language_string =
+                    String.format("%-22s %-25s %-20d",
+                            city.name, city.country, city.population);
+            System.out.println(language_string);
+        }
+        System.out.println(" ");
+    }
 
     public static void main(String[] args)
     {
