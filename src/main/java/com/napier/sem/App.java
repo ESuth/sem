@@ -635,6 +635,48 @@ public class App
         }
     }
 
+    /**
+     *  Task 14
+     */
+    /**
+     * Get a list of all cities in a continent and their population from largest to smallest.
+     * @param continent name of the continent to get.
+     * @return The record of the cities in a continent and their population.
+     */
+    @RequestMapping("continentcitypop")
+    public ArrayList<City> getContinentCityList (@RequestParam(value = "continent") String continent)
+    {
+        try {
+            // Create SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, country.Name, city.District, city.Population "
+                            +   "FROM world.city, world.country "
+                            +   "WHERE country.Continent = '" + continent + "' "
+                            +   "AND city.CountryCode = country.Code "
+                            +   "ORDER BY city.Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract city information
+            ArrayList<City> cities = new ArrayList<City>();
+            while(rset.next()) {
+                City city = new City();
+                city.name = rset.getString("city.Name");
+                city.country = rset.getString("country.Name");
+                city.district = rset.getString("city.District");
+                city.population = rset.getLong("city.Population");
+                cities.add(city);
+            }
+            return cities;
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get cities by continent's details");
+            return null;
+        }
+    }
+
     //Print Methods
 
     /**
@@ -849,6 +891,26 @@ public class App
         {
             String language_string =
                     String.format("%-15s %-25s %-20s" , city.name, city.district, city.population);
+            System.out.println(language_string);
+        }
+        System.out.println(" ");
+    }
+
+    /**
+     * Task 14
+     */
+    public void printContinentCities(ArrayList<City> cities)
+    {
+        // Print header
+        System.out.println("\nTask: 14, Details retrieved for continent cities as follows: \n");
+        System.out.println(String.format("%-15s %-38s %-38s %-20s", " City", " Country", " District", " Population"));
+        System.out.println(String.format("%-15s %-38s %-38s %-20s", "======", "=========", "===========", "============"));
+        // Loop over all employees in the list
+        for (City city : cities)
+        {
+            String language_string =
+                    String.format("%-15s %-38s %-38s %-20d",
+                            city.name, city.country, city.district, city.population);
             System.out.println(language_string);
         }
         System.out.println(" ");
