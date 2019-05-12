@@ -45,7 +45,7 @@ public class App
                 // Wait a bit for db to start
                 Thread.sleep(3000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC", "root", "dubstep5");
                 System.out.println("Successfully connected");
                 break;
             }
@@ -489,7 +489,8 @@ public class App
                     "SELECT city.Name, country.Name, city.Population "
                             +   "FROM world.city, world.country "
                             +   "WHERE country.Capital = city.ID "
-                            +   "ORDER BY city.Population DESC";
+                            +   "ORDER BY city.Population DESC "
+                            +   "LIMIT 50";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract city information
@@ -613,7 +614,8 @@ public class App
                             +   "FROM world.city, world.country "
                             +   "WHERE country.region = '" + region + "' "
                             +   "AND country.Code = city.CountryCode "
-                            +   "ORDER BY city.Population DESC";
+                            +   "ORDER BY city.Population DESC "
+                            +   "LIMIT 25";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract city information
@@ -655,7 +657,8 @@ public class App
                             +   "FROM world.city, world.country "
                             +   "WHERE country.Continent = '" + continent + "' "
                             +   "AND city.CountryCode = country.Code "
-                            +   "ORDER BY city.Population DESC";
+                            +   "ORDER BY city.Population DESC "
+                            +   "LIMIT 25";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract city information
@@ -694,7 +697,8 @@ public class App
                     "SELECT city.Name, country.Name, city.District, city.Population "
                             +   "FROM world.city, world.country "
                             +   "WHERE country.Code = city.CountryCode "
-                            +   "ORDER BY city.Population DESC";
+                            +   "ORDER BY city.Population DESC "
+                            +   "LIMIT 50";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract city information
@@ -736,7 +740,7 @@ public class App
                     "SELECT country.Code, country.Name, country.Continent, country.Region, city.Name, country.Population "
                             + "FROM world.country, world.city "
                             + "WHERE country.Region = '" + region + "' "
-                            + "AND country.Capital = city.ID "
+                            + "AND country.Code = city.CountryCode "
                             + "ORDER BY country.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -828,7 +832,8 @@ public class App
                     "SELECT country.Code, country.Name, country.Continent, country.Region, city.Name, country.Population "
                             + "FROM world.country, world.city "
                             + "WHERE country.Capital = city.ID "
-                            + "ORDER BY country.Population DESC";
+                            +   "ORDER BY country.Population DESC "
+                            +   "LIMIT 50";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract employee information
@@ -868,15 +873,15 @@ public class App
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name "
+                    "SELECT country.Code, country.Name, country.Continent, country.Region, city.Name, country.Population "
                             +   "FROM world.country, world.city "
-                            +   "Where country.Name = '" + country + "' "
+                            +   "WHERE country.Name = '" + country + "' "
                             +   "AND country.Capital = city.ID "
-                            +   "ORDER BY country.Code DESC";
+                            +   "ORDER BY country.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract Information
-            ArrayList<Country> countries = new ArrayList<>();
+            ArrayList<Country> countries = new ArrayList<Country>();
             while(rset.next())
             {
                 Country country1 = new Country();
@@ -958,15 +963,16 @@ public class App
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name "
-                            +   "FROM world.country "
+                    "SELECT country.Code, country.Name, country.Continent, country.Region, city.Name, country.Population "
+                            +   "FROM world.country, world.city "
                             +   "WHERE country.Continent = '" + continent + "' "
                             +   "AND country.Capital = city.ID "
-                            +   "ORDER BY country.Code DESC";
+                            +   "ORDER BY country.Population DESC "
+                            +   "LIMIT 15";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract Information
-            ArrayList<Country> countries = new ArrayList<>();
+            ArrayList<Country> countries = new ArrayList<Country>();
             while(rset.next())
             {
                 Country country1 = new Country();
@@ -974,8 +980,8 @@ public class App
                 country1.name = rset.getString("country.Name");
                 country1.continent = rset.getString("country.Continent");
                 country1.region = rset.getString("country.Region");
-                country1.population = rset.getLong("country.Population");
                 country1.city = rset.getString("city.Name");
+                country1.population = rset.getLong("country.Population");
             }
             return countries;
         }
@@ -1624,13 +1630,13 @@ public class App
     {
         // Print header
         System.out.println("\nTask: 10, Details retrieved for world capital cities as follows: \n");
-        System.out.println(String.format("%-15s %-38s %-20s", " City", " Country", " Population"));
-        System.out.println(String.format("%-15s %-38s %-20s", "======", "=========", "============"));
+        System.out.println(String.format("%-25s %-38s %-20s", " City", " Country", " Population"));
+        System.out.println(String.format("%-25s %-38s %-20s", "======", "=========", "============"));
         // Loop over all employees in the list
         for (City city : cities)
         {
             String language_string =
-                    String.format("%-15s %-38s %-20d",
+                    String.format("%-25s %-38s %-20d",
                             city.name, city.country, city.population);
             System.out.println(language_string);
         }
@@ -1658,19 +1664,40 @@ public class App
     }
 
     /**
+     * Task 12
+     */
+    public void printCountryCities(ArrayList<City> cities)
+    {
+        // Print header
+        System.out.println("\nTask: 12, Details retrieved for cities in a country as follows: \n");
+        System.out.println(String.format("%-25s %-15s %-20s %-20s", " City", " Country", " District", " Population"));
+        System.out.println(String.format("%-25s %-15s %-20s %-20s", "======", "=========", "===========", "============"));
+        // Loop over all employees in the list
+        for (City city : cities)
+        {
+            String language_string =
+                    String.format("%-25s %-15s %-20s %-20d",
+                            city.name, city.country, city.district, city.population);
+            System.out.println(language_string);
+        }
+        System.out.println(" ");
+    }
+
+
+    /**
      *  Task 13
      */
     public void printRegionCities(ArrayList<City> cities)
     {
         // Print header
         System.out.println("\nTask 13, Details retrieved for cities in a region as follows: \n");
-        System.out.println(String.format("%-15s %-25s %-20s", " City", "Region", "Population"));
-        System.out.println(String.format("%-15s %-25s %-20s", "=====", "=========", "============"));
+        System.out.println(String.format("%-20s %-25s %-20s", " City", "Region", "Population"));
+        System.out.println(String.format("%-20s %-25s %-20s", "=====", "=========", "============"));
         // Loop over all cities in the list
         for(City city : cities)
         {
             String language_string =
-                    String.format("%-15s %-25s %-20s" , city.name, city.district, city.population);
+                    String.format("%-20s %-25s %-20s" , city.name, city.district, city.population);
             System.out.println(language_string);
         }
         System.out.println(" ");
@@ -1682,7 +1709,7 @@ public class App
     public void printContinentCities(ArrayList<City> cities)
     {
         // Print header
-        System.out.println("\nTask: 14, Details retrieved for continent cities as follows: \n");
+        System.out.println("\nTask: 14, Details retrieved for cities in a continent as follows: \n");
         System.out.println(String.format("%-15s %-38s %-38s %-20s", " City", " Country", " District", " Population"));
         System.out.println(String.format("%-15s %-38s %-38s %-20s", "======", "=========", "===========", "============"));
         // Loop over all employees in the list
@@ -1702,14 +1729,14 @@ public class App
     public void printWorldCities(ArrayList<City> cities)
     {
         // Print Header
-        System.out.println("\nTask: 15, Details retrieved for world cities as follows: \n");
-        System.out.println(String.format("%-15s %-38s %-20s", " City", " Country", " Population"));
-        System.out.println(String.format("%-15s %-38s %-20s", "======", "=========", "===========", "============"));
+        System.out.println("\nTask: 15, Details retrieved for all cities in the world as follows: \n");
+        System.out.println(String.format("%-25s %-38s %-20s", " City", " Country", " Population"));
+        System.out.println(String.format("%-25s %-38s %-20s", "======", "=========", "===========", "============"));
         // Loop over all employees in the list
         for (City city : cities)
         {
             String language_string =
-                    String.format("%-15s %-38s %-20d",
+                    String.format("%-25s %-38s %-20d",
                             city.name, city.country, city.population);
             System.out.println(language_string);
         }
@@ -1723,7 +1750,7 @@ public class App
     public void printRegionCountries(ArrayList<Country> countries)
     {
         // Print header
-        System.out.println("\nTask: 16, Details retrieved for region countries as follows: \n");
+        System.out.println("\nTask: 16, Details retrieved for all countries in a region as follows: \n");
         System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s", " Code", " Country", " Continent", " Region", " Capital", " Population"));
         System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s", "======", "=========", "===========", "========", "=========", "============"));
         // Loop over all employees in the list
@@ -1743,7 +1770,7 @@ public class App
     public void printContinentCountries(ArrayList<Country> countries)
     {
         // Print header
-        System.out.println("\nTask: 17, Details retrieved for continent's countries as follows: \n");
+        System.out.println("\nTask: 17, Details retrieved for countries in a continent as follows: \n");
         System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s", " Code", " Country", " Continent", " Region", " Capital", " Population"));
         System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s", "======", "=========", "===========", "========", "=========", "============"));
         // Loop over all employees in the list
@@ -1763,14 +1790,14 @@ public class App
     public void printWorldCountries(ArrayList<Country> countries)
     {
         // Print header
-        System.out.println("\nTask: 18, Details retrieved for world countries as follows: \n");
-        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s", " Code", " Country", " Continent", " Region", " Capital", " Population"));
-        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s", "======", "=========", "===========", "========", "=========", "============"));
+        System.out.println("\nTask: 18, Details retrieved for wall countries in the world as follows: \n");
+        System.out.println(String.format("%-12s %-38s %-25s %-25s %-25s %-25s", " Code", " Country", " Continent", " Region", " Capital", " Population"));
+        System.out.println(String.format("%-12s %-38s %-25s %-25s %-25s %-25s", "======", "=========", "===========", "========", "=========", "============"));
         // Loop over all employees in the list
         for (Country country : countries)
         {
             String language_string =
-                    String.format("%-12s %-25s %-25s %-25s %-25s %-25s",
+                    String.format("%-12s %-38s %-25s %-25s %-25s %-25s",
                             country.code, country.name, country.continent, country.region, country.city, country.population);
             System.out.println(language_string);
         }
@@ -1784,13 +1811,13 @@ public class App
     {
         // Print header
         System.out.println("\nTask: 19, Details retrieved for Urban/Rural population in each country: \n");
-        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %25-s", " Code", " Country", " Continent", " Region", " Population", " Capital"));
-        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %25-s", "======", "=========", "===========", "========", "============", "========"));
+        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s", " Code", " Country", " Continent", " Region", " Population", " Capital"));
+        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s", "======", "=========", "===========", "========", "============", "========"));
         // Loop over all employees in the list
         for (Country country : countries)
         {
             String language_string =
-                    String.format("%-12s %-25s %-25s %-25s %-25s %-25s  %-25s %25-s",
+                    String.format("%-12s %-25s %-25s %-25s %-25s %-25s",
                             country.code, country.name, country.continent, country.region, country.population, country.city);
             System.out.println(language_string);
         }
@@ -1804,13 +1831,13 @@ public class App
     {
         // Print header
         System.out.println("\nTask: 20, Details retrieved for Rural/Urban population in a region: \n");
-        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %25-s", " Code", " Country", " Continent", " Region", " Population", " Capital"));
-        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %25-s", "======", "=========", "===========", "========", "============","========"));
+        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s", " Code", " Country", " Continent", " Region", " Population", " Capital"));
+        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s", "======", "=========", "===========", "========", "============","========"));
         // Loop over all employees in the list
         for (Country country : countries)
         {
             String language_string =
-                    String.format("%-12s %-25s %-25s %-25s %-25s %-25s  %-25s %25-s",
+                    String.format("%-12s %-25s %-25s %-25s %-25s %-25s",
                             country.code, country.name, country.continent, country.region, country.population, country.city);
             System.out.println(language_string);
         }
@@ -1825,13 +1852,13 @@ public class App
     {
         // Print header
         System.out.println("\nTask: 21, Details retrieved for Rural/Urban population in a continent: \n");
-        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %25-s", " Code", " Country", " Continent", " Region", " Population", " Capital"));
-        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %25-s", "======", "=========", "===========", "========", "============",  "========"));
+        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s", " Code", " Country", " Continent", " Region", " Population", " Capital"));
+        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s", "======", "=========", "===========", "========", "============",  "========"));
         // Loop over all employees in the list
         for (Country country : countries)
         {
             String language_string =
-                    String.format("%-12s %-25s %-25s %-25s %-25s %-25s  %-25s %25-s",
+                    String.format("%-12s %-25s %-25s %-25s %-25d %-25s",
                             country.code, country.name, country.continent, country.region, country.population, country.city);
             System.out.println(language_string);
         }
@@ -1845,7 +1872,7 @@ public class App
     public void printRegionCapitalCitiesListWithN(ArrayList<City> cities)
     {
         // Print header
-        System.out.println("\nTask: 22, Details retrieved for region top N capital cities as follows: \n");
+        System.out.println("\nTask: 22, Details retrieved for the top N capital cities in a region as follows: \n");
         System.out.println(String.format("%-22s %-25s %-20s", " City", " Country", " Population"));
         System.out.println(String.format("%-22s %-25s %-20s", "======", "=========", "============"));
         // Loop over all employees in the list
@@ -1865,7 +1892,7 @@ public class App
     public void printContinentCapitalCitiesListWithN(ArrayList<City> cities)
     {
         // Print header
-        System.out.println("\nTask: 23, Details retrieved for continent top N capital cities as follows: \n");
+        System.out.println("\nTask: 23, Details retrieved for the top N capital cities in a continent as follows: \n");
         System.out.println(String.format("%-22s %-25s %-20s", " City", " Country", " Population"));
         System.out.println(String.format("%-22s %-25s %-20s", "======", "=========", "============"));
         // Loop over all employees in the list
@@ -1884,14 +1911,14 @@ public class App
     public void printworldCapitalCitiesListWithN(ArrayList<City> cities)
     {
         // Print header
-        System.out.println("\nTask: 24, Details retrieved for world top N capital cities as follows: \n");
-        System.out.println(String.format("%-22s %-25s %-20s", " City", " Country", " Population"));
-        System.out.println(String.format("%-22s %-25s %-20s", "======", "=========", "============"));
+        System.out.println("\nTask: 24, Details retrieved for the top N capital cities in the world as follows: \n");
+        System.out.println(String.format("%-25s %-25s %-20s", " City", " Country", " Population"));
+        System.out.println(String.format("%-25s %-25s %-20s", "======", "=========", "============"));
         // Loop over all employees in the list
         for (City city : cities)
         {
             String language_string =
-                    String.format("%-22s %-25s %-20d",
+                    String.format("%-25s %-25s %-20d",
                             city.name, city.country, city.population);
             System.out.println(language_string);
         }
@@ -1904,7 +1931,7 @@ public class App
     public void printDistrictCitiesListWithN(ArrayList<City> cities)
     {
         // Print header
-        System.out.println("\nTask: 25, Details retrieved for district top N capital cities as follows: \n");
+        System.out.println("\nTask: 25, Details retrieved for the top N capital cities in a district as follows: \n");
         System.out.println(String.format("%-22s %-25s %-20s", " City", " Country", " Population"));
         System.out.println(String.format("%-22s %-25s %-20s", "======", "=========", "============"));
         // Loop over all employees in the list
@@ -1923,7 +1950,7 @@ public class App
     public void printCountryCitiesListWithN(ArrayList<City> cities)
     {
         // Print header
-        System.out.println("\nTask: 26, Details retrieved for country top N capital cities as follows: \n");
+        System.out.println("\nTask: 26, Details retrieved for the top N capital cities in a country as follows: \n");
         System.out.println(String.format("%-22s %-25s %-20s", " City", " Country", " Population"));
         System.out.println(String.format("%-22s %-25s %-20s", "======", "=========", "============"));
         // Loop over all employees in the list
@@ -1942,7 +1969,7 @@ public class App
     public void printRegionCitiesListWithN(ArrayList<City> cities)
     {
         // Print header
-        System.out.println("\nTask: 27, Details retrieved for region top N cities as follows: \n");
+        System.out.println("\nTask: 27, Details retrieved for the top N cities in a region as follows: \n");
         System.out.println(String.format("%-22s %-25s %-20s", " City", " Country", " Population"));
         System.out.println(String.format("%-22s %-25s %-20s", "======", "=========", "============"));
         // Loop over all employees in the list
@@ -1961,7 +1988,7 @@ public class App
     public void printCountinentCitiesListWithN(ArrayList<City> cities)
     {
         // Print header
-        System.out.println("\nTask: 28, Details retrieved for continent top N cities as follows: \n");
+        System.out.println("\nTask: 28, Details retrieved for the top N cities in a continent as follows: \n");
         System.out.println(String.format("%-22s %-25s %-20s", " City", " Country", " Population"));
         System.out.println(String.format("%-22s %-25s %-20s", "======", "=========", "============"));
         // Loop over all employees in the list
@@ -1981,7 +2008,7 @@ public class App
     public void printWorldCitiesListWithN(ArrayList<City> cities)
     {
         // Print header
-        System.out.println("\nTask: 29, Details retrieved for world top N cities as follows: \n");
+        System.out.println("\nTask: 29, Details retrieved for the top N cities in the world as follows: \n");
         System.out.println(String.format("%-22s %-25s %-20s", " City", " Country", " Population"));
         System.out.println(String.format("%-22s %-25s %-20s", "======", "=========", "============"));
         // Loop over all employees in the list
@@ -2000,7 +2027,7 @@ public class App
     public void printRegionCountriesWithLimit(ArrayList<Country> countries)
     {
         // Print header
-        System.out.println("\nTask: 16, Details retrieved for world countries as follows: \n");
+        System.out.println("\nTask: 30, Details retrieved for the top N countries in a region as follows: \n");
         System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s", " Code", " Country", " Continent", " Region", " Population"));
         System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s", "======", "=========", "===========", "========", "============"));
         // Loop over all employees in the list
@@ -2020,7 +2047,7 @@ public class App
     public void printContinentCountriesWithLimit(ArrayList<Country> countries)
     {
         // Print header
-        System.out.println("\nTask: 16, Details retrieved for world countries as follows: \n");
+        System.out.println("\nTask: 31, Details retrieved for the top N countries in a continent as follows: \n");
         System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s", " Code", " Country", " Continent", " Region", " Population"));
         System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s", "======", "=========", "===========", "========", "============"));
         // Loop over all employees in the list
@@ -2039,7 +2066,7 @@ public class App
     public void printWorldCountriesWithLimit(ArrayList<Country> countries)
     {
         // Print header
-        System.out.println("\nTask: 32, Details retrieved for world countries as follows: \n");
+        System.out.println("\nTask: 32, Details retrieved for the top N countries in the world as follows: \n");
         System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s", " Code", " Country", " Continent", " Region", " Population"));
         System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s", "======", "=========", "===========", "========", "============"));
         // Loop over all employees in the list
@@ -2061,7 +2088,7 @@ public class App
         // Connect to database
         if (args.length < 1)
         {
-            a.connect("localhost:33060");
+            a.connect("localhost:3306");
         }
         else
         {
@@ -2071,73 +2098,73 @@ public class App
         //Run the URL app compatibility
         SpringApplication.run(App.class, args);
 
-        //// Get details //
-        ///*Task 1 */City edinburgh = a.getCityEdinburghPop("Edinburgh");
-        ///*Task 2 */City scotland = a.getDistrictScotlandPop("Scotland");
-        ///*Task 3 */Country uK = a.getCountryUKPop("United Kingdom");
-        ///*Task 4 */Country britIsles = a.getRegionBritIslesPop("British Islands");
-        ///*Task 5 */Country europe = a.getContinentEuropePop("Europe");
-        ///*Task 6 Get List of Details */ArrayList<Language> languages = a.getLanguageList();
-        ///*Task 7 */Country world = a.getWorldPop();
-        ///*Task 8 Get List of Details */ArrayList<City> regionCapCities = a.getRegionCapitalCityList("British Islands");
-        ///*Task 9 Get List of Details */ArrayList<City> continentCapCities = a.getContinentCapitalCityList("Africa");
-        ///*Task 10 Get List of Details */ArrayList<City> worldCapCities = a.getWorldCapitalCityList();
-        ///*Task 11 Get List of Details */ArrayList<City> districtCities = a.getDistrictCityList("Scotland");
-        ///*Task 12 Get List of Details */ArrayList<City> countryCities = a.getCountryCityList("Germany");
-        ///*Task 13 Get List of Details */ArrayList<City> regionCities = a.getRegionCityList("Western Europe");
-        ///*Task 14 Get List of Details */ArrayList<City> continentCities = a.getContinentCityList("Africa");
-        ///*Task 15 Get List of Details */ArrayList<City> worldCities = a.getWorldCityPopList();
-        ///*Task 16 Get List of Details */ArrayList<Country> regionCountries = a.getRegionCountryList("Carribbean");
-        ///*Task 17 Get List of Details */ArrayList<Country> countriesContinent = a.getContinentCountryPop("Asia");
-        ///*Task 18 Get List of Details */ArrayList<Country> worldCountries = a.getWorldCountryList();
-        ///*Task 19 Get List of Details */ArrayList<Country> countryRuralUrban = a.getPopulationFromRuralUrbanCountry("United Kingdom");
-        ///*Task 20 Get List of Details */ArrayList<Country> regionRuralUrban = a.getPopulationFromRuralUrbanRegion("Caribbean");
-        ///*Task 21 Get List of Details */ArrayList<Country> continentRuralUrban = a.getPopulationFromRuralUrbanContinent("Africa");
-        ///*Task 23 Get List of Details */ArrayList<City> regionCapCitiesWithLimit = a.getRegionCapitalCityListWithLimit("Caribbean", "10");
-        ///*Task 23 Get List of Details */ArrayList<City> continentCapCitiesWithLimit = a.getContinentCapitalCityListWithLimit("Oceania", "10");
-        ///*Task 24 Get List of Details */ArrayList<City> worldCapitalCitiesWithLimit = a.getWorldCapitalCityList();
-        ///*Task 25 Get List of Details */ArrayList<City> districtCitiesWithLimit = a.getDistrictCityListWithLimit("Scotland","10");
-        ///*Task 26 Get List of Details */ArrayList<City> countryCitiesWithLimit = a.getCountryCityListWithLimit("Germany","5" );
-        ///*Task 27 Get List of Details */ArrayList<City> regionCitiesWithLimit = a.getregionCityListWithLimit("British Islands", "4");
-        ///*Task 28 Get List of Details */ArrayList<City> continentCitiesWithLimit = a.getContinentsCityListWithLimit2("Europe","2");
-        ///*Task 29 Get List of Details */ArrayList<City> worldCitiesWithLimit = a.getworldCityListWithLimit("10");
-        ///*Task 30 Get List of Details */ArrayList<Country> RegionCountriesWithLimit = a.getRegionCountryListWithLimit("British Isles", "2");
-        ///*Task 31 Get List of Details */ArrayList<Country> ContientCountriesWithLimit = a.getContinentCountryListWithLimit("Europe","3");
-        ///*Task 32 Get List of Details */ArrayList<Country> worldCountriesWithLimit = a.getWorldCountryListWithLimit("10");
-        //// Print Details //
-        ///*Task 1 */a.printPopulationEdinburgh(edinburgh);
-        ///*Task 2 */a.printPopulationScotland(scotland);
-        ///*Task 3 */a.printPopulationUK(uK);
-        ///*Task 4 */a.printPopulationBritIsles(britIsles);
-        ///*Task 5 */a.printPopulationEurope(europe);
-        ///*Task 6 Print list of details */a.printLanguages(languages);
-        ///*Task 7 */a.printPopulationWorld(world);
-        ///*Task 8 Print list of details */a.printRegionCapitalCities(regionCapCities);
-        ///*Task 9 Print list of details */a.printContinentCapitalCities(continentCapCities);
-        ///*Task 10 Get List of Details */a.printWorldCapitalCities(worldCapCities);
-        ///*Task 11 Print list of Details */a.printDistrictCities(districtCities);
-        ///*Task 12 Get List of Details */a.printCountryCities(countryCities);
-        ///*Task 13 Print list of Details */a.printRegionCities(regionCities);
-        ///*Task 14 Get List of Details */a.printContinentCities(continentCities);
-        ///*Task 15 Print list of Details */a.printWorldCities(worldCities);
-        ///*Task 16 Get List of Details */a.printRegionCountries(regionCountries);
-        ///*Task 17 Print list of Details */a.printContinentCountries(countriesContinent);
-        ///*Task 18 Get List of Details */a.printWorldCountries(worldCountries);
-        ///*Task 19 Print list of Details */a.printRuralUrbanCountries(countryRuralUrban);
-        ///*Task 20 Print list of Details */a.printRuralUrbanRegion(regionRuralUrban);
-        ///*Task 21 Print list of Details */a.printRuralUrbanContinent(continentRuralUrban);
-        ///*Task 23 Print list of details */a.printRegionCapitalCitiesListWithN(regionCapCitiesWithLimit);
-        ///*Task 23 Print list of details */a.printContinentCapitalCitiesListWithN(continentCapCitiesWithLimit);
-        ///*Task 24 Get List of Details */ a.printworldCapitalCitiesListWithN(worldCapitalCitiesWithLimit);
-        ///*Task 25 Get List of Details */ a.printDistrictCitiesListWithN(districtCitiesWithLimit);
-        ///*Task 26 Get List of Details */ a.printCountryCitiesListWithN(countryCitiesWithLimit);
-        ///*Task 27 Get List of Details */ a.printRegionCitiesListWithN(regionCitiesWithLimit);
-        ///*Task 28 Get List of Details */ a.printCountinentCitiesListWithN(continentCitiesWithLimit);
-        ///*Task 29 Get List of Details */ a.printWorldCitiesListWithN(worldCitiesWithLimit);
-        ///*Task 30 Get List of Details */ a.printRegionCountriesWithLimit(RegionCountriesWithLimit);
-        ///*Task 31 Get List of Details */ a.printContinentCountriesWithLimit(ContientCountriesWithLimit);
-        ///*Task 32 Get List of Details */ a.printWorldCountriesWithLimit(worldCountriesWithLimit);
-        //// Disconnect from database
+        // Get details //
+        /*Task 1 */City edinburgh = a.getCityEdinburghPop("Edinburgh");
+        /*Task 2 */City scotland = a.getDistrictScotlandPop("Scotland");
+        /*Task 3 */Country uK = a.getCountryUKPop("United Kingdom");
+        /*Task 4 */Country britIsles = a.getRegionBritIslesPop("British Islands");
+        /*Task 5 */Country europe = a.getContinentEuropePop("Europe");
+        /*Task 6 Get List of Details */ArrayList<Language> languages = a.getLanguageList();
+        /*Task 7 */Country world = a.getWorldPop();
+        /*Task 8 Get List of Details */ArrayList<City> regionCapCities = a.getRegionCapitalCityList("British Islands");
+        /*Task 9 Get List of Details */ArrayList<City> continentCapCities = a.getContinentCapitalCityList("Africa");
+        /*Task 10 Get List of Details */ArrayList<City> worldCapCities = a.getWorldCapitalCityList();
+        /*Task 11 Get List of Details */ArrayList<City> districtCities = a.getDistrictCityList("Scotland");
+        /*Task 12 Get List of Details */ArrayList<City> countryCities = a.getCountryCityList("Germany");
+        /*Task 13 Get List of Details */ArrayList<City> regionCities = a.getRegionCityList("Western Europe");
+        /*Task 14 Get List of Details */ArrayList<City> continentCities = a.getContinentCityList("Africa");
+        /*Task 15 Get List of Details */ArrayList<City> worldCities = a.getWorldCityPopList();
+        /*Task 16 Get List of Details */ArrayList<Country> regionCountries = a.getRegionCountryList("Caribbean");
+        /*Task 17 Get List of Details */ArrayList<Country> countriesContinent = a.getContinentCountryPop("Asia");
+        /*Task 18 Get List of Details */ArrayList<Country> worldCountries = a.getWorldCountryList();
+        /*Task 19 Get List of Details */ArrayList<Country> countryRuralUrban = a.getPopulationFromRuralUrbanCountry("Caribbean");
+        /*Task 20 Get List of Details */ArrayList<Country> regionRuralUrban = a.getPopulationFromRuralUrbanRegion("Central Africa");
+        /*Task 21 Get List of Details */ArrayList<Country> continentRuralUrban = a.getPopulationFromRuralUrbanContinent("Europe");
+        /*Task 23 Get List of Details */ArrayList<City> regionCapCitiesWithLimit = a.getRegionCapitalCityListWithLimit("Caribbean", "10");
+        /*Task 23 Get List of Details */ArrayList<City> continentCapCitiesWithLimit = a.getContinentCapitalCityListWithLimit("Oceania", "10");
+        /*Task 24 Get List of Details */ArrayList<City> worldCapitalCitiesWithLimit = a.getWorldCapitalCityList();
+        /*Task 25 Get List of Details */ArrayList<City> districtCitiesWithLimit = a.getDistrictCityListWithLimit("Scotland","10");
+        /*Task 26 Get List of Details */ArrayList<City> countryCitiesWithLimit = a.getCountryCityListWithLimit("Germany","5" );
+        /*Task 27 Get List of Details */ArrayList<City> regionCitiesWithLimit = a.getregionCityListWithLimit("British Islands", "4");
+        /*Task 28 Get List of Details */ArrayList<City> continentCitiesWithLimit = a.getContinentsCityListWithLimit2("Europe","2");
+        /*Task 29 Get List of Details */ArrayList<City> worldCitiesWithLimit = a.getworldCityListWithLimit("10");
+        /*Task 30 Get List of Details */ArrayList<Country> RegionCountriesWithLimit = a.getRegionCountryListWithLimit("South America", "5");
+        /*Task 31 Get List of Details */ArrayList<Country> ContientCountriesWithLimit = a.getContinentCountryListWithLimit("Europe","3");
+        /*Task 32 Get List of Details */ArrayList<Country> worldCountriesWithLimit = a.getWorldCountryListWithLimit("10");
+        // Print Details //
+        /*Task 1 */a.printPopulationEdinburgh(edinburgh);
+        /*Task 2 */a.printPopulationScotland(scotland);
+        /*Task 3 */a.printPopulationUK(uK);
+        /*Task 4 */a.printPopulationBritIsles(britIsles);
+        /*Task 5 */a.printPopulationEurope(europe);
+        /*Task 6 Print list of details */a.printLanguages(languages);
+        /*Task 7 */a.printPopulationWorld(world);
+        /*Task 8 Print list of details */a.printRegionCapitalCities(regionCapCities);
+        /*Task 9 Print list of details */a.printContinentCapitalCities(continentCapCities);
+        /*Task 10 Get List of Details */a.printWorldCapitalCities(worldCapCities);
+        /*Task 11 Print list of Details */a.printDistrictCities(districtCities);
+        /*Task 12 Get List of Details */a.printCountryCities(countryCities);
+        /*Task 13 Print list of Details */a.printRegionCities(regionCities);
+        /*Task 14 Get List of Details */a.printContinentCities(continentCities);
+        /*Task 15 Print list of Details */a.printWorldCities(worldCities);
+        /*Task 16 Get List of Details */a.printRegionCountries(regionCountries);
+        /*Task 17 Print list of Details */a.printContinentCountries(countriesContinent);
+        /*Task 18 Get List of Details */a.printWorldCountries(worldCountries);
+        /*Task 19 Print list of Details */a.printRuralUrbanCountries(countryRuralUrban);
+        /*Task 20 Print list of Details */a.printRuralUrbanRegion(regionRuralUrban);
+        /*Task 21 Print list of Details */a.printRuralUrbanContinent(continentRuralUrban);
+        /*Task 23 Print list of details */a.printRegionCapitalCitiesListWithN(regionCapCitiesWithLimit);
+        /*Task 23 Print list of details */a.printContinentCapitalCitiesListWithN(continentCapCitiesWithLimit);
+        /*Task 24 Get List of Details */ a.printworldCapitalCitiesListWithN(worldCapitalCitiesWithLimit);
+        /*Task 25 Get List of Details */ a.printDistrictCitiesListWithN(districtCitiesWithLimit);
+        /*Task 26 Get List of Details */ a.printCountryCitiesListWithN(countryCitiesWithLimit);
+        /*Task 27 Get List of Details */ a.printRegionCitiesListWithN(regionCitiesWithLimit);
+        /*Task 28 Get List of Details */ a.printCountinentCitiesListWithN(continentCitiesWithLimit);
+        /*Task 29 Get List of Details */ a.printWorldCitiesListWithN(worldCitiesWithLimit);
+        /*Task 30 Get List of Details */ a.printRegionCountriesWithLimit(RegionCountriesWithLimit);
+        /*Task 31 Get List of Details */ a.printContinentCountriesWithLimit(ContientCountriesWithLimit);
+        /*Task 32 Get List of Details */ a.printWorldCountriesWithLimit(worldCountriesWithLimit);
+        // Disconnect from database
         //a.disconnect();
     }
 }
