@@ -949,7 +949,7 @@ public class App
      * Get a list of all people living in cities and people not living in cities in each continent
      *
      */
-    @RequestMapping("populationruralurbancountry")
+    @RequestMapping("populationruralurbancontinent")
     public ArrayList<Country> getPopulationFromRuralUrbanContinent (@RequestParam(value = "continent") String continent)
     {
         try {
