@@ -415,7 +415,47 @@ public class AppTest
         cities.add(city2);
     }
 
+    /**
+     * Task 17
+     */
+    void printContinentCitiesTestEmpty()
+    {
+        ArrayList<City> city = new ArrayList<>();
 
+        app.printContinentCities(city);
+    }
+
+    @Test
+    void printContinentCities()
+    {
+        ArrayList<City> cities = new ArrayList<>();
+
+        City city = new City();
+        city.name = "La Paz";
+        city.country = "Bolivia";
+        city.population = 8329000;
+        city.continent = "South America";
+
+        cities.add(city);
+
+        City city2 = new City();
+        city2.name = "Iran";
+        city2.country = "Teheran";
+        city2.population = 67702000;
+        city2.continent = "Asia";
+
+        cities.add(city2);
+
+        City city3 = new City();
+        city3.country = "Turkey";
+        city3.name = "Istanbul";
+        city3.population = 66591000;
+        city3.continent = "Asia";
+
+        cities.add(city3);
+    }
+
+    
 
 
  //   /**

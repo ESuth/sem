@@ -763,7 +763,51 @@ public class App
         }
     }
 
-
+    /**
+     *  Task 17
+     */
+    /**
+     *  Get a list of all countries in a continent and their population from largest to smallest
+     *  @return The record of all the countries in a continent and there populations
+     */
+    @RequestMapping("continentcountrypop")
+    public ArrayList<Country> getContinentCountryPop(@RequestParam(value = "continent")String continent)
+    {
+        try
+        {
+            // Create and SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT country.Code, country.Name, country.Continent, country.Region, city.Name, country.Population "
+                            + "FROM world.country, world.city "
+                            + "WHERE country.Continent = '" + continent + "' "
+                            + "AND country.Capital = city.ID "
+                            + "ORDER BY country.Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<Country> countries = new ArrayList<Country>();
+            while (rset.next())
+            {
+                Country country = new Country();
+                country.code = rset.getString("country.Code");
+                country.name = rset.getString("country.Name");
+                country.continent = rset.getString("country.Continent");
+                country.region = rset.getString("country.Region");
+                country.city = rset.getString("city.Name");
+                country.population = rset.getLong("country.Population");
+                countries.add(country);
+            }
+            return countries;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get countries by continent's details");
+            return null;
+        }
+    }
 
     //Print Methods
 
@@ -1045,7 +1089,27 @@ public class App
         System.out.println(" ");
     }
 
-    
+    /**
+     *  Task 17
+     */
+    public void printContinentCountries(ArrayList<Country> countries)
+    {
+        // Print header
+        System.out.println("\nTask: 17, Details retrieved for continent's countries as follows: \n");
+        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s", " Code", " Country", " Continent", " Region", " Capital", " Population"));
+        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s", "======", "=========", "===========", "========", "=========", "============"));
+        // Loop over all employees in the list
+        for (Country country : countries)
+        {
+            String language_string =
+                    String.format("%-12s %-25s %-25s %-25s %-25s %-25s",
+                            country.code, country.name, country.continent, country.region, country.city, country.population);
+            System.out.println(language_string);
+        }
+        System.out.println(" ");
+    }
+
+
 
     public static void main(String[] args)
     {
