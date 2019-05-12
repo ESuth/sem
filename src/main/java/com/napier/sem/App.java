@@ -471,7 +471,44 @@ public class App
         }
     }
 
-
+/**
+ *  Task 10
+ */
+    /**
+     * Get a list of all capital cities in the world and their population from largest to smallest.
+     * @return The record of the capital cities in the world and their population.
+     */
+    @RequestMapping("worldcapcitypop")
+    public ArrayList<City> getWorldCapitalCityList()
+    {
+        try {
+            // Create SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, country.Name, city.Population "
+                            +   "FROM world.city, world.country "
+                            +   "WHERE country.Capital = city.ID "
+                            +   "ORDER BY city.Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract city information
+            ArrayList<City> cities = new ArrayList<City>();
+            while(rset.next()) {
+                City city = new City();
+                city.name = rset.getString("city.Name");
+                city.country = rset.getString("country.Name");
+                city.population = rset.getLong("city.Population");
+                cities.add(city);
+            }
+            return cities;
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get capital cities of the world");
+            return null;
+        }
+    }
 
     //Print Methods
 
@@ -633,7 +670,25 @@ public class App
     }
 
 
-
+    /**
+     * Task 10
+     */
+    public void printWorldCapitalCities(ArrayList<City> cities)
+    {
+        // Print header
+        System.out.println("\nTask: 10, Details retrieved for world capital cities as follows: \n");
+        System.out.println(String.format("%-15s %-38s %-20s", " City", " Country", " Population"));
+        System.out.println(String.format("%-15s %-38s %-20s", "======", "=========", "============"));
+        // Loop over all employees in the list
+        for (City city : cities)
+        {
+            String language_string =
+                    String.format("%-15s %-38s %-20d",
+                            city.name, city.country, city.population);
+            System.out.println(language_string);
+        }
+        System.out.println(" ");
+    }
 
 
     public static void main(String[] args)
