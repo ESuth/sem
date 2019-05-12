@@ -344,6 +344,45 @@ public class AppTest
         app.printDistrictCities(cities);
     }
 
+    /**
+     *  Task 13
+     */
+    @Test
+    void printRegionCitiesTestEmpty()
+    {
+        ArrayList<City> city = new ArrayList<>();
+
+        app.printRegionCities(city);
+    }
+
+    @Test
+    void printRegionCities()
+    {
+        ArrayList<City> cities = new ArrayList<City>();
+
+        City city = new City();
+        city.name = "Lyon";
+        city.region = "Western Europe";
+        city.population = 445452;
+
+        cities.add(city);
+
+        City city2 = new City();
+        city2.name = "Porto";
+        city2.region = "Southern Europe";
+        city2.population = 273060;
+
+        cities.add(city2);
+
+        City city3 = new City();
+        city3.name = "Fortaleza";
+        city2.region = "South America";
+        city3.population = 2097757;
+
+        cities.add(city3);
+
+    }
+
 
 
 
