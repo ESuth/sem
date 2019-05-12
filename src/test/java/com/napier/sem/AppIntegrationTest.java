@@ -151,6 +151,23 @@ public class AppIntegrationTest
         assertEquals(continent.population, 6789479);
     }
 
+    /**
+     * Task 11
+     */
+    @Test
+    void testGetDistrictCitiesPop()
+    {
+        ArrayList<City> districts = app.getDistrictCityList("Herat");
+        City district = new City();
+        district.name = "Herat";
+        district.district = "Herat";
+        district.population = 186800;
+        districts.add(district);
+        assertEquals(district.name, "Herat");
+        assertEquals(district.district, "Herat");
+        assertEquals(district.population, 186800);
+    }
+
 
 
 //    /**

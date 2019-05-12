@@ -303,6 +303,47 @@ public class AppTest
    }
 
 
+    /**
+     *  Task 11
+     */
+    @Test
+    void printDistrictCitiesTestEmpty()
+    {
+        ArrayList<City> city = new ArrayList<>();
+
+        app.printDistrictCities(city);
+    }
+
+    @Test
+    void printDistrictCities()
+    {
+
+        ArrayList<City> cities = new ArrayList<City>();
+
+        City city = new City();
+        city.name = "Herat";
+        city.district = "Herat";
+        city.population = 186800;
+
+        cities.add(city);
+
+        City city2 = new City();
+        city2.name = "Tafunda";
+        city2.district = "Tutuila";
+        city2.population = 5200;
+
+        cities.add(city2);
+
+        City city3 = new City();
+        city3.name = "Newcastle";
+        city3.district = "New South Wales";
+        city3.population = 270324;
+
+        cities.add(city3);
+
+        app.printDistrictCities(cities);
+    }
+
 
 
 
