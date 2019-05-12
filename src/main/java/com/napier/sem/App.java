@@ -45,7 +45,7 @@ public class App
                 // Wait a bit for db to start
                 Thread.sleep(3000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC", "root", "dubstep5");
+                con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
             }
@@ -610,7 +610,7 @@ public class App
             Statement stmt = con.createStatement();
             // create string for SQL statement
             String strSelect =
-                    "SELECT DISTINCT city.Name, country.Name, city.District, city.Population "
+                    "SELECT DISTINCT city.Name, country.Name, country.Region, city.Population "
                             +   "FROM world.city, world.country "
                             +   "WHERE country.region = '" + region + "' "
                             +   "AND country.Code = city.CountryCode "
@@ -624,7 +624,7 @@ public class App
                 City city = new City();
                 city.name = rset.getString("city.Name");
                 city.country = rset.getString("country.Name");
-                city.district = rset.getString("city.District");
+                city.region = rset.getString("country.Region");
                 city.population = rset.getLong("city.Population");
                 cities.add(city);
             }
@@ -653,7 +653,7 @@ public class App
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT city.Name, country.Name, city.District, city.Population "
+                    "SELECT city.Name, country.Name, country.Continent, city.Population "
                             +   "FROM world.city, world.country "
                             +   "WHERE country.Continent = '" + continent + "' "
                             +   "AND city.CountryCode = country.Code "
@@ -667,7 +667,7 @@ public class App
                 City city = new City();
                 city.name = rset.getString("city.Name");
                 city.country = rset.getString("country.Name");
-                city.district = rset.getString("city.District");
+                city.continent = rset.getString("country.Continent");
                 city.population = rset.getLong("city.Population");
                 cities.add(city);
             }
@@ -1697,7 +1697,7 @@ public class App
         for(City city : cities)
         {
             String language_string =
-                    String.format("%-20s %-25s %-20s" , city.name, city.district, city.population);
+                    String.format("%-20s %-25s %-20s" , city.name, city.region, city.population);
             System.out.println(language_string);
         }
         System.out.println(" ");
@@ -1710,14 +1710,14 @@ public class App
     {
         // Print header
         System.out.println("\nTask: 14, Details retrieved for cities in a continent as follows: \n");
-        System.out.println(String.format("%-15s %-38s %-38s %-20s", " City", " Country", " District", " Population"));
+        System.out.println(String.format("%-15s %-38s %-38s %-20s", " City", " Country", " Continent", " Population"));
         System.out.println(String.format("%-15s %-38s %-38s %-20s", "======", "=========", "===========", "============"));
         // Loop over all employees in the list
         for (City city : cities)
         {
             String language_string =
                     String.format("%-15s %-38s %-38s %-20d",
-                            city.name, city.country, city.district, city.population);
+                            city.name, city.country, city.continent, city.population);
             System.out.println(language_string);
         }
         System.out.println(" ");
@@ -1912,13 +1912,13 @@ public class App
     {
         // Print header
         System.out.println("\nTask: 24, Details retrieved for the top N capital cities in the world as follows: \n");
-        System.out.println(String.format("%-25s %-25s %-20s", " City", " Country", " Population"));
-        System.out.println(String.format("%-25s %-25s %-20s", "======", "=========", "============"));
+        System.out.println(String.format("%-25s %-38s %-20s", " City", " Country", " Population"));
+        System.out.println(String.format("%-25s %-38s %-20s", "======", "=========", "============"));
         // Loop over all employees in the list
         for (City city : cities)
         {
             String language_string =
-                    String.format("%-25s %-25s %-20d",
+                    String.format("%-25s %-38s %-20d",
                             city.name, city.country, city.population);
             System.out.println(language_string);
         }
@@ -2088,7 +2088,7 @@ public class App
         // Connect to database
         if (args.length < 1)
         {
-            a.connect("localhost:3306");
+            a.connect("localhost:33060");
         }
         else
         {
@@ -2122,13 +2122,13 @@ public class App
         /*Task 21 Get List of Details */ArrayList<Country> continentRuralUrban = a.getPopulationFromRuralUrbanContinent("Europe");
         /*Task 23 Get List of Details */ArrayList<City> regionCapCitiesWithLimit = a.getRegionCapitalCityListWithLimit("Caribbean", "10");
         /*Task 23 Get List of Details */ArrayList<City> continentCapCitiesWithLimit = a.getContinentCapitalCityListWithLimit("Oceania", "10");
-        /*Task 24 Get List of Details */ArrayList<City> worldCapitalCitiesWithLimit = a.getWorldCapitalCityList();
+        /*Task 24 Get List of Details */ArrayList<City> worldCapitalCitiesWithLimit = a.getworldCapitalCityListWithLimit("15");
         /*Task 25 Get List of Details */ArrayList<City> districtCitiesWithLimit = a.getDistrictCityListWithLimit("Scotland","10");
         /*Task 26 Get List of Details */ArrayList<City> countryCitiesWithLimit = a.getCountryCityListWithLimit("Germany","5" );
         /*Task 27 Get List of Details */ArrayList<City> regionCitiesWithLimit = a.getregionCityListWithLimit("British Islands", "4");
         /*Task 28 Get List of Details */ArrayList<City> continentCitiesWithLimit = a.getContinentsCityListWithLimit2("Europe","2");
         /*Task 29 Get List of Details */ArrayList<City> worldCitiesWithLimit = a.getworldCityListWithLimit("10");
-        /*Task 30 Get List of Details */ArrayList<Country> RegionCountriesWithLimit = a.getRegionCountryListWithLimit("South America", "5");
+        /*Task 30 Get List of Details */ArrayList<Country> RegionCountriesWithLimit = a.getRegionCountryListWithLimit("Middle East", "5");
         /*Task 31 Get List of Details */ArrayList<Country> ContientCountriesWithLimit = a.getContinentCountryListWithLimit("Europe","3");
         /*Task 32 Get List of Details */ArrayList<Country> worldCountriesWithLimit = a.getWorldCountryListWithLimit("10");
         // Print Details //
