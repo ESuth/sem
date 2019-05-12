@@ -916,6 +916,7 @@ public class App
                     "SELECT DISTINCT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name "
                             +   "FROM world.country, world.city "
                             +   "WHERE country.Region = '" + region + "' "
+                            +   "AND country.Capital = city.ID "
                             +   "ORDER BY country.Code DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -960,6 +961,7 @@ public class App
                     "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name "
                             +   "FROM world.country "
                             +   "WHERE country.Continent = '" + continent + "' "
+                            +   "AND country.Capital = city.ID "
                             +   "ORDER BY country.Code DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
