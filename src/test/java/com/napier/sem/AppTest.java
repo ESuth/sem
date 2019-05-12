@@ -455,7 +455,24 @@ public class AppTest
         cities.add(city3);
     }
 
+    /**
+     * Task 19
+     */
+    void printRuralUrbanCountryTestEmpty()
+    {
+        ArrayList<Country> country = new ArrayList<>();
 
+        app.printRuralUrbanCountries(country);
+    }
+
+    @Test
+    void printRuralUrbanCountry()
+    {
+        ArrayList<Country> countries = new ArrayList<>();
+
+    }
+
+    
 
 
  //   /**
