@@ -185,7 +185,26 @@ public class AppIntegrationTest
         assertEquals(region.population, 445452);
     }
 
+    /**
+     * Task 15
+     */
+    @Test
+    void testGetWorldCitiesPop()
+    {
+        ArrayList<City> worlds = app.getWorldCityPopList();
+        City world = new City();
+        world.name = "Amsterdam";
+        world.population = 731200;
+        world.district = "Noord-Holland";
+        world.country = "Netherlands";
+        worlds.add(world);
+        assertEquals(world.name, "Amsterdam");
+        assertEquals(world.population, 731200);
+        assertEquals(world.district, "Noord-Holland");
+        assertEquals(world.country, "Netherlands");
+    }
 
+    
 
 //    /**
 //     * Task 10

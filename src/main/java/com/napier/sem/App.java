@@ -677,6 +677,45 @@ public class App
         }
     }
 
+    /**
+     *  Task 15
+     */
+    /**
+     * @return The record of the cities in the world and their population.
+     */
+    @RequestMapping("worldcitypop")
+    public ArrayList<City> getWorldCityPopList()
+    {
+        try {
+            // Create SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, country.Name, city.District, city.Population "
+                            +   "FROM world.city, world.country "
+                            +   "WHERE country.Code = city.CountryCode "
+                            +   "ORDER BY city.Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract city information
+            ArrayList<City> cities = new ArrayList<City>();
+            while(rset.next()) {
+                City city = new City();
+                city.name = rset.getString("city.Name");
+                city.country = rset.getString("country.Name");
+                city.district = rset.getString("city.District");
+                city.population = rset.getLong("city.Population");
+                cities.add(city);
+            }
+            return cities;
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get cities of the world");
+            return null;
+        }
+    }
+
     //Print Methods
 
     /**
@@ -915,6 +954,28 @@ public class App
         }
         System.out.println(" ");
     }
+
+    /**
+     *  Task 15
+     */
+    public void printWorldCities(ArrayList<City> cities)
+    {
+        // Print Header
+        System.out.println("\nTask: 15, Details retrieved for world cities as follows: \n");
+        System.out.println(String.format("%-15s %-38s %-20s", " City", " Country", " Population"));
+        System.out.println(String.format("%-15s %-38s %-20s", "======", "=========", "===========", "============"));
+        // Loop over all employees in the list
+        for (City city : cities)
+        {
+            String language_string =
+                    String.format("%-15s %-38s %-20d",
+                            city.name, city.country, city.population);
+            System.out.println(language_string);
+        }
+        System.out.println(" ");
+    }
+
+
 
 
     public static void main(String[] args)

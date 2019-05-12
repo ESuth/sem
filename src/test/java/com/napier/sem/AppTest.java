@@ -383,6 +383,38 @@ public class AppTest
 
     }
 
+    /**
+     *  Task 15
+     */
+    void printWorldCitiesTestEmpty()
+    {
+        ArrayList<City> city = new ArrayList<>();
+
+        app.printWorldCities(city);
+    }
+
+    @Test
+    void printWorldCities()
+    {
+        ArrayList<City> cities = new ArrayList<City>();
+
+        City city = new City();
+        city.name = "Amsterdam";
+        city.population = 731200;
+        city.district = "Noord-Holland";
+        city.country = "Netherlands";
+
+        cities.add(city);
+
+        City city2 = new City();
+        city.name = "San Juan";
+        city.population = 119152;
+        city.district = "San Juan";
+        city.country = "Argentina";
+
+        cities.add(city2);
+    }
+
 
 
 
