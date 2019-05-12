@@ -10,6 +10,7 @@
         <module name="sem(lab9)" />
         <module name="seMethods" />
         <module name="semFinal" />
+        <module name="semhow" />
         <module name="semHTML" />
         <module name="semLast" />
         <module name="semtesting" />
@@ -19,6 +20,7 @@
       <module name="sem" target="1.8" />
       <module name="sem(lab9)" target="1.8" />
       <module name="semFinal" target="1.8" />
+      <module name="semhow" target="1.8" />
       <module name="semHTML" target="1.8" />
       <module name="semLast" target="1.8" />
       <module name="semtesting" target="1.8" />
@@ -31,6 +33,7 @@
       <module name="semFinal" options="-parameters" />
       <module name="semHTML" options="-parameters" />
       <module name="semLast" options="-parameters" />
+      <module name="semhow" options="-parameters" />
       <module name="semtesting" options="-parameters" />
     </option>
   </component>
