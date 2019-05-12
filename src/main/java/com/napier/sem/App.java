@@ -716,6 +716,55 @@ public class App
         }
     }
 
+    /**
+     * Task 16
+     */
+    /**
+     * Get a list of all the countries in a region and their populations from largest to smallest
+     * @param region name of the region to get.
+     * @return The record of the countries in a region and there populations.
+     */
+    @RequestMapping("regioncountrypop")
+    public ArrayList<Country> getRegionCountryList(@RequestParam(value = "region") String region)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT country.Code, country.Name, country.Continent, country.Region, city.Name, country.Population "
+                            + "FROM world.country, world.city "
+                            + "WHERE country.Region = '" + region + "' "
+                            + "AND country.Capital = city.ID "
+                            + "ORDER BY country.Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<Country> countries = new ArrayList<Country>();
+            while (rset.next())
+            {
+                Country country = new Country();
+                country.code = rset.getString("country.Code");
+                country.name = rset.getString("country.Name");
+                country.continent = rset.getString("country.Continent");
+                country.region = rset.getString("country.Region");
+                country.city = rset.getString("city.Name");
+                country.population = rset.getLong("country.Population");
+                countries.add(country);
+            }
+            return countries;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get countries by region's details");
+            return null;
+        }
+    }
+
+
+
     //Print Methods
 
     /**
@@ -976,7 +1025,27 @@ public class App
     }
 
 
+    /**
+     * Task 16
+     */
+    public void printRegionCountries(ArrayList<Country> countries)
+    {
+        // Print header
+        System.out.println("\nTask: 16, Details retrieved for region countries as follows: \n");
+        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s", " Code", " Country", " Continent", " Region", " Capital", " Population"));
+        System.out.println(String.format("%-12s %-25s %-25s %-25s %-25s %-25s", "======", "=========", "===========", "========", "=========", "============"));
+        // Loop over all employees in the list
+        for (Country country : countries)
+        {
+            String language_string =
+                    String.format("%-12s %-25s %-25s %-25s %-25s %-25s",
+                            country.code, country.name, country.continent, country.region, country.city, country.population);
+            System.out.println(language_string);
+        }
+        System.out.println(" ");
+    }
 
+    
 
     public static void main(String[] args)
     {
