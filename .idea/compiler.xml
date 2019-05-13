@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="sem" />
         <module name="sem(lab9)" />
+        <module name="semEnd" />
         <module name="seMethods" />
         <module name="semFinal" />
         <module name="semhow" />
@@ -19,6 +20,7 @@
     <bytecodeTargetLevel>
       <module name="sem" target="1.8" />
       <module name="sem(lab9)" target="1.8" />
+      <module name="semEnd" target="1.8" />
       <module name="semFinal" target="1.8" />
       <module name="semhow" target="1.8" />
       <module name="semHTML" target="1.8" />
@@ -30,6 +32,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="sem" options="-parameters" />
       <module name="sem(lab9)" options="-parameters" />
+      <module name="semEnd" options="-parameters" />
       <module name="semFinal" options="-parameters" />
       <module name="semHTML" options="-parameters" />
       <module name="semLast" options="-parameters" />

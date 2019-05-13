@@ -21,7 +21,7 @@ public class App
 
 
     /**
-     * Connect to the MySQL database.
+     * Connect to the MySQL database..
      */
     public static void connect(String location)
     {
